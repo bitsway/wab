@@ -417,6 +417,7 @@ function achiveDataSave(){
 		
 		
 		//alert(localStorage.achPopulation);
+		alert("Data will be saved for review");
 		
 		/*var url = "#inPhoto";				
 		$(location).attr('href',url);*/
@@ -469,7 +470,7 @@ function achiveData(){
 		
 		
 		var achiveData='ach_population='+ach_population+'&ach_household='+ach_household+'&ach_male='+ach_male+'&ach_female='+ach_female+'&ach_girlsUnder='+ach_girlsUnder+'&ach_boysUnder='+ach_boysUnder+'&ach_girls='+ach_girls+'&ach_boys='+ach_boys+'&ach_dapMale='+ach_dapMale+'&ach_dapFemale='+ach_dapFemale+'&ach_poorC='+ach_poorC+'&ach_poorEx='+ach_poorEx+'&ach_ethMale='+ach_ethMale+'&ach_ethFemale='+ach_ethFemale+'&ach_service_recpient='+ach_service_recpient+'&ach_ser_rect_val='+ach_ser_rect_val;
-		
+		alert("Data will be submitted. If can not be submitted due to any technical reason it will be saved automatically");
 		//alert(achiveData);
 		/*$.ajax({
 				   url:apipath+'achivedata?'achiveData,
@@ -492,6 +493,6 @@ function achiveData(){
 	}
 
 function exit() {
-//navigator.app.exitApp();
-navigator.device.exitApp();
+navigator.app.exitApp();
+//navigator.device.exitApp();
 }
