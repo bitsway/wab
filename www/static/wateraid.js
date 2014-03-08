@@ -492,5 +492,6 @@ function achiveData(){
 	}
 
 function exit() {
-navigator.app.exitApp();
+//navigator.app.exitApp();
+navigator.device.exitApp();
 }
