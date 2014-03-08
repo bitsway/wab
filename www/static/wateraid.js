@@ -1,6 +1,5 @@
 
 //var apipath='http://127.0.0.1:8000/wateraid/syncmobile/';
-var apipath='http://e2.businesssolutionapps.com/wateraid/wateraid/syncmobile/';
 
 function test() {
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -19,7 +18,8 @@ function onSuccess(position) {
                 'message: ' + error.message + '\n');
     }
 
-var apipath=location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/wateraid/syncmobile/";
+//var apipath=location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/wateraid/syncmobile/";
+var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile/";
 
 var syncResult='';
 
