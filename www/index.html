@@ -6,13 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>water aid</title>
 		<link rel="stylesheet" href="static/themes/my.css" />
-		<!--<link rel="stylesheet" href="static/themes/jquery.mobile.structure-1.4.0.min.css" />-->
         <link rel="stylesheet" href="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.css" />
         <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
         <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
 		<script src="static/wateraid.js">   </script>
 		<style>
 			.reqField{ color:#FF0000;}
+			.errorChk{ color:#FF0000; text-shadow:none;}
+			
+			
 		</style>	
     </head>
     
@@ -27,13 +29,14 @@
 				<h3>Select Report</h3>
             </div><!----/header-->
 			<div data-role="content">
+					<div class="errorChk"></div>
 					<ul data-role="listview" data-inset="true">
-						<li><a href="#planList" data-transition="slide">Achievement</a></li>
-						<li><a  href="#unionWaterQ" data-transition="slide">Water Quality</a></li>
+						<li><a  onClick="achivementclick()" data-transition="slide">Achievement</a></li>
+						<li><a  onClick="waterQtyClick()" data-transition="slide">Water Quality</a></li>
 					</ul>
 					<ul data-role="listview" data-inset="true">
-						<li><a href="#" onClick="reviseAchiveData()" data-transition="slide">Review Achievement</a></li>
-						<li><a href="#" data-transition="slide">Review Water Quality</a></li>
+						<li ><a href="#" onClick="reviewAchiveData()" data-transition="slide">Review Achievement</a></li>
+						<li><a href="#" onClick="reviewWaterQData()" data-transition="slide">Review Water Quality</a></li>
 					</ul>
             </div><!------/cont-->
             <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div><!------/footer-->
@@ -59,19 +62,48 @@
 			
         </div><!--/rpt type-->
 		
-		<!----------=====================Log in==================----style="background:#07B3D3;"-------->
+		<!----------=====================review data list==================----style="background:#07B3D3;"-------->
+		<div data-theme="d" data-role="page" id="reviewDataList" >
+			<div data-theme="d" data-role="header" data-position="fixed" >
+				<a data-role="button" onClick="waterAidClick()"  data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+				<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<h3>Review Data list</h3>
+            </div><!----/header-->
+			<div data-role="content">
+				<div class="errorChk"></div>
+				<div id="reviewAchList"></div>
+				<a data-role="button" onClick="reviewDataNext()"   data-transition="slide" >Next</a>
+				<a data-role="button" onClick="deleteAchReview()"   data-transition="slide" >Delete</a>
+			</div><!--/content--->
+		</div><!-----/login-->
+		
+		<!----------=====================review water Quality data list==================----style="background:#07B3D3;"-------->
+		<div data-theme="d" data-role="page" id="reviewWqDataList" >
+			<div data-theme="d" data-role="header" data-position="fixed" >
+				<a data-role="button" onClick="waterAidClick()"  data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+				<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<h3>Review Water Quality Data list</h3>
+            </div><!----/header-->
+			<div data-role="content">
+				<div class="errorChk"></div>
+				<div id="reviewWqList"></div>
+				<a data-role="button" onClick="reviewWqDataNext()"   data-transition="slide" >Next</a>
+				<a data-role="button" onClick="deleteWqReview()"   data-transition="slide" >Delete</a>
+			</div><!--/content--->
+		</div><!-----/login-->
+		<!----------===================== sync page==================----style="background:#07B3D3;"-------->
 		<div data-theme="d" data-role="page" id="pagesync" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-				<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-				<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+				<!--<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>-->
 				<h3>Sync</h3>
             </div><!----/header-->
 			<div data-role="content">
-				<div id="mySync"></div>
+				<div class="errorChk"></div>
 				<ul data-role="listview" data-inset="true" data-theme="d">
 					<li class="ui-field-contain">
-						<label for="mobile"> User ID </label>
-						<input name="mobile" id="mobile" placeholder="" value="" type="text">
+						<label for="mobile"> Mobile No</label>
+						<input name="mobile" id="mobile" placeholder="" value="" type="number">
 					</li>
 					<li class="ui-field-contain">
 						<label for="password">Password </label>
@@ -85,25 +117,21 @@
                 <br/>
 				<br/>
 				<br/>
-			</div><!--/content id="loginCheck"--->
+			</div><!--/content--->
 		</div><!-----/login-->
 		
 		
         <!-- ===============select plan list page================== -->
         <div data-role="page" id="planList" data-theme="d" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-				<h3>Select plan</h3>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <!--<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>-->
+				<h3>Select Location</h3>
             </div>
-				<div data-role="content">
-					<!--<ul data-role="listview" data-inset="true">
-						<li><a href="#achiveDataList" data-transition="slide">1<br/><font size="-3">WAB/RW/11-12/P-07/MJSKS/BADARGANJ<br/>Ring well/ dug well installation</font></a></li>
-						<li><a href="#">Plan Two</a></li>
-					</ul>-->
-				<div class="planlistDiv"></div>
-				
-				<a data-role="button" href="#achiveDataList"   data-transition="slide" >Next</a>
+			<div data-role="content">
+				<div class="errorChk"></div>
+				<div id="planlistDiv"></div>
+				<a data-role="button" onClick="achDataNext()"   data-transition="slide" >Next</a>
             </div>
        <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
         </div>
@@ -111,36 +139,41 @@
 		<!-- ===============achive data list page================== -->
         <div data-role="page" id="achiveDataList" data-theme="d" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3> People Supported</h3>
             </div>
 			<div data-role="content">
-						<!--<div class="errorChk"></div>--><!--errr-->
-						<!--<div class="cboIdDiv"></div>--><!--cbo List-->
+						<div id="cboIdDiv"></div><!--cbo List-->
+						<ul data-role="listview" data-inset="true" data-theme="d">
+							<li class="ui-field-contain">
+								<label for="achID"> ID</label>
+								<input name="achID" id="achID" placeholder="" value="" type="number">
+							</li>
+						</ul>
 						<table class="ui-body-d ui-shadow table-stripe ui-responsive"  data-role="table" data-theme="d"  data-mode="display:none" style="cell-spacing:0px;">
 							<tr valign="middle">
-								<td colspan="3"><strong>People Supported</strong></td>
+								<td colspan="3" ><strong>People Supported</strong></td>
 						  </tr>
 							<tr >
 								<td width="70%" style="vertical-align:middle;">Population</td>
-								<td width="30%"><input name="population" id="population" placeholder="" value="" type="number" style=""></td>
-							    <td width="5" align="left"><sup class="reqField">*</sup></td>
+								<td width="30%"><input name="population" id="population"  placeholder="" value="" type="number" readonly="readonly" style="background-color:#EEEEEE;"></td>
+							    <td width="5" align="left"></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;">House hold</td>
-								<td width="30%"><input name="household" id="household" placeholder="" value="" type="number"></td>
-							    <td width="5" align="left"><sup class="reqField">*</sup></td>
+								<td width="30%"><input name="household" id="household" placeholder="" value="" type="number" readonly="readonly" style="background-color:#EEEEEE;" ></td>
+							    <td width="5" align="left"></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;">Male</td>
-								<td width="30%"><input name="male" id="male" placeholder="" value="" type="number"></td>
+								<td width="30%"><input name="male" id="male" onBlur="totalPopulation()" placeholder="" value="" type="number"></td>
 							    <td width="5" align="left"><sup class="reqField">*</sup></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;">Female</td>
 								<td width="30%">
-							    <input name="female" id="female" placeholder="" value="" type="number"></td>
+							    <input name="female" id="female" placeholder="" onBlur="totalPopulation()" value="" type="number"></td>
 							    <td width="5" align="left"><sup class="reqField">*</sup></td>
 							</tr>
 							<tr>
@@ -174,13 +207,23 @@
 							    <td width="5" align="left">&nbsp;</td>
 							</tr>
 							<tr>
+								<td width="70%" style="vertical-align:middle;">Poor (A Category)</td>
+								<td width="30%"><input name="poorA" id="poorA" onBlur="totalhousehold()"  placeholder="" value="" type="number"></td>
+							    <td width="5" align="left"></td>
+							</tr>
+							<tr>
+								<td width="70%" style="vertical-align:middle;">Poor (B Category)</td>
+								<td width="30%"><input name="poorB" id="poorB" onBlur="totalhousehold()" placeholder="" value="" type="number"></td>
+							    <td width="5" align="left"></td>
+							</tr>
+							<tr>
 								<td width="70%" style="vertical-align:middle;">Poor (C Category)</td>
-								<td width="30%"><input name="poorC" id="poorC" placeholder="" value="" type="number"></td>
+								<td width="30%"><input name="poorC" id="poorC" onBlur="totalhousehold()" placeholder="" value="" type="number"></td>
 							    <td width="5" align="left"><sup class="reqField">*</sup></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;">Extreme Poor (D Category)</td>
-								<td width="30%"><input name="poorEx" id="poorEx" placeholder="" value="" type="number"></td>
+								<td width="30%"><input name="poorEx" id="poorEx" onBlur="totalhousehold()" placeholder="" value="" type="number"></td>
 							    <td width="5" align="left"><sup class="reqField">*</sup></td>
 							</tr>
 							<tr>
@@ -195,8 +238,10 @@
 							</tr>
 	  		  </table>
 					
-						<a data-role="button" href="#achiveDataList2"   data-transition="slide" >Next</a>
-				<br/>
+						<a data-role="button" href="#" onClick="achivementDataPSupport()"  data-transition="slide" >Next</a>
+				
+                <div class="errorChk"></div><!--errr-->
+                <br/>
 				<br/>
 				<br/>
 				<br/>
@@ -211,33 +256,14 @@
 		 <!-- ===============select Achive list page2================== -->
         <div data-role="page" id="achiveDataList2" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Achievement Data</h3>
           </div>
 		
 			<div data-role="content">
-				<!--<div class="errorChk"></div>-->
-				<ul data-role="listview" data-inset="true" data-theme="d">
-					<li class="ui-field-contain">
-						<select name="service_recepient" id="service_recepient" data-native-menu="false" >
-							<option value="">Service Recepient <sup class="reqField">*</sup></option>
-							<option value="1">Individual</option>
-							<option value="2">House hold</option>
-							<option value="3">Vill/slum</option>
-							<option value="4">Ward</option>
-							<option value="4">CBO/institute</option>
-							<option value="4">Union/city/pourshava</option>
-							<option value="4">Upazila</option>
-							<option value="4">PNGO/national</option>
-						</select>
-					
-						<input name="ser_recpt" id="ser_recpt" placeholder="" value="" min="0" type="number">
-					</li>
-				</ul>
-						
-				
-			  
+				<div class="errorChk"></div>
+				<div id="serResDiv"></div>
 			  <!--
 					<br/>
 					<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
@@ -282,7 +308,7 @@
 			  		</table>
 					-->
 					
-					<a data-role="button" href="#inPhoto"  data-transition="slide" >Next</a>
+					<a data-role="button" href="#" onClick="serviceRecipentNext()"  data-transition="slide" >Next</a>
 				<br/>
 				<br/>
 				<br/>
@@ -297,36 +323,38 @@
 		<!-- ===============achivment data page3================== -->
         <div data-role="page" id="inPhoto" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <!--<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>-->
 				<h3>Achievement Data</h3>
           </div>
 			<div data-role="content">
+				<div class="errorChk"></div>
 				<ul data-role="listview" data-inset="true">
-                                    <li><a href="#" onclick="alert('Camera will open')">Photo</a></li>
+                    <li><a href="#" onClick="alert('Camera will open')" id="#photo">Photo</a></li>
 				</ul>
-				<a data-role="button" onClick="achiveDataSave()" >Save</a>
-				<a data-role="button" onClick="achiveData()"  >Submit</a>
-            </div><!-----onClick="achiveData()"-->
+				<a data-role="button" onClick="achiveDataSave()" class="ui-btn" >Save</a>
+				<a data-role="button" onClick="achiveDataSubmit()" class="ui-btn"  >Submit</a>
+            </div><!-----onClick="achiveDataSubmit()"-->
 			
 			
                    
        <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
 		</div>
 		
-<!---------------------------Water Quality page----------------------------------------->	
+<!----------------------------------------------------------------Water Quality page----------------------------------------->	
 
 			
 		<!-- ===============select union page================== -->
         <div data-role="page" id="unionWaterQ" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <!--<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>-->
 				<h3>Select Location </h3>
             </div>
 			<div data-role="content">
-				<div Class="planlistDiv"></div>
-				<a data-role="button" href="#waterData"  >Next</a>
+				<div class="errorChk"></div>
+				<div id="planWqlistDiv"></div>
+				<a data-role="button" href="#" onClick="wQLocationNext()" >Next</a>
 			
 			</div>
 		
@@ -336,29 +364,40 @@
 		 <!-- ===============water quality page================== -->
         <div data-role="page" id="waterData" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>	
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>	
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3> Water Quality Data</h3>
             </div>
 			<div data-role="content">
+				<div class="errorChk"></div>
+				<div id="wQCboIdDiv"></div><!--cbo List-->
 				
 				<ul data-role="listview" data-inset="true">
 					<li class="ui-field-contain">
+						<label for="test_type">Test Type <sup class="reqField">*</sup></label>
 						<select name="test_type" id="test_type" data-native-menu="false" >
-							<option value="">Test Type <sup class="reqField">*</sup></option>
-							<option value="pre">Pre Installation</option>
-							<option value="2">Installation new</option>
-							<option value="3">Installation –Renovation</option>
-							<option value="monitoring">Monitoring</option>
-							<option value="4">Cross Check</option>
+							<option value="">Test Type</option>
+							<option value="Pre Instalation">Pre Installation</option>
+							<option value="New Instalation">Installation new</option>
+							<option value="Renovation Instalation">Installation –Renovation</option>
+							<option value="Monitoring">Monitoring</option>
+							<option value="Cross Check">Cross Check</option>
 						</select>
 						
 					</li>
 				</ul>
-				<div Class="cboIdDiv"></div><!--cbo List-->
-				
-				<!--<div id="facilityTypeDiv"></div>-->
 				<div id="providedByDiv"></div>
+				<ul data-role="listview" data-inset="true">
+					<li style="background-color:#F2F2F2;"></li>
+					<li class="ui-field-contain">
+						<label for="wq_ref"> Reference </label>
+						<input name="wq_ref" id="wq_ref" placeholder="" value="" type="text">
+					</li>
+					<li class="ui-field-contain">
+						<label for="wq_id"> ID </label>
+						<input name="wq_id" id="wq_id" placeholder="" value="" type="text">
+					</li>
+				</ul>
 					
 				<a data-role="button" onClick="waterDataNext()"  data-transition="slide" >Next</a>
 			</div>
@@ -371,7 +410,7 @@
 		<!-- ===============water quality page2================== -->
         <div data-role="page" id="waterData2" >
             <div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Water Quality Data</h3>
           </div>
@@ -401,34 +440,35 @@
 			  			</table>
 					
 					<ul data-role="listview" data-inset="true">
-						<li>Maintained by</li>
+						<li style="background-color:#F2F2F2;">Maintained by</li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup">
-								<input type="radio" name="maintain_by" id="maintain_1" value="">
+								<input type="radio" name="maintain_by" id="maintain_1" value="user">
 								<label for="maintain_1">user</label>
-								<input type="radio" name="maintain_by" id="maintain_2" value="">
+								<input type="radio" name="maintain_by" id="maintain_2" value="community">
 								<label for="maintain_2">Community</label>
-								<input type="radio" name="maintain_by" id="maintain_3" value="">
+								<input type="radio" name="maintain_by" id="maintain_3" value="caretaker">
 								<label for="maintain_3">caretaker</label>
 							</fieldset>
 						</li>
 					</ul>
 					<ul data-role="listview" data-inset="true">
-						<li>User water payment</li>
+						<li style="background-color:#F2F2F2;">User water payment</li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup">
-								<input type="radio" name="user_w_payment" id="full_cost" value="">
+								<input type="radio" name="user_w_payment" id="full_cost" value="Full cost paid ">
 								<label for="full_cost">Full cost paid</label>
-								<input type="radio" name="user_w_payment" id="some_cost" value="">
+								<input type="radio" name="user_w_payment" id="some_cost" value="Some cost">
 								<label for="some_cost">Some Cost</label>
-								<input type="radio" name="user_w_payment" id="nothing" value="">
+								<input type="radio" name="user_w_payment" id="nothing" value="Nothing paid">
 								<label for="nothing">Nothing paid</label>
 							</fieldset>
 						</li>
 					</ul>
 					
 					
-					<a data-role="button" href="#waterData3" data-transition="slide" >Next</a>
+					<a data-role="button" href="#" onClick="waterData2Next()" data-transition="slide" >Next</a>
+					<div class="errorChk"></div>
 					<br/><br/><br/><br/><br/><br/>
             </div>
 			
@@ -436,65 +476,16 @@
 			
         </div>
 		
-		<!-- ===============water quality page3================== -->
+		<!-- ===============water quality page4================== -->
         <div data-role="page" id="waterData3" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
-				<h3>Water Quality Data</h3>
-          </div>
-		
-			<div data-role="content">
-						<ul data-role="listview" data-inset="true" data-theme="d">
-							<li>Other Perticulars</li>
-							<!--<li class="ui-field-contain">
-								<label for="fID">Facility ID <sup class="reqField">*</sup></label>
-								<input name="fID" id="fID" placeholder="" value="" type="text">
-							</li>-->
-							<li class="ui-field-contain">
-								<label for="ownerName">Owner Name </label>
-								<input name="ownerName" id="ownerName" placeholder="" value="" type="text">
-							</li>
-							<li class="ui-field-contain">
-								<label for="ownerPhone">Owner Phone No </label>
-								<input name="ownerPhone" id="ownerPhone" placeholder="" value="" type="text">
-							</li>
-							<li class="ui-field-contain">
-								<label for="caretaker">Caretaker Name <sup class="reqField">*</sup> </label>
-								<input name="caretaker" id="caretaker" placeholder="" value="" type="text">	
-							</li>
-							<li class="ui-field-contain">
-								<label for="caretakerPhoneNo">Caretaker Phone No <sup class="reqField">*</sup></label>
-								<input name="caretakerPhoneNo" id="caretakerPhoneNo" placeholder="" value="" type="text">	
-							</li>
-						</ul>
-						
-						<ul data-role="listview" data-inset="true" id="pre_photo">
-							<li class="ui-field-contain">
-								<label for=""> Photo <sup class="reqField">*</sup> </label>
-								<input name="" id="" placeholder="" value="Photo" type="button">
-							</li>
-							
-						</ul>
-						
-						
-						<a data-role="button" href="#waterData4" data-transition="slide" >Next</a>
-						<br/><br/><br/><br/><br/><br/>
-            </div>
-                   
-       <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
-        </div>
-		
-		
-		<!-- ===============water quality page4================== -->
-        <div data-role="page" id="waterData4" >
-			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Water Quality Data</h3>
           </div>
 		
 			<div data-role="content">
+						
 						<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
 							<tr>
 								<td colspan="3"><strong>Others Perticulars</strong></td>
@@ -502,7 +493,7 @@
 							<tr>
 								<td width="70%" style="vertical-align:middle;"> Depth(m)</td>
 								<td width="30%"><input name="depth" id="depth" placeholder="" value="" type="number"></td>
-							    <td width="5"></td>
+							    <td width="5"><sup class="reqField">*</sup></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;">Static water level(m) </td>
@@ -525,8 +516,9 @@
 							    <td width="5"><sup class="reqField">*</sup></td>
 							</tr>
 			  			</table>
-						<div class="dateErr" style="color:red;"></div>
-						<a data-role="button" href="#waterData5"   data-transition="slide" >Next</a>
+						
+						<a data-role="button" href="#" onClick="waterData3Next()"   data-transition="slide" >Next</a>
+						<div class="errorChk"></div>
 					<br/><br/><br/><br/><br/><br/>
             </div>
                    
@@ -534,40 +526,228 @@
 	   
         </div>
 		
-		 <!-- ===============water quality page5================== -->
+		
+		<!-- ===============water quality page11================== -->
+        <div data-role="page" id="waterData4" >
+			<div data-theme="d" data-role="header" data-position="fixed" >
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<h3>Water Quality Data</h3>
+          </div>
+		
+			<div data-role="content">
+					<div class="errorChk"></div>
+					<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
+							<tr>
+								<td colspan="2"><strong>Other Particulars (History) </strong><sup class="reqField">*</sup></td>
+							</tr>
+							<tr>
+								<td width="70%" style="vertical-align:middle;">Application Date </td>
+								<td width="30%"><input name="appDate" id="appDate" placeholder="" value="" type="date"></td>
+							</tr>
+							<tr>
+								<td width="70%" style="vertical-align:middle;">  Handover Date </td>
+								<td width="30%"><input name="handOvrDate" id="handOvrDate" placeholder="" value="" type="date"></td>
+								
+							</tr>
+  			  </table>
+						<div class="dateErr" style="color:red;"></div>
+						
+						<a data-role="button" href="#" onClick="waterData4Next()"  data-transition="slide" >Next</a>
+					<br/><br/><br/><br/><br/><br/>
+            </div>
+                   
+       <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
+        </div>
+		
+		
+		
+		
+		<!-- ===============water quality page3================== -->
         <div data-role="page" id="waterData5" >
+			<div data-theme="d" data-role="header" data-position="fixed" >
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+				<h3>Water Quality Data</h3>
+          </div>
+		
+			<div data-role="content">
+						
+						<ul data-role="listview" data-inset="true" data-theme="d">
+							<li style="background-color:#F2F2F2;">Other Perticulars</li>
+							<li class="ui-field-contain">
+								<label for="ownerName">Owner Name </label>
+								<input name="ownerName" id="ownerName" placeholder="" value="" type="text">
+							</li>
+							<li class="ui-field-contain">
+								<label for="ownerPhone">Owner Phone No </label>
+								<input name="ownerPhone" id="ownerPhone" placeholder="" value="" type="text">
+							</li>
+							<li class="ui-field-contain">
+								<label for="caretaker">Caretaker Name <sup class="reqField">*</sup> </label>
+								<input name="caretaker" id="caretaker" placeholder="" value="" type="text">	
+							</li>
+							<li class="ui-field-contain">
+								<label for="caretakerPhoneNo">Caretaker Phone No <sup class="reqField">*</sup></label>
+								<input name="caretakerPhoneNo" id="caretakerPhoneNo" placeholder="" value="" type="text">	
+							</li>
+						</ul>
+						
+						
+						<a data-role="button" href="#" onClick="waterData5Next()" data-transition="slide" >Next</a>
+						<div class="errorChk"></div>
+						<br/><br/><br/><br/><br/><br/>
+            </div>
+                   
+       <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
+        </div>
+		
+		<!-- ===============water quality page7================== -->
+       <!-- <div data-role="page" id="waterData6" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
 			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-				<h3> Test Data</h3>
+				<h3>Select technology</h3>
             </div>
 		
 			<div data-role="content">
+				<div class="errorChk"></div>
+				
 					<ul data-role="listview" data-inset="true">
-						<li>Name of the field Test Kit <sup class="reqField">*</sup></li>
+					<li class="ui-field-contain">
+						<label for="test_type">Select Techonology</label>
+						<select name="select_tech" id="select_tech" data-native-menu="false" >
+							<option value="">Select Technology</option>
+							<option value="TW renovation">TW renovation</option>
+							<option value="TW upgradation">TW upgradation</option>
+							<option value="Borehole">Borehole</option>
+							<option value="Dugwell/ Ringwell">Dugwell/ Ringwell</option>
+							<option value="PSF">PSF</option>
+							<option value="RWH">RWH</option>
+							<option value="GFS">GFS</option>
+							<option value="IFG">IFG</option>
+							<option value="UWP">UWP (from supply water)</option>
+						</select>
+						</li>
+					</ul>
+					
+					<table data-role="table" id="tbl_select_tech" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
+						<tr>
+							<td width="70%" style="vertical-align:middle;"> TTC(cfu/100ml)</td>
+							<td width="30%"><input name="ttc_cfu" id="ttc_cfu" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;"> SL</td>
+							<td width="30%"><input name="sl" id="sl" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;">As(ppb)  </td>
+							<td width="30%"><input name="as_ppb" id="as_ppb" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;"> Fe(ng/l)</td>
+							<td width="30%"><input name="fe_ng" id="fe_ng" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;">Mn(ppb) </td>
+							<td width="30%"><input name="mn_ppb" id="mn_ppb" placeholder="" value="" type="number">	</td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;"> Chloride(ppt) </td>
+							<td width="30%"><input name="chl_ppt" id="chl_ppt" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;">Turbidity(NTU) </td>
+							<td width="30%"><input name="turb_ntu" id="turb_ntu" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;">Ph </td>
+							<td width="30%"><input name="ph" id="ph" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%">Boron(mg/l) </td>
+							<td width="30%"><input name="boron" id="boron" placeholder="" value="" type="number"></td>
+						</tr>
+						<tr>
+							<td width="70%" style="vertical-align:middle;"> C.Bac </td>
+							<td width="30%"><input name="c_bac" id="c_bac" placeholder="" value="" type="number"></td>
+						</tr>
+						
+						<tr>
+							<td width="70%" style="vertical-align:middle;">Nitrate(mg/l)</td>
+							<td width="30%"><input name="nitrate" id="nitrate" placeholder="" value="" type="number"></td>
+						</tr>
+						
+						<tr>
+							<td width="70%" style="vertical-align:middle;">Fluoride(mg)</td>
+							<td width="30%"><input name="fluoride" id="fluoride" placeholder="" value="" type="number"></td>
+						</tr>
+					</table>
+					
+				
+				
+					<a data-role="button" href="#" onClick="waterData6Next()"  data-transition="slide" >Next</a>
+					<br/><br/><br/><br/><br/><br/>
+            </div>
+                   
+       <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
+        </div>-->
+		
+		
+		 <!-- ===============water quality page5================== -->
+        <div data-role="page" id="waterData7" >
+			<div data-theme="d" data-role="header" data-position="fixed" >
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<h3> Test Data</h3>
+            </div>
+			
+			<div data-role="content">
+				
+				<ul data-role="listview" data-inset="true">
+				<li class="ui-field-contain">
+					<label for="test_type">Select Techonology</label>
+					<select name="select_tech" id="select_tech" data-native-menu="false" >
+						<option value="">Select Technology</option>
+						<option value="TW renovation">TW renovation</option>
+						<option value="TW upgradation">TW upgradation</option>
+						<option value="Borehole">Borehole</option>
+						<option value="Dugwell/ Ringwell">Dugwell/ Ringwell</option>
+						<option value="PSF">PSF</option>
+						<option value="RWH">RWH</option>
+						<option value="GFS">GFS</option>
+						<option value="IFG">IFG</option>
+						<option value="UWP">UWP (from supply water)</option>
+					</select>
+					</li>
+				</ul>
+				<div id="typeOfTestKit">
+					<ul data-role="listview" data-inset="true">
+						<li style="background-color:#F2F2F2;">Name of the field Test Kit <sup class="reqField">*</sup></li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup">
-								<input name="pota" id="pota" value="pota" type="checkbox">
+								<input name="pota" id="pota" value="Pota" type="checkbox">
 								<label for="pota">Pota</label>
-								<input name="delAgua" id="delAgua" type="checkbox">
+								<input name="delAgua" id="delAgua" value="DelAgua" type="checkbox">
 								<label for="delAgua">DelAgua</label>
-								<input name="hach_ez_as" id="hach_ez_as" type="checkbox">
+								<input name="hach_ez_as" id="hach_ez_as" value="Hach EZ As"  type="checkbox">
 								<label for="hach_ez_as">HACH EZ(As)</label>
-								<input name="solinity_meter" id="solinity_meter" type="checkbox">
+								<input name="solinity_meter" id="solinity_meter" value="Solinity meter" type="checkbox">
 								<label for="solinity_meter">Salinity Meter</label>
-								<input name="mn_test_kit" id="mn_test_kit" type="checkbox">
+								<input name="mn_test_kit" id="mn_test_kit" value="MN test kit" type="checkbox">
 								<label for="mn_test_kit">Mn test kit</label>
-								<input name="test_kit_lab_test" id="test_kit_lab_test" type="checkbox">
+								<input name="test_kit_lab_test" id="test_kit_lab_test" value="Lab test" type="checkbox">
 								<label for="test_kit_lab_test">Lab test</label>
-								<input name="tst_kit_oth" id="tst_kit_oth" type="checkbox">
+								<input name="tst_kit_oth" id="tst_kit_oth" value="Others" type="checkbox">
 								<label for="tst_kit_oth">Others</label>
 							</fieldset>
 						</li>
 					</ul>
+				</div>
 					
-						<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
+						<table data-role="table" id="tbl_wq_test" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
 							<tr>
-								<td colspan="2"><strong>Test result</strong></td>
+								<td colspan="2" style="background-color:#F2F2F2;"><strong>Test result</strong></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;"> TTC(cfu/100ml)</td>
@@ -613,10 +793,7 @@
 								<td width="70%" style="vertical-align:middle;"> C.Bac </td>
 								<td width="30%"><input name="c_bac" id="c_bac" placeholder="" value="" type="number"></td>
 							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Color </td>
-								<td width="30%"><input name="color" id="color" placeholder="" value="" type="number"></td>
-							</tr>
+							
 							<tr>
 								<td width="70%" style="vertical-align:middle;">Odor</td>
 								<td width="30%"><input name="odor" id="odor" placeholder="" value="" type="number"></td>
@@ -630,10 +807,6 @@
 								<td width="30%"><input name="zinc" id="zinc" placeholder="" value="" type="number"></td>
 							</tr>
 							<tr>
-								<td width="70%" style="vertical-align:middle;">Fluoride(mg)</td>
-								<td width="30%"><input name="fluoride" id="fluoride" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
 								<td width="70%" style="vertical-align:middle;">Conductivity</td>
 								<td width="30%"><input name="condvity" id="condvity" placeholder="" value="" type="number"></td>
 							</tr>
@@ -641,187 +814,10 @@
 								<td width="70%" style="vertical-align:middle;">Fluoride(mg)</td>
 								<td width="30%"><input name="fluoride" id="fluoride" placeholder="" value="" type="number"></td>
 							</tr>
-							
-							
 			  			</table>
-					
-					<ul data-role="listview" data-inset="true">
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup">
-								<legend>Tast</legend>
-								<input type="radio" name="Teste" id="acceptable" value="acceptable">
-								<label for="acceptable">Acceptable</label>
-								<input type="radio" name="Teste" id="metalic_3" value="metalic-3">
-								<label for="metalic_3">Metalic-3</label>
-								<input type="radio" name="Teste" id="rotten_4" value="Rotten-4">
-								<label for="rotten_4">Rotten-4</label>
-								<input type="radio" name="Teste" id="salty_2" value="salty_2">
-								<label for="salty_2">salty-2</label>
-							</fieldset>
-						</li>
-					</ul>
-					<ul data-role="listview" data-inset="true">
-						<li>Smell</li>
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-								<input type="radio" name="smell" id="accepted" value="accepted">
-								<label for="accepted">Accepted</label>
-								<input type="radio" name="smell" id="bad" value="bad">
-								<label for="bad">Bad</label>
-							</fieldset>
-						</li>
-						
-					</ul>
-					
-					<a data-role="button" href="#waterData6"  data-transition="slide" >Next</a>
+					<a data-role="button" href="#" onClick="waterData7Next()"  data-transition="slide" >Next</a>
+					<div class="errorChk"></div>
 					<br/><br/><br/><br/><br/><br/>
-            </div>
-                   
-       <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
-        </div>
-		
-		<!-- ===============water quality page6================== -->
-        <div data-role="page" id="waterData6" >
-		
-            <div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-				<h3>Test Data </h3>
-            </div>
-			
-			<div data-role="content">
-					
-					<ul data-role="listview" data-inset="true">
-						<li>Tested At</li>
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-								<input type="radio" name="ttc" id="field" value="field">
-								<label for="field">Field</label>
-								<input type="radio" name="ttc" id="lab_test" value="lab test">
-								<label for="lab_test">Lab Test</label>
-							</fieldset>
-						</li>
-					</ul>
-					<ul data-role="listview" data-inset="true">
-						<li>Iron Test</li>
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-								<input type="radio" name="iron_test" id="it_field" value="field">
-								<label for="it_field">Field</label>
-								<input type="radio" name="iron_test" id="it_lab_test" value="lab test">
-								<label for="it_lab_test">Lab Test</label>
-							</fieldset>
-						</li>
-					</ul>
-					<ul data-role="listview" data-inset="true">
-						<li>TW Painter</li>
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-								<input type="radio" name="tw_painter" id="tw_na" value="na">
-								<label for="tw_na">N/A</label>
-								<input type="radio" name="tw_painter" id="tw_red" value="red">
-								<label for="tw_red">RED</label>
-								<input type="radio" name="tw_painter" id="tw_green" value="green">
-								<label for="tw_green">GREEN</label>
-							</fieldset>
-						</li>
-						
-					</ul>
-					
-					<a data-role="button" onClick="checkTW()"  data-transition="slide" >Next</a>
-					<br/><br/><br/><br/><br/><br/>
-            </div>
-			
-            <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
-			
-        </div>
-		
-		<!-- ===============water quality page7================== -->
-        <div data-role="page" id="waterData7" >
-			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-				<h3>Beneficiaries</h3>
-            </div>
-		
-			<div data-role="content">
-				<table data-role="table"  data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
-							<tr>
-								<td colspan="3"><strong>Supported People</strong></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Households</td>
-								<td width="30%"><input name="bn_households" id="bn_households" placeholder="" value="" type="number"></td>
-							    <td width="5"><sup class="reqField">*</sup></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Male</td>
-								<td width="30%"><input name="bn_male" id="bn_male" placeholder="" value="" type="number">								</td>
-							    <td width="5"><sup class="reqField">*</sup></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Female</td>
-								<td width="30%">
-							    <input name="bn_female" id="bn_female" placeholder="" value="" type="number">								</td>
-							    <td width="5"><sup class="reqField">*</sup></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Girls(0-5 Year)</td>
-								<td width="30%"><input name="bn_girlsUnder" id="bn_girlsUnder" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Boys(0-5 Year)</td>
-								<td width="30%"><input name="bn_boysUnder" id="bn_boysUnder" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Girls(6-18 Year)</td>
-								<td width="30%"><input name="bn_girls" id="bn_girls" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%">Boys(6-18 Year)</td>
-								<td width="30%"><input name="bn_boys" id="bn_boys" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">DAP Male</td>
-								<td width="30%"><input name="bn_dapMale" id="bn_dapMale" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">DAP Female</td>
-								<td width="30%"><input name="bn_dapFemale" id="bn_dapFemale" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Poor (c Category)</td>
-								<td width="30%"><input name="bn_poorC" id="bn_poorC" placeholder="" value="" type="number"></td>
-							    <td width="5"><sup class="reqField">*</sup></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Extreme Poor (D Category)</td>
-								<td width="30%"><input name="bn_poorEx" id="bn_poorEx" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Ethnic Male</td>
-								<td width="30%"><input name="bn_ethMale" id="bn_ethMale" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Ethnic Female</td>
-								<td width="30%"><input name="bn_ethFemale" id="bn_ethFemale" placeholder="" value="" type="number"></td>
-							    <td width="5">&nbsp;</td>
-							</tr>
-			  		</table>
-					
-						
-						
-						<a data-role="button" href="#waterData9"  data-transition="slide" >Next</a>
-						<br/><br/><br/><br/><br/><br/>
-					
             </div>
                    
        <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
@@ -831,7 +827,69 @@
         <div data-role="page" id="waterData8" >
 		
             <div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<h3>Test Data </h3>
+            </div>
+			
+			<div data-role="content">
+					<div class="errorChk"></div>
+					<ul data-role="listview" data-inset="true" >
+						<li style="background-color:#F2F2F2;">Tested At</li>
+						<li class="ui-field-contain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<input type="radio" name="tested_at" id="test_at_field" value="Field">
+								<label for="test_at_field">Field</label>
+								<input type="radio" name="tested_at" id="test_at_lab_test" value="Lab Test">
+								<label for="test_at_lab_test">Lab Test</label>
+								<input type="radio" name="tested_at" id="test_at_na" value="NA">
+								<label for="test_at_na">N/A</label>
+							</fieldset>
+						</li>
+					</ul>
+					<ul data-role="listview" data-inset="true">
+						<li style="background-color:#F2F2F2;">Iron Test</li>
+						<li class="ui-field-contain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<input type="radio" name="iron_test" id="it_field" value="Field">
+								<label for="it_field">Field</label>
+								<input type="radio" name="iron_test" id="it_lab_test" value="Lab test">
+								<label for="it_lab_test">Lab Test</label>
+								<input type="radio" name="iron_test" id="it_na" value="NA">
+								<label for="it_na">N/A</label>
+							</fieldset>
+						</li>
+					</ul>
+					<ul data-role="listview" data-inset="true">
+						<li style="background-color:#F2F2F2;">TW Painter</li>
+						<li class="ui-field-contain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<input type="radio" name="tw_painter" id="tw_red" value="Red">
+								<label for="tw_red">Red</label>
+								<input type="radio" name="tw_painter" id="tw_green" value="Green">
+								<label for="tw_green">Green</label>
+								<input type="radio" name="tw_painter" id="tw_na" value="NA">
+								<label for="tw_na">N/A</label>
+							</fieldset>
+						</li>
+						
+					</ul>
+					
+					<a data-role="button" onClick="waterData8Next()"  data-transition="slide" >Next</a>
+					<br/><br/><br/><br/><br/><br/>
+            </div>
+			
+            <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
+			
+        </div>
+		
+		
+		
+		<!-- ===============water quality page9================== -->
+        <div data-role="page" id="waterData9" >
+		
+            <div data-theme="d" data-role="header" data-position="fixed" >
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Water Quality Data</h3>
           </div>
@@ -839,52 +897,56 @@
 			<div data-role="content">
 					
 					<ul data-role="listview" data-inset="true">
-						<li>Safe water option</li>
+						<li style="background-color:#F2F2F2;">Safe water option</li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup" data-type="horizontal">
-								<input type="radio" name="sw_option" id="sw_green" value="green">
-								<label for="sw_green">&nbsp;</label>
-								<input type="radio" name="sw_option" id="sw_na" value="na">
-								<label for="sw_na">N/A</label>
-								<input type="radio" name="sw_option" id="sw_no" value="no">
+								<input type="radio" name="sw_option" id="sw_green" value="Green">
+								<label for="sw_green">Green</label>
+								<input type="radio" name="sw_option" id="sw_no" value="NO">
 								<label for="sw_no">NO</label>
+								<input type="radio" name="sw_option" id="sw_na" value="NA">
+								<label for="sw_na">N/A</label>
 								
 							</fieldset>
 						</li>
 					</ul>
 					<ul data-role="listview" data-inset="true" id="safW_altOption">
-						<li>Alternative option</li>
+						<li style="background-color:#F2F2F2;">Alternative option</li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup">
-								<input type="radio" name="alt_option" id="deep_hand_tw" value="deep_hand_tw">
+								<input type="radio" name="alt_option" id="deep_hand_tw" value="Deep hand TW">
 								<label for="deep_hand_tw">Deep Hand TW</label>
-								<input type="radio" name="alt_option" id="dug_well_ins" value="dug_well_ins">
+								<input type="radio" name="alt_option" id="dug_well_ins" value="Dug well instalation">
 								<label for="dug_well_ins">Dug Well Instalation</label>
-								<input type="radio" name="alt_option" id="ring_well_ins" value="ring_well_ins">
+								<input type="radio" name="alt_option" id="ring_well_ins" value="Ring well instalation">
 								<label for="ring_well_ins">Ring Well Instalation</label>
-								<input type="radio" name="alt_option" id="alt_opt_others" value="alt_opt_others">
+								<input type="radio" name="alt_option" id="alt_opt_others" value="Others">
 								<label for="alt_opt_others">Others</label>
+								<input type="radio" name="alt_option" id="sw_na" value="NA">
+								<label for="sw_na">N/A</label>
 							</fieldset>
 						</li>
 					</ul>
 					<ul data-role="listview" data-inset="true" id="safW_dist">
-						<li>Distance</li>
+						<li style="background-color:#F2F2F2;">Distance</li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup" >
-								<input type="radio" name="sw_distance" id="dist_1" value="">
+								<input type="radio" name="sw_distance" id="dist_1" value="Less 10 Meter">
 								<label for="dist_1">&lt; 10 meter</label>
-								<input type="radio" name="iron_test" id="dist_2" value="">
+								<input type="radio" name="sw_distance" id="dist_2" value="10 to 30 meter">
 								<label for="dist_2">10-30 meter</label>
-								<input type="radio" name="iron_test" id="dist_3" value="">
+								<input type="radio" name="sw_distance" id="dist_3" value="31 to 50 meter">
 								<label for="dist_3">31-50 meter</label>
-								<input type="radio" name="iron_test" id="dist_4" value="">
+								<input type="radio" name="sw_distance" id="dist_4" value="50 meter">
 								<label for="dist_4">&gt;50 meter</label>
+								<input type="radio" name="sw_distance" id="sw_dist_na" value="NA">
+								<label for="sw_dist_na">N/A</label>
 							</fieldset>
 						</li>
 					</ul>
 					
 					<ul data-role="listview" data-inset="true" id="saf_acT">
-						<li>Action Taken</li>
+						<li style="background-color:#F2F2F2;">Action Taken</li>
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup" >
 								<input type="radio" name="ac_taken" id="awarness_rm" value="Awareness Raising Meeting">
@@ -895,6 +957,8 @@
 								<label for="pvt_arc_r_opt">Provide Arsenic Removal Options</label>
 								<input type="radio" name="ac_taken" id="ac_others" value="others">
 								<label for="ac_others">Others</label>
+								<input type="radio" name="ac_taken" id="ac_taken_na" value="NA">
+								<label for="ac_taken_na">N/A</label>
 							</fieldset>
 						</li>
 					</ul>
@@ -911,7 +975,8 @@
 							
 						</li>
 					</ul>
-					<a data-role="button" href="#waterData9"  data-transition="slide" >Next</a>
+					<a data-role="button" href="#" onClick="waterData9Next()"  data-transition="slide" >Next</a>
+					<div class="errorChk"></div>
 				<br/><br/><br/><br/><br/><br/>
             </div>
 			
@@ -919,82 +984,88 @@
 			
         </div>
 		
-		
-		
-		<!-- ===============water quality page9================== -->
-        <div data-role="page" id="waterData9" >
-		
-            <div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-				<h3>Water Quality Data</h3>
-          </div>
-			
-			<div data-role="content">
-					
-					<ul data-role="listview" data-inset="true">
-						<li>Functionality <sup class="reqField">*</sup></li>
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup">
-								<input name="functional" id="functional" type="checkbox">
-								<label for="functional">Functionnal</label>
-								<input name="partial" id="partial" type="checkbox">
-								<label for="partial">Partial</label>
-								<input name="non_functional" id="non_functional" type="checkbox">
-								<label for="non_functional">Non Functional</label>
-							</fieldset>
-						</li>
-					</ul>
-					<ul data-role="listview" data-inset="true">
-						<li>Use Of <sup class="reqField">*</sup></li>
-						<li class="ui-field-contain">
-							<fieldset data-role="controlgroup">
-								<input name="drinking" id="drinking" type="checkbox">
-								<label for="drinking">Drinking</label>
-								<input name="cooking" id="cooking" type="checkbox">
-								<label for="cooking">Cooking</label>
-								<input name="washing" id="washing" type="checkbox">
-								<label for="washing">Washing</label>
-								<input name="Others" id="Others" type="checkbox">
-								<label for="Others">Others</label>
-								<input name="all_purpose" id="all_purpose" type="checkbox">
-								<label for="all_purpose">All Purpose</label>
-							</fieldset>
-						</li>
-						
-					</ul>
-					
-					<a data-role="button" href="#waterData10"  data-transition="slide" >Next</a>
-				<br/><br/><br/><br/><br/><br/>
-            </div>
-			
-            <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
-			
-        </div>
 		
 		
 		<!-- ===============water quality page10================== -->
         <div data-role="page" id="waterData10" >
 		
             <div data-theme="d" data-role="header" data-position="fixed" >
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+				<h3>Water Quality Data</h3>
+          </div>
+			
+			<div data-role="content">
+					<div class="errorChk"></div>
+					<ul data-role="listview" data-inset="true">
+						<li style="background-color:#F2F2F2;">Functionality <sup class="reqField">*</sup></li>
+						<li class="ui-field-contain">
+							<fieldset data-role="controlgroup">
+								<input name="functionality" id="functional" value="Functional" type="radio">
+								<label for="functional">Functionnal</label>
+								<input name="functionality" id="partial" value="Partial" type="radio">
+								<label for="partial">Partial</label>
+								<input name="functionality" id="non_functional" value="Non Functional" type="radio" >
+								<label for="non_functional">Non Functional</label>
+								<input name="functionality" id="fn_na" value="NA" type="radio" >
+								<label for="fn_na">N/A</label>
+							</fieldset>
+						</li>
+					</ul>
+					
+						<ul data-role="listview" data-inset="true" id="useOfChk">
+							<li style="background-color:#F2F2F2;">Use Of <sup class="reqField">*</sup></li>
+							<li class="ui-field-contain">
+								<fieldset data-role="controlgroup">
+									<input name="drinking" id="drinking" value="Drinking" type="checkbox" >
+									<label for="drinking">Drinking</label>
+									<input name="cooking" id="cooking" value="Cooking" type="checkbox" >
+									<label for="cooking">Cooking</label>
+									<input name="washing" id="washing" value="Washing" type="checkbox" > 
+									<label for="washing">Washing</label>
+									<input name="others" id="others" value="Others" type="checkbox" >
+									<label for="others">Others</label>
+									<input name="all_purpose" id="all_purpose" value="All purpose" type="checkbox" >
+									<label for="all_purpose">All Purpose</label>
+								</fieldset>
+							</li>
+							
+						</ul>
+					
+					
+					<a data-role="button" href="#" onClick="waterData10Next()"  data-transition="slide" >Next</a>
+				<br/><br/><br/><br/><br/><br/>
+            </div>
+			
+            <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
+			
+        </div>
+		
+		
+		<!-- ===============water quality page11================== -->
+        <div data-role="page" id="waterData11" >
+		
+            <div data-theme="d" data-role="header" data-position="fixed" >
 			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Water Quality Data</h3>
           </div>
 			
 			<div data-role="content">
-					
+				<div class="errorChk"></div>
+				<div id="potableStatus">
 					<ul data-role="listview" data-inset="true">
 						<li class="ui-field-contain">
 							<fieldset data-role="controlgroup">
 								<legend>Potable Status <sup class="reqField">*</sup></legend>
-								<input type="radio" name="potable_st" id="st_potable" value="">
+								<input type="radio" name="potable_st" id="st_potable" value="Potable">
 								<label for="st_potable">Potable</label>
-								<input type="radio" name="potable_st" id="st_non_potable" value="">
+								<input type="radio" name="potable_st" id="st_non_potable" value="Non Potable">
 								<label for="st_non_potable">Non Potable</label>
 							</fieldset>
 						</li>
 					</ul>
+				</div>
 					<ul data-role="listview" data-inset="true" id="non_potbl_res">
 						<li class="ui-field-contain">
 							<label for="reason_non_potable"> Reason  </label>
@@ -1006,7 +1077,7 @@
 						</li>
 					</ul>
 					
-					<a data-role="button" href="#waterData11"  data-transition="slide" >Next</a>
+					<a data-role="button" href="#" onClick="waterData11Next()"  data-transition="slide" >Next</a>
 				<br/><br/><br/><br/><br/><br/>
             </div>
 			
@@ -1015,65 +1086,21 @@
         </div>
 		
 		
-		
-		<!-- ===============water quality page11================== -->
-        <div data-role="page" id="waterData11" >
-			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-				<h3>Water Quality Data</h3>
-          </div>
-		
-			<div data-role="content">
-					<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
-							<tr>
-								<td colspan="2"><strong>Other Particulars (History) </strong><sup class="reqField">*</sup></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Application Date </td>
-								<td width="30%"><input name="appDate" id="appDate" placeholder="" value="" type="date"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;"> Site selection Date </td>
-								<td width="30%"><input name="siteSeDate" id="siteSeDate" placeholder="" value="" type="date"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;"> Construction start Date </td>
-								<td width="30%"><input name="conStDate" id="conStDate" placeholder="" value="" type="date"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;"> Construction end Date </td>
-								<td width="30%"><input name="conEndDate" id="conEndDate" placeholder="" value="" type="date"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">  Handover Date </td>
-								<td width="30%"><input name="HndOvrDate" id="HndOvrDate" placeholder="" value="" type="date"></td>
-								
-							</tr>
-  			  </table>
-						<div class="dateErr" style="color:red;"></div>
-						
-						<a data-role="button" href="#waterData12"  data-transition="slide" >Next</a>
-					<br/><br/><br/><br/><br/><br/>
-            </div>
-                   
-       <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
-        </div>
-		
 		<!-- ===============water quality page12================== -->
         <div data-role="page" id="waterData12" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l"  class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Water Quality Data</h3>
           </div>
 		
 			<div data-role="content">
+						<div class="errorChk"></div>
 						<ul data-role="listview" data-inset="true">
-							<li>Other Perticulars</li>
+							<li style="background-color:#F2F2F2;">Other Perticulars<sup class="reqField">*</sup></li>
 							<li class="ui-field-contain">
-								<label for="web_con"> WAB Contribution  </label>
-								<input name="web_con" id="web_con" placeholder="" value="" type="number">
+								<label for="wab_con"> WAB Contribution  </label>
+								<input name="wab_con" id="wab_con" placeholder="" value="" type="number">
 							</li>
 							<li class="ui-field-contain">
 								<label for="comm_con"> Community contribution </label>
@@ -1089,9 +1116,9 @@
 							<li class="ui-field-contain">
 								<fieldset data-role="controlgroup">
 									<legend>Is piped water connection</legend>
-									<input type="radio" name="piped_w_conn" id="piped_w_conn_y" value="">
+									<input type="radio" name="piped_w_conn" id="piped_w_conn_y" value="YES">
 									<label for="piped_w_conn_y">YES</label>
-									<input type="radio" name="piped_w_conn" id="piped_w_conn_n" value="">
+									<input type="radio" name="piped_w_conn" id="piped_w_conn_n" value="NO">
 									<label for="piped_w_conn_n">NO</label>
 								</fieldset>
 							</li>
@@ -1103,7 +1130,7 @@
 							</li>
 						</ul>
 						
-						<a data-role="button" href="#waterData13" data-transition="slide" >Next</a>
+						<a data-role="button" href="#" onClick="waterData12Next()" data-transition="slide" >Next</a>
 					<br/><br/><br/><br/><br/><br/>
             </div>
                    
@@ -1113,19 +1140,20 @@
 		<!-- ===============water quality page13================== -->
         <div data-role="page" id="waterData13" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
                 <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
 				<h3>Water Quality Data</h3>
           </div>
 		
 			<div data-role="content">
+						<div class="errorChk"></div>
 						<ul data-role="listview" data-inset="true">
 							<li class="ui-field-contain">
 								<fieldset data-role="controlgroup">
 									<legend>All test are complete</legend>
-									<input type="radio" name="all_test_complt" id="all_test_y" value="">
+									<input type="radio" name="all_test_complt" id="all_test_y" value="YES">
 									<label for="all_test_y">YES</label>
-									<input type="radio" name="all_test_complt" id="all_test_n" value="">
+									<input type="radio" name="all_test_complt" id="all_test_n" value="NO">
 									<label for="all_test_n">NO</label>
 								</fieldset>
 							</li>
@@ -1136,7 +1164,7 @@
 								<textarea cols="20" rows="3" name="res_n_test" id="res_n_test"></textarea>
 							</li>
 						</ul>
-						<a data-role="button" href="#waterData14"  data-transition="slide" >Next</a>
+						<a data-role="button" href="#" onClick="waterData13Next()"  data-transition="slide" >Next</a>
 					<br/><br/><br/><br/><br/><br/>
             </div>
                    
@@ -1146,19 +1174,20 @@
 		<!-- ===============water quality page14================== -->
         <div data-role="page" id="waterData14" >
 			<div data-theme="d" data-role="header" data-position="fixed" >
-			<a data-role="button" href="#reportType" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
-                <a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+			<a data-role="button" onClick="waterAidClick()" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+               
 				<h3>Water Quality Data</h3>
           </div>
 		
 			<div data-role="content">
+						
 						<ul data-role="listview" data-inset="true">
 							<li class="ui-field-contain">
 								<fieldset data-role="controlgroup">
 									<legend>Is management committee exist</legend>
-									<input type="radio" name="m_comm_ext" id="m_comm_ext_y" value="">
+									<input type="radio" name="m_comm_ext" id="m_comm_ext_y" value="YES">
 									<label for="m_comm_ext_y">YES</label>
-									<input type="radio" name="m_comm_ext" id="m_comm_ext_n" value="">
+									<input type="radio" name="m_comm_ext" id="m_comm_ext_n" value="NO">
 									<label for="m_comm_ext_n">NO</label>
 								</fieldset>
 							</li>
@@ -1167,20 +1196,21 @@
 							<li class="ui-field-contain">
 								<fieldset data-role="controlgroup">
 									<legend>Is management committee orientation<br/> complete</legend>
-									<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_y" value="">
+									<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_y" value="YES">
 									<label for="m_comm_ori_y">YES</label>
-									<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_n" value="">
+									<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_n" value="NO">
 									<label for="m_comm_ori_n">NO</label>
 								</fieldset>
 							</li>
 						</ul>
+						
 						<ul data-role="listview" data-inset="true">
 							<li class="ui-field-contain">
 								<fieldset data-role="controlgroup">
 									<legend>Is caretaker trained</legend>
-									<input type="radio" name="caretaker_train" id="caretaker_train_y" value="">
+									<input type="radio" name="caretaker_train" id="caretaker_train_y" value="YES">
 									<label for="caretaker_train_y">YES</label>
-									<input type="radio" name="caretaker_train" id="caretaker_train_n" value="">
+									<input type="radio" name="caretaker_train" id="caretaker_train_n" value="NO">
 									<label for="caretaker_train_n">NO</label>
 								</fieldset>
 							</li>
@@ -1188,17 +1218,37 @@
 						<ul data-role="listview" data-inset="true">
 							<li class="ui-field-contain">
 								<select name="smpl_analy" id="smpl_analy" data-native-menu="false" >
-									<option>Sample analysisby</option>
-									<option value="pre">Front line</option>
-									<option value="2">Engineer</option>
-									<option value="Installation_Renovation">M&E</option>
-									<option value="4">Others</option>
+									<option value="">Sample Analysis By</option>
+									<option value="Front Line">Front line</option>
+									<option value="Engineer">Engineer</option>
+									<option value="M and E">M &amp; E</option>
+									<option value="Others">Others</option>
 								</select>
 								
 							</li>
 						</ul>
-						<a data-role="button" href="#" onClick="alert('Data will be saved for review')"  >Save</a>
-						<a data-role="button" href="#reportType" onClick="alert('Data will be submitted')" >Submiet</a>
+						
+						<ul data-role="listview" data-inset="true" id="m_comm_ori">
+							<li class="ui-field-contain">
+								<fieldset data-role="controlgroup">
+									<legend>Installation done</legend>
+									<input type="radio" name="install_done" id="install_done_y" value="YES">
+									<label for="install_done_y">YES</label>
+									<input type="radio" name="install_done" id="install_done_n" value="NO">
+									<label for="install_done_n">NO</label>
+								</fieldset>
+							</li>
+						</ul>
+						<ul data-role="listview" data-inset="true" id="pre_photo">
+							<li class="ui-field-contain">
+								<label for=""> Photo <sup class="reqField">*</sup> </label>
+								<input name="" id="wq_photo" placeholder="" value="Photo" type="button">
+							</li>
+							
+						</ul>
+						<a data-role="button" href="#" onClick="WaterQDataSave()"  >Save</a>
+						<a data-role="button" href="#" onClick="waterQDataSubmit()" >Submit</a>
+                        <div class="errorChk"></div>
 					<br/><br/><br/><br/><br/><br/>
             </div>
                    
