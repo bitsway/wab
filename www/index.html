@@ -264,50 +264,6 @@
 			<div data-role="content">
 				<div class="errorChk"></div>
 				<div id="serResDiv"></div>
-			  <!--
-					<br/>
-					<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Distance before(km)</td>
-								<td width="30%"><input name="distBefore" id="distBefore" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Time taken before(Hours) </td>
-								<td width="30%"><input name="tTakenB" id="tTakenB" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;"> Distance Now(km) </td>
-								<td width="30%"><input name="distN" id="distN" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Time Taken Now</td>
-								<td width="30%"><input name="tTakenN" id="tTakenN" placeholder="" value="" type="number">	</td>
-							</tr>
-			  		</table>
-					<br/>
-					<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
-							<tr>
-								<td colspan="2"><strong>Diarrhea patients in last 3 month</strong></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Male</td>
-								<td width="30%"><input name="dia_male" id="dia_male" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;">Female</td>
-								<td width="30%"><input name="dia_female" id="dia_female" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;"> Under 5 year </td>
-								<td width="30%"><input name="dia_under" id="dia_under" placeholder="" value="" type="number"></td>
-							</tr>
-							<tr>
-								<td width="70%" style="vertical-align:middle;"> Adult</td>
-								<td width="30%"><input name="dia_adt" id="dia_adt" placeholder="" value="" type="number">	</td>
-							</tr>
-			  		</table>
-					-->
-					
 					<a data-role="button" href="#" onClick="serviceRecipentNext()"  data-transition="slide" >Next</a>
 				<br/>
 				<br/>
@@ -488,7 +444,7 @@
 						
 						<table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
 							<tr>
-								<td colspan="3"><strong>Others Perticulars</strong></td>
+								<td colspan="3"><strong>Other Particulars</strong></td>
 							</tr>
 							<tr>
 								<td width="70%" style="vertical-align:middle;"> Depth(m)</td>
@@ -511,7 +467,7 @@
 							    <td width="5"><sup class="reqField">*</sup></td>
 							</tr>
 							<tr>
-								<td width="70%" style="vertical-align:middle;">Analysis date of water quality test </td>
+								<td width="70%" style="vertical-align:middle;">Sample collection date </td>
 								<td width="30%"><input name="aDate" id="aDate" placeholder="" value="" type="date">	</td>
 							    <td width="5"><sup class="reqField">*</sup></td>
 							</tr>
@@ -574,14 +530,14 @@
 			<div data-role="content">
 						
 						<ul data-role="listview" data-inset="true" data-theme="d">
-							<li style="background-color:#F2F2F2;">Other Perticulars</li>
+							<li style="background-color:#F2F2F2;">Other Particulars</li>
 							<li class="ui-field-contain">
 								<label for="ownerName">Owner Name </label>
 								<input name="ownerName" id="ownerName" placeholder="" value="" type="text">
 							</li>
 							<li class="ui-field-contain">
 								<label for="ownerPhone">Owner Phone No </label>
-								<input name="ownerPhone" id="ownerPhone" placeholder="" value="" type="text">
+								<input name="ownerPhone" id="ownerPhone" placeholder="" value="" type="number">
 							</li>
 							<li class="ui-field-contain">
 								<label for="caretaker">Caretaker Name <sup class="reqField">*</sup> </label>
@@ -589,7 +545,7 @@
 							</li>
 							<li class="ui-field-contain">
 								<label for="caretakerPhoneNo">Caretaker Phone No <sup class="reqField">*</sup></label>
-								<input name="caretakerPhoneNo" id="caretakerPhoneNo" placeholder="" value="" type="text">	
+								<input name="caretakerPhoneNo" id="caretakerPhoneNo" placeholder="" value="" type="number">	
 							</li>
 						</ul>
 						
@@ -754,7 +710,7 @@
 								<td width="30%"><input name="ttc_cfu" id="ttc_cfu" placeholder="" value="" type="number"></td>
 							</tr>
 							<tr>
-								<td width="70%" style="vertical-align:middle;"> SL</td>
+								<td width="70%" style="vertical-align:middle;"> SI</td>
 								<td width="30%"><input name="sl" id="sl" placeholder="" value="" type="number"></td>
 							</tr>
 							<tr>
@@ -1097,7 +1053,7 @@
 			<div data-role="content">
 						<div class="errorChk"></div>
 						<ul data-role="listview" data-inset="true">
-							<li style="background-color:#F2F2F2;">Other Perticulars<sup class="reqField">*</sup></li>
+							<li style="background-color:#F2F2F2;">Other Particulars<sup class="reqField">*</sup></li>
 							<li class="ui-field-contain">
 								<label for="wab_con"> WAB Contribution  </label>
 								<input name="wab_con" id="wab_con" placeholder="" value="" type="number">
@@ -1120,6 +1076,8 @@
 									<label for="piped_w_conn_y">YES</label>
 									<input type="radio" name="piped_w_conn" id="piped_w_conn_n" value="NO">
 									<label for="piped_w_conn_n">NO</label>
+									<input type="radio" name="piped_w_conn" id="piped_w_conn_na" value="NA">
+									<label for="piped_w_conn_na">NA</label>
 								</fieldset>
 							</li>
 						</ul>
@@ -1155,6 +1113,8 @@
 									<label for="all_test_y">YES</label>
 									<input type="radio" name="all_test_complt" id="all_test_n" value="NO">
 									<label for="all_test_n">NO</label>
+									<input type="radio" name="all_test_complt" id="all_test_na" value="NA">
+									<label for="all_test_na">NA</label>
 								</fieldset>
 							</li>
 						</ul>
@@ -1189,6 +1149,8 @@
 									<label for="m_comm_ext_y">YES</label>
 									<input type="radio" name="m_comm_ext" id="m_comm_ext_n" value="NO">
 									<label for="m_comm_ext_n">NO</label>
+									<input type="radio" name="m_comm_ext" id="m_comm_ext_na" value="NA">
+									<label for="m_comm_ext_na">NA</label>
 								</fieldset>
 							</li>
 						</ul>
@@ -1200,6 +1162,8 @@
 									<label for="m_comm_ori_y">YES</label>
 									<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_n" value="NO">
 									<label for="m_comm_ori_n">NO</label>
+									<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_na" value="NA">
+									<label for="m_comm_ori_na">NA</label>
 								</fieldset>
 							</li>
 						</ul>
@@ -1212,6 +1176,8 @@
 									<label for="caretaker_train_y">YES</label>
 									<input type="radio" name="caretaker_train" id="caretaker_train_n" value="NO">
 									<label for="caretaker_train_n">NO</label>
+									<input type="radio" name="caretaker_train" id="caretaker_train_na" value="NA">
+									<label for="caretaker_train_na">NA</label>
 								</fieldset>
 							</li>
 						</ul>
@@ -1236,6 +1202,8 @@
 									<label for="install_done_y">YES</label>
 									<input type="radio" name="install_done" id="install_done_n" value="NO">
 									<label for="install_done_n">NO</label>
+									<input type="radio" name="install_done" id="install_done_na" value="NA">
+									<label for="install_done_na">NA</label>
 								</fieldset>
 							</li>
 						</ul>
