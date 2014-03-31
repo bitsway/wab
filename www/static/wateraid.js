@@ -1,6 +1,4 @@
 
-
-
 function getLocationInfo() {
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
@@ -2257,4 +2255,25 @@ function checkDateWQ(){
 function exit() {
 navigator.app.exitApp();
 //navigator.device.exitApp();
+}
+
+
+//----------------Camera
+
+//Acheivement
+function getAchivementImage() {
+	navigator.camera.getPicture(onSuccessAchivement, onFailAchivement, { quality: 30,
+	    destinationType: Camera.DestinationType.DATA_URL
+	});
+//	alert('hello');
+}
+
+function onSuccessAchivement(imageData) {
+    //var image = document.getElementById('myImage');
+    //image.src = "data:image/jpeg;base64," + imageData;
+    alert (imageData);
+}
+
+function onFailAchivement(message) {
+    alert('Failed because: ' + message);
 }
