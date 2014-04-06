@@ -2455,7 +2455,7 @@ function getAchivementImage() {
 function onSuccessAchivement(imageData) {
 //  var image = document.getElementById('myImage');
 //  image.src = "data:image/jpeg;base64," + imageData;
-  $("#achPhoto").val(imageData);
+//  $("#achPhoto").val(imageData);
 }
 
 function onFailAchivement(message) {
@@ -2474,7 +2474,7 @@ function getWaterImage() {
 function onSuccessWater(imageData) {
 //  var image = document.getElementById('myImage');
 //  image.src = "data:image/jpeg;base64," + imageData;
-	$("#wq_photo").val(imageData);
+//	$("#wq_photo").val(imageData);
 }
 
 function onFailWater(message) {
