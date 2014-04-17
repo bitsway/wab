@@ -313,10 +313,12 @@
         
         <a data-role="button" onClick="getAchivementImage()" class="ui-btn" >Take Picture</a>
         <br/><br/><br/>
+        
+        <img src="" width="128" height="128" alt="image" id="myImageA">
         <input name="achPhoto" id="achPhoto"   type="hidden">
        <!-- <input name="achlocation" id="achlocation"   type="text">-->
         <input name="ach_lat" id="ach_lat"   type="hidden">
-        <input name="ach_long" id="ach_long" type="hidden">
+        <input name="ach_long" id="ach_long"  type="hidden">
         <a data-role="button" onClick="getLocationInfoAch()" class="ui-btn" >Confirm Location</a>
         <div id="checkLocationAch"></div>
         <br/><br/>
@@ -647,7 +649,7 @@
         <ul data-role="listview" data-inset="true">
 			<li class="ui-field-contain">
 				<label for="test_type">Select Techonology</label>
-				<select name="select_tech" id="select_tech"  data-native-menu="false" >
+				<select name="select_tech" id="select_tech" onchange="technology()" data-native-menu="false" >
 					<option value="">Select Technology</option>
 					<option value="TW renovation" >TW renovation</option>
 					<option value="TW upgradation">TW upgradation</option>
@@ -692,68 +694,68 @@
                     <tr>
                         <td colspan="2" style="background-color:#F2F2F2;"><strong>Test result</strong></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_ttc">
                         <td width="70%" style="vertical-align:middle;"> TTC(cfu/100ml)</td>
                         <td width="30%"><input name="ttc_cfu" id="ttc_cfu" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_sl">
                         <td width="70%" style="vertical-align:middle;"> SI</td>
                         <td width="30%"><input name="sl" id="sl" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_as">
                         <td width="70%" style="vertical-align:middle;">As(ppb)  </td>
                         <td width="30%"><input name="as_ppb" id="as_ppb" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_fe">
                         <td width="70%" style="vertical-align:middle;"> Fe(ng/l)</td>
                         <td width="30%"><input name="fe_ng" id="fe_ng" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_mn">
                         <td width="70%" style="vertical-align:middle;">Mn(ppb) </td>
                         <td width="30%"><input name="mn_ppb" id="mn_ppb" placeholder="" value="" type="number">	</td>
                     </tr>
-                    <tr>
+                    <tr id="tech_chl">
                         <td width="70%" style="vertical-align:middle;"> Chloride(ppt) </td>
                         <td width="30%"><input name="chl_ppt" id="chl_ppt" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_turb">
                         <td width="70%" style="vertical-align:middle;">Turbidity(NTU) </td>
                         <td width="30%"><input name="turb_ntu" id="turb_ntu" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_chlorine">
                         <td width="70%" style="vertical-align:middle;">Chlorine(mg/l) </td>
                         <td width="30%"><input name="chlorine" id="chlorine" placeholder="" value="" type="number">	</td>
                     </tr>
-                    <tr>
+                    <tr id="tech_ph">
                         <td width="70%" style="vertical-align:middle;">Ph </td>
                         <td width="30%"><input name="ph" id="ph" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_boron">
                         <td width="70%">Boron(mg/l) </td>
                         <td width="30%"><input name="boron" id="boron" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_c_bac">
                         <td width="70%" style="vertical-align:middle;"> C.Bac </td>
                         <td width="30%"><input name="c_bac" id="c_bac" placeholder="" value="" type="number"></td>
                     </tr>
                     
-                    <tr>
+                    <tr id="tech_odor">
                         <td width="70%" style="vertical-align:middle;">Odor</td>
                         <td width="30%"><input name="odor" id="odor" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_nitrate">
                         <td width="70%" style="vertical-align:middle;">Nitrate(mg/l)</td>
                         <td width="30%"><input name="nitrate" id="nitrate" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_zinc">
                         <td width="70%" style="vertical-align:middle;">Zinc(mg/l)</td>
                         <td width="30%"><input name="zinc" id="zinc" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_condvity">
                         <td width="70%" style="vertical-align:middle;">Conductivity</td>
                         <td width="30%"><input name="condvity" id="condvity" placeholder="" value="" type="number"></td>
                     </tr>
-                    <tr>
+                    <tr id="tech_fluoride">
                         <td width="70%" style="vertical-align:middle;">Fluoride(mg)</td>
                         <td width="30%"><input name="fluoride" id="fluoride" placeholder="" value="" type="number"></td>
                     </tr>
@@ -1229,7 +1231,10 @@
                 </ul>
                
                 <a data-role="button" onClick="getWaterImage()" class="ui-btn" >Take Picture</a>
+                
+                <img src="" width="128" height="128" alt="image" id="myImageW">
                 <br/><br/><br/>
+                
                 <input name="wq_photo" id="wq_photo"    type="hidden">
                <!-- <input name="wqLocation" id="wqLocation"   type="text">-->
                 <input name="wq_lat" id="wq_lat"  type="hidden">

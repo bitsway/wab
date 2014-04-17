@@ -5,19 +5,16 @@ var longitude="";
 var latitudewq="";
 var longitudewq="";
 
-function getLocationInfoAch() {
-	
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-		
+function getLocationInfoAch() {	
+	//$("#ach_lat").val(2222);
+   //$("#ach_long").val(2222);
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);		
 	$("#checkLocationAch").html("Confirming location. Please wait.");
 }
-
 // onSuccess Geolocation
 function onSuccess(position) {
 	$("#ach_lat").val(position.coords.latitude);
 	$("#ach_long").val(position.coords.longitude);
-	//$("#ach_lat").val("111111")
-//	$("#ach_long").val("22222")
 	$("#checkLocationAch").html("Location Confirmed");
 }
 // onError Callback receives a PositionError object
@@ -27,12 +24,10 @@ function onError(error) {
    $("#checkLocationAch").html("Failed to Confirmed Location.");
 }
 
-
-
 function getLocationInfoWq() {
-	
-	navigator.geolocation.getCurrentPosition(onSuccessWq, onErrorWq);
-		
+	//$("#wq_lat").val(11111);
+   	//$("#wq_long").val(11111);
+	navigator.geolocation.getCurrentPosition(onSuccessWq, onErrorWq);		
 	$("#checkLocationWq").html("Confirming location. Please wait.");
 }
 
@@ -40,8 +35,6 @@ function getLocationInfoWq() {
 function onSuccessWq(position) {
 	$("#wq_lat").val(position.coords.latitude);
 	$("#wq_long").val(position.coords.longitude);
-	//$("#ach_lat").val("111111")
-//	$("#ach_long").val("22222")
 	$("#checkLocationWq").html("Location Confirmed");
 }
 // onError Callback receives a PositionError object
@@ -51,10 +44,13 @@ function onErrorWq(error) {
    $("#checkLocationWq").html("Failed to Confirmed Location.");
 }
 
+//var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile/";
 
+//---- online
+var apipath="http://m.businesssolutionapps.com/welcome/wab_sync/";
 
-//var apipath=location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/wateraid/syncmobile/";
-var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile/";
+//--- local
+//var apipath="http://127.0.0.1:8000/welcome/wab_sync/";
 
 var planFlag=0;
 var cboFlag=0;
@@ -95,9 +91,9 @@ $(function(){
 		if (mobile=="" || password==""){
 			 $(".errorChk").html("Required mobile no and password");	
 		 }else{	
-		 //alert(apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+password);
+		 	//alert(apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password));
 			$.ajax({
-			  url:apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+password,
+			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password),
 			  success: function(result) {
 				syncResult=result
 				//alert(syncResult);
@@ -111,6 +107,10 @@ $(function(){
 						localStorage.plan_wq=syncResultArray[6];
 						localStorage.cbo_id_wq=syncResultArray[7];						
 						localStorage.mobile_no=mobile;
+						
+						
+						localStorage.ach_save="";
+						localStorage.water_q_save="";
 						
 						$(".errorChk").html("Sync Successful");
 						//alert('aa');
@@ -252,7 +252,23 @@ $(document).ready(function(){
 	});
 	/*$("#pipe_conc").hide();
 	$("#pipe_w_sup").hide();*/
-
+	
+	$("#tech_ttc").hide();
+	$("#tech_sl").hide();
+	$("#tech_as").hide();
+	$("#tech_fe").hide();
+	$("#tech_mn").hide();
+	$("#tech_chl").hide();
+	$("#tech_turb").hide();
+	$("#tech_chlorine").hide();
+	$("#tech_ph").hide();
+	$("#tech_boron").hide();
+	$("#tech_c_bac").hide();
+	$("#tech_odor").hide();
+	$("#tech_nitrate").hide();
+	$("#tech_zinc").hide();
+	$("#tech_condvity").hide();
+	$("#tech_fluoride").hide();
 
 
 });
@@ -848,6 +864,15 @@ function reviewDataNext(){
 
 function achiveDataSubmit(){
 		
+		if (imagePathA!=""){
+			$("#checkLocationAch").text("Syncing photo..")
+			var imageName = "abc";
+			uploadPhoto(imagePathA, imageName);
+			
+		}
+		
+		$("#checkLocationAch").text("Syncing data..");
+		
 		latitude=$("#ach_lat").val();
 		longitude=$("#ach_long").val();
 		
@@ -875,11 +900,11 @@ function achiveDataSubmit(){
 			if (achPlanId=='' || achCBOid=='' ){
 				$(".errorChk").text("New records not available");
 			}else{
-				/*alert(apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+ach_photo);*/
+				<!--alert(apipath+'dataSyncAchivement?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+achPhoto);-->
 				
 				$.ajax({
 						type: 'POST',
-						url:apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+achPhoto,
+						url:apipath+'dataSyncAchivement?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+achPhoto,
 						   
 						   success: function(result) {
 								//alert(result);
@@ -919,7 +944,7 @@ function achiveDataSubmit(){
 								achCBOid="";
 								$(".errorChk").text('Successfully Submited');
 								//$("#achlocation").val('Successfully Submited');
-								$("#achlocation").val(apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+$("#ach_lat").val()+'&longitude='+$("#ach_long").val()+'&ach_photo='+achPhoto);
+								<!--$("#achlocation").val(apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+$("#ach_lat").val()+'&longitude='+$("#ach_long").val()+'&ach_photo='+achPhoto);-->
 							}else{
 								$(".errorChk").text('Failed to Submit');	
 								}
@@ -1215,7 +1240,151 @@ function waterData6Next(){
 	}
 
 
-
+//----------------------technology
+function technology(){
+	var tech_combo=$("#select_tech").val();
+	
+	if (tech_combo=="TW renovation" || tech_combo=="TW upgradation"){
+		$("#tech_ttc").hide();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="Borehole"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").show();
+		$("#tech_mn").show();
+		$("#tech_chl").show();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").show();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="Dugwell/ Ringwell"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").show();
+		$("#tech_mn").show();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="PSF"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").hide();
+		$("#tech_mn").show();
+		$("#tech_chl").hide();
+		$("#tech_turb").show();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").show();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").show();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="RWH"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").hide();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").show();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="GFS"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").hide();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").show();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").show();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").show();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="IFG"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").hide();
+		$("#tech_fe").show();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").show();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();	
+	}else if(tech_combo=="UWP"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+		
+		}
+	
+	
+	}
 
 
 //---------------------------Water quality data7 page 
@@ -2097,6 +2266,26 @@ function waterQDataSubmit(){
 				$("#piped_w_sup").val("");
 			}
 			
+			//--------------------------------------------------------------
+			if(wq_management_committee_exist==undefined){
+					wq_management_committee_exist="";
+					}
+				
+				if(wq_caretaker_trained==undefined){
+					wq_caretaker_trained="";
+					}
+				
+				if(wq_management_committee_ori==undefined){
+					wq_management_committee_ori="";
+					}
+				
+				
+				if(wq_management_committee_exist=="NO"){
+					wq_management_committee_ori="";
+					$( "input:radio[name='m_comm_ori_complt'][value='"+wq_management_committee_ori+"']" ).attr('checked','');
+				}
+			//-----------------------------------------------------------------------
+			
 			if(wq_tw_color=="Green" || wq_tw_color=="NA" ){
 				
 				sw_option="";
@@ -2217,9 +2406,9 @@ function waterQDataSubmit(){
 		
 		wq_photo=$("#wq_photo").val();
 		
-/*	
-alert(apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
-wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+sw_option+'&alt_option='+alt_option+'&sw_distance='+sw_distance+'&ac_taken='+ac_taken+'&arc_patient='+arc_patient+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+wq_res_non_potable+'&wq_no_potable_initiative_taken='+wq_no_potable_initiative_taken+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+wq_res_n_test+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_installation_done='+wq_installation_done+'&latitude='+latitude+'&longitude='+longitude+'&wq_photo='+wq_photo);
+	
+/*alert(apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
+wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+sw_option+'&alt_option='+alt_option+'&sw_distance='+sw_distance+'&ac_taken='+ac_taken+'&arc_patient='+arc_patient+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+wq_res_non_potable+'&wq_no_potable_initiative_taken='+wq_no_potable_initiative_taken+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+wq_res_n_test+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+wq_photo);
 */
 		
 if(latitudewq==0 || longitudewq==0){
@@ -2232,7 +2421,7 @@ if(latitudewq==0 || longitudewq==0){
 			
 			$.ajax({
 				   	type: 'POST',
-					url:apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
+					url:apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
 wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+sw_option+'&alt_option='+alt_option+'&sw_distance='+sw_distance+'&ac_taken='+ac_taken+'&arc_patient='+arc_patient+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+wq_res_non_potable+'&wq_no_potable_initiative_taken='+wq_no_potable_initiative_taken+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+wq_res_n_test+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+wq_photo,
 					   
 					   success: function(result) {
@@ -2278,9 +2467,9 @@ wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_
 							$(".errorChk").text('Failed to Submit');	
 							}
 						
-						$("#wqLocation").val(apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
+						/*$("#wqLocation").val(apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
 wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+sw_option+'&alt_option='+alt_option+'&sw_distance='+sw_distance+'&ac_taken='+ac_taken+'&arc_patient='+arc_patient+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+wq_res_non_potable+'&wq_no_potable_initiative_taken='+wq_no_potable_initiative_taken+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+wq_res_n_test+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+wq_photo)
-						
+*/						
 						 	/*reviewAchDisplayFlag==false;
 							arrayId='';*/
 							   //alert("Invalid");
@@ -2443,40 +2632,82 @@ function showLatLong(){
 	}
 
 // ----------------Camera-----------------------------------------------
+var imagePathA="";
+var imagePathW="";
 
 //Acheivement
 function getAchivementImage() {
-	$("#achPhoto").val("taking Achivement Photo");
-	navigator.camera.getPicture(onSuccessAchivement, onFailAchivement, { quality: 30,
-	    destinationType: Camera.DestinationType.DATA_URL
-	});
+	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+		destinationType: Camera.DestinationType.FILE_URI });
 }
 
-function onSuccessAchivement(imageData) {
-//  var image = document.getElementById('myImage');
-//  image.src = "data:image/jpeg;base64," + imageData;
-//  $("#achPhoto").val(imageData);
+function onSuccessA(imageURI) {
+    var image = document.getElementById('myImageA');
+    image.src = imageURI;
+	imagePathA = imageURI;
 }
 
-function onFailAchivement(message) {
-  alert('Failed because: ' + message);
+function onFailA(message) {
+	imagePathA="";
+    alert('Failed because: ' + message);
+	
 }
 
 
 //Water
 function getWaterImage() {
-	$("#wq_photo").val("Take Water Quality Photo");
-	navigator.camera.getPicture(onSuccessWater, onFailWater, { quality: 30,
-	    destinationType: Camera.DestinationType.DATA_URL
-	});
+	navigator.camera.getPicture(onSuccessW, onFailW, { quality: 20,
+		destinationType: Camera.DestinationType.FILE_URI });
 }
 
-function onSuccessWater(imageData) {
-//  var image = document.getElementById('myImage');
-//  image.src = "data:image/jpeg;base64," + imageData;
-//	$("#wq_photo").val(imageData);
+function onSuccessW(imageURI) {
+    var image = document.getElementById('myImageW');
+    image.src = imageURI;
+	imagePathW = imageURI;
 }
 
-function onFailWater(message) {
-  alert('Failed because: ' + message);
+function onFailW(message) {
+	imagePathW="";
+    alert('Failed because: ' + message);
 }
+
+//
+
+
+
+
+
+//------------------------------------------------------------------------------
+//File upload 
+function uploadPhoto(imageURI, imageName) {
+    var options = new FileUploadOptions();
+    options.fileKey="upload";
+    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+	options.fileName = options.fileName
+    options.mimeType="image/jpeg";
+
+    var params = {};
+    params.value1 = "test";
+    params.value2 = "param";
+
+    options.params = params;
+
+    var ft = new FileTransfer();
+    ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),win,fail,options);
+	//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),win,fail,options);
+}
+
+function win(r) {
+//    console.log("Code = " + r.responseCode);
+//    console.log("Response = " + r.response);
+//    console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " + error.code);
+//    console.log("upload error source " + error.source);
+//    console.log("upload error target " + error.target);
+}
+
+
+
