@@ -95,9 +95,15 @@ $(function(){
 		if (mobile=="" || password==""){
 			 $(".errorChk").html("Required mobile no and password");	
 		 }else{	
+			 
+			if(localStorage.sync_code==undefined || localStorage.sync_code==""){
+					localStorage.sync_code=0
+				}
+			
 		 	//alert(apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password));
 			$.ajax({
-			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password),
+//			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password),
+				url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
 			  success: function(result) {
 				syncResult=result
 				//alert(syncResult);
