@@ -80,8 +80,10 @@ var wqPhoto='';
 var reviewAchFlag=0; //used for html triger
 var reviewAchDisplayFlag=false; //used for save data from review
 var arrayId=-1;
-var imageName = "";
 
+var imageName = "";
+var imagePathA="";
+var imagePathW="";
 
 $(function(){
 	
@@ -871,7 +873,8 @@ function achiveDataSubmit(){
 		var d = new Date();	
 		var get_time=d.getTime();
 		alert(localStorage.mobile_no+"_"+get_time+".jpg");
-		if (achPhoto!=""){
+		alert(imagePathA);
+		if (imagePathA!=""){
 			$("#checkLocationAch").text("Syncing photo..")
 			imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 			uploadPhoto(imagePathA, imageName);
@@ -2652,8 +2655,7 @@ function showLatLong(){
 	}
 
 // ----------------Camera-----------------------------------------------
-var imagePathA="";
-var imagePathW="";
+
 
 //Acheivement
 function getAchivementImage() {
@@ -2671,7 +2673,6 @@ function onSuccessA(imageURI) {
 function onFailA(message) {
 	imagePathA="";
     alert('Failed because: ' + message);
-	
 }
 
 
@@ -2705,7 +2706,7 @@ function uploadPhoto(imageURI, imageName) {
     var options = new FileUploadOptions();
     options.fileKey="upload";
     options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-	options.fileName = options.fileName
+//	options.fileName = options.fileName
     options.mimeType="image/jpeg";
 
     var params = {};
