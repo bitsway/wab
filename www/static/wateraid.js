@@ -858,9 +858,10 @@ function reviewDataNext(){
 	
 	$("#serRecpent").val(achRevDetailsArray[19]);
 	
-	$("#achPhoto").val(achRevDetailsArray[20]);
+	$("#achPhoto").val(achRevDetailsArray[21]);
     var image = document.getElementById('myImageA');
-    image.src = imageURI;
+    image.src = achRevDetailsArray[21];
+    imagePathA = achRevDetailsArray[21];
 	
 	$(".errorChk").text("");
 	var url = "#planList";
@@ -872,8 +873,8 @@ function reviewDataNext(){
 function achiveDataSubmit(){
 		var d = new Date();	
 		var get_time=d.getTime();
-		alert(localStorage.mobile_no+"_"+get_time+".jpg");
-		alert(imagePathA);
+//		alert(localStorage.mobile_no+"_"+get_time+".jpg");
+//		alert(imagePathA);
 		if (imagePathA!=""){
 			$("#checkLocationAch").text("Syncing photo..")
 			imageName = localStorage.mobile_no+"_"+get_time+".jpg";
@@ -2100,9 +2101,10 @@ function reviewWqDataNext(){
 		$( "input:radio[name='install_done'][value='"+waterQRevDetailsArray[76]+"']" ).attr('checked','checked');
 		
 		$("#wq_photo").val(waterQRevDetailsArray[77]);
+		imagePathW = waterQRevDetailsArray[77];
 		
 		var image = document.getElementById('myImageW');
-	    image.src = imageURI;
+	    image.src = waterQRevDetailsArray[77];
 		
 		//-------------------------------------show
 		var chk_potable_st=$("input[name='potable_st']:checked").val();
@@ -2423,11 +2425,10 @@ function waterQDataSubmit(){
 		var d = new Date();	
 		var get_time=d.getTime();
 		
-		if (wq_photo!=""){
+		if (imagePathW!=""){
 			$("#checkLocationWq").text("Syncing photo..")
 			var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
 			uploadPhoto(imagePathW, imageName);
-			
 		}
 	
 /*alert(apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
