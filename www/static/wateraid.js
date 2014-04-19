@@ -2704,9 +2704,8 @@ function onFailW(message) {
 function uploadPhoto(imageURI, imageName) {
     var options = new FileUploadOptions();
     options.fileKey="upload";
-//    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-    options.fileName="test.jpg";
-//	options.fileName = options.fileName
+    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+	options.fileName = options.fileName
     options.mimeType="image/jpeg";
 
     var params = {};
