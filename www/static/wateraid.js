@@ -80,6 +80,8 @@ var wqPhoto='';
 var reviewAchFlag=0; //used for html triger
 var reviewAchDisplayFlag=false; //used for save data from review
 var arrayId=-1;
+var imageName = "";
+
 
 $(function(){
 	
@@ -868,12 +870,11 @@ function reviewDataNext(){
 function achiveDataSubmit(){
 		var d = new Date();	
 		var get_time=d.getTime();
-		
+		alert(localStorage.mobile_no+"_"+get_time+".jpg");
 		if (achPhoto!=""){
 			$("#checkLocationAch").text("Syncing photo..")
-			var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
+			imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 			uploadPhoto(imagePathA, imageName);
-			
 		}
 		
 		$("#checkLocationAch").text("Syncing data..");
@@ -2704,7 +2705,7 @@ function uploadPhoto(imageURI, imageName) {
     var options = new FileUploadOptions();
     options.fileKey="upload";
 //    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-    options.fileName=imageName;
+    options.fileName="test.jpg";
 //	options.fileName = options.fileName
     options.mimeType="image/jpeg";
 
