@@ -11,7 +11,12 @@
     <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
     <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
     <script src="static/wateraid.js">   </script>
-        
+	<script>
+		function syncPage(){
+			$.mobile.navigate("#pagesync")
+			};		
+		
+	</script>       
     <style>
         .reqField{ color:#FF0000;}
         .errorChk{ color:#FF0000; text-shadow:none;}
@@ -52,7 +57,7 @@
         <br/>
         <br/>
         <ul data-role="listview" >
-          <li><a href="#pagesync"  data-ajax="false">Sync</a></li> 
+          <li><a data-role="button" class="ui-btn" onclick="syncPage()">Sync</a></li>		  
         </ul>
         <br/>
         <br/>
@@ -140,7 +145,7 @@
     </div>
     <div data-role="content">
         <div class="errorChk"></div>
-        <div id="planlistDiv"></div>
+        <div class="planCmbo" id="planlistDiv"></div>
         <a data-role="button" onClick="achDataNext()"   data-transition="slide" >Next</a>
     </div>
 <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>
@@ -165,7 +170,7 @@
         <ul data-role="listview" data-inset="true" data-theme="d">
             <li class="ui-field-contain">
                 <label for="achID"> ID</label>
-                <input name="achID" id="achID" placeholder="" value="" type="number">
+                <input name="achID" id="achID" placeholder="" value="" type="text">
             </li>
         </ul>
                 
@@ -318,7 +323,7 @@
         <input name="ach_lat" id="ach_lat"   type="hidden">
         <input name="ach_long" id="ach_long"  type="hidden">
         <a data-role="button" onClick="getLocationInfoAch()" class="ui-btn" >Confirm Location</a>
-        <div id="checkLocationAch"></div>
+        <div id="checkLocationAch" style="color:#FF0000;"></div>
         <br/><br/>
         <a data-role="button" onClick="achiveDataSave()" class="ui-btn" >Save</a>
         <a data-role="button" onClick="achiveDataSubmit()" class="ui-btn"  >Submit</a>
@@ -522,17 +527,17 @@
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;"> First date of water quality test  </td>
-                        <td width="30%"><input name="fstDate" id="fstDate" placeholder="" value="" type="date"></td>
+                        <td width="30%"><input name="fstDate" id="fstDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
                         <td width="5"><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;"> Last date of water quality test</td>
-                        <td width="30%"><input name="lastDate" id="lastDate" placeholder="" value="" type="date"></td>
+                        <td width="30%"><input name="lastDate" id="lastDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
                         <td width="5"><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;">Sample collection date </td>
-                        <td width="30%"><input name="aDate" id="aDate" placeholder="" value="" type="date">	</td>
+                        <td width="30%"><input name="aDate" id="aDate" placeholder="mm/dd/yyyy" value="" type="date">	</td>
                         <td width="5"><sup class="reqField">*</sup></td>
                     </tr>
                 </table>
@@ -566,11 +571,11 @@
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;">Application Date </td>
-                        <td width="30%"><input name="appDate" id="appDate" placeholder="" value="" type="date"></td>
+                        <td width="30%"><input name="appDate" id="appDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;">  Handover Date </td>
-                        <td width="30%"><input name="handOvrDate" id="handOvrDate" placeholder="" value="" type="date"></td>
+                        <td width="30%"><input name="handOvrDate" id="handOvrDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
                         
                     </tr>
       </table>
