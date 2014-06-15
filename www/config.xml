@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.businesssolutionapps.wab"
-        version   = "1.0.1">
+        version   = "1.0.2">
 
-    <name>Water Aid</name>
+    <name>WaterAid</name>
 
     <description>
-         M-Reporting for Water Aid Bangladesh
+         M-Reporting for WaterAid Bangladesh
     </description>
 
     <author href="http://phonegap.com" email="sabbir456@gmail.com">
