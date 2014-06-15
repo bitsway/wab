@@ -10,11 +10,24 @@
         
     <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
     <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
+	<script src="static/ff_plan_details_progress_all_activity.js">   </script>
+	
     <script src="static/wateraid.js">   </script>
+	
 	<script>
 		function syncPage(){
 			$.mobile.navigate("#pagesync")
 			};		
+		
+			
+		$(document).ready(function(){
+			$('#loader').hide();
+		});
+		
+		function getEmpty(){
+			$(".plan_tr").empty();
+		};
+		
 		
 	</script>       
     <style>
@@ -23,13 +36,15 @@
     </style>	
 </head>
 
-<body>
+<body >
+
+
 <!-- MAIN MENU ----------------------------------------------------------------------------- -->
 <div data-role="page" data-theme="d" id="reportType" >
     <div data-theme="d" data-role="header" data-position="fixed" >
         <a data-role="button" href="#leftpanel" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
         
-        <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
+        <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit();" >Exit </a>
         <h3>Select Report</h3>
     </div>
     <div data-role="content">
@@ -43,6 +58,10 @@
                 <li><a href="#" onClick="reviewWaterQData()" data-transition="slide">Review Water Quality</a></li>
                 <!--<li><a href="#" onClick="getAchivementImage()" id="#photo">Photo</a></a></li>
                 <li><a href="#" onClick="getLocationInfo()" id="#photo">location</a></a></li>-->
+                
+            </ul>
+			<ul data-role="listview" data-inset="true">
+                <li ><a href="#" onClick="field_force_detail()" data-transition="slide">Report</a></li>            
                 
             </ul>
     </div>
@@ -65,6 +84,134 @@
         <div align="center"><img src="logo_gp.png"></div>
     </div>
 </div>
+
+<!-- REPORT ----------------------------------------------------------------------------- -->
+<div data-theme="d" data-role="page" id="reportPage" >
+    <div data-theme="d" data-role="header" data-position="fixed" >
+        <a data-role="button" onClick="waterAidClick()"  data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
+        <a data-role="button" onclick="backClick()" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
+        <h3>Show Report</h3>
+    </div>
+    <div data-role="content">				
+				<div class="ui-grid-b">
+					<div class="ui-block-a" style=" padding:20px 0% 0% 20%; font-weight:bold;">From
+					</div>
+					<div class="ui-block-b">
+					  <select name="from_year" id="from_year">
+						 <option value="">Year</option>						
+						 <option value="2010">2010</option>
+						 <option value="2011">2011</option>
+						 <option value="2012">2012</option>
+						 <option value="2013">2013</option>
+						 <option value="2014">2014</option>
+						 <option value="2015">2015</option>
+						 <option value="2016">2016</option>
+						 <option value="2017">2017</option>
+						 <option value="2018">2018</option>
+						 <option value="2019">2019</option>
+						 <option value="2010">2010</option>			
+					  </select>	
+					
+					</div>
+					<div class="ui-block-c">
+						<select name="from_month" id="from_month">
+							<option value="">Month</option>
+							<option value="01-Jan">Jan</option>
+							<option value="02-Feb">Feb</option>
+							<option value="03-Mar">Mar</option>
+							<option value="04-Apr">Apr</option>
+							<option value="05-May">May</option>
+							<option value="06-Jun">Jun</option>
+							<option value="07-Jul">Jul</option>
+							<option value="08-Aug">Aug</option>
+							<option value="09-Sep">Sep</option>
+							<option value="10-Oct">Oct</option>
+							<option value="11-Nov">Nov</option>
+							<option value="12-Dec">Dec</option>
+					  </select>  				
+					</div>	
+						
+				</div>
+			
+			<div class="ui-grid-b">
+				<div class="ui-block-a" style=" padding:20px 0% 0% 20%; font-weight:bold;">To
+				</div>
+				<div class="ui-block-b">
+				  <select name="to_year" id="to_year">
+					 <option value="">Year</option>						
+					 <option value="2010">2010</option>
+					 <option value="2011">2011</option>
+					 <option value="2012">2012</option>
+					 <option value="2013">2013</option>
+					 <option value="2014">2014</option>
+					 <option value="2015">2015</option>
+					 <option value="2016">2016</option>
+					 <option value="2017">2017</option>
+					 <option value="2018">2018</option>
+					 <option value="2019">2019</option>
+					 <option value="2010">2010</option>			
+				  </select>	
+				
+				</div>
+				<div class="ui-block-c">
+					<select name="to_month" id="to_month">
+						<option value="">Month</option>
+						<option value="01-Jan">Jan</option>
+						<option value="02-Feb">Feb</option>
+						<option value="03-Mar">Mar</option>
+						<option value="04-Apr">Apr</option>
+						<option value="05-May">May</option>
+						<option value="06-Jun">Jun</option>
+						<option value="07-Jul">Jul</option>
+						<option value="08-Aug">Aug</option>
+						<option value="09-Sep">Sep</option>
+						<option value="10-Oct">Oct</option>
+						<option value="11-Nov">Nov</option>
+						<option value="12-Dec">Dec</option>
+				  </select>   
+				
+				</div><!-- block-->
+			</div><!-- grid-->
+			
+			<div class="ui-grid-b">
+				<div class="ui-block-a" style=" padding:20px 0% 0% 20%; font-weight:bold;">Sector
+				</div>
+				<div class="ui-block-b">
+				  <select name="sector" id="sector">
+					 <option value="">All</option>						
+					 <option value="Water">Water</option>
+					 <option value="Sanitation">Sanitation</option>
+					 <option value="Hygenie">Hygenie</option>
+					 <option value="X-Sector">X-Sector</option>					 	
+				  </select>	
+				
+				</div>				
+			</div><!-- grid-->
+			
+		<br />       
+        <a data-role="button" onclick="getEmpty(); ff_plan_all_activity_progress();" data-transition="slide" >Show</a>
+		<br/>
+		
+		<br/>
+		
+		<table class="ui-body-d ui-shadow table-stripe ui-responsive" id="plan_details_progress_all_activity"  data-role="table" data-theme="d"  data-mode="display:none" style="cell-spacing:0px;">
+                    <tr style="background-color:#FFFFFF; font-size:11px;">
+                      <td style="width:60%; text-align:center" >Activity</td>					  
+                      <td colspan="2" style="width:20%" >Plan</td>
+                      <td colspan="2" style="width:20%" >Progress</td>
+                    </tr>
+                    <tr style="background-color:#F0F0F0; font-size:11px;">
+						<td style="width:60%" ></td>
+                        <td style="width:10%"><strong>out</strong></td>
+						<td style="width:10%"><strong>population</strong></td>
+						<td style="width:10%"><strong>out</strong></td>
+						<td style="width:10%"><strong>population</strong></td>
+                  </tr>
+		</table>		
+		<div id="loader" style="text-align:center;"><img src="running.gif"/></div>
+  </div><!-- con-->   
+</div><!-- page-->
+
 
 <!-- ACHIVEMENT REVIEW ----------------------------------------------------------------------------- -->
 <div data-theme="d" data-role="page" id="reviewDataList" >
@@ -320,8 +467,8 @@
         <img src="" width="128" height="128" alt="image" id="myImageA">
         <input name="achPhoto" id="achPhoto"   type="hidden">
        <!-- <input name="achlocation" id="achlocation"   type="text">-->
-        <input name="ach_lat" id="ach_lat"   type="hidden">
-        <input name="ach_long" id="ach_long"  type="hidden">
+        <input name="ach_lat" id="ach_lat"   type="text">
+        <input name="ach_long" id="ach_long"  type="text">
         <a data-role="button" onClick="getLocationInfoAch()" class="ui-btn" >Confirm Location</a>
         <div id="checkLocationAch" style="color:#FF0000;"></div>
         <br/><br/>
@@ -382,10 +529,11 @@
                     <option value="Renovation Instalation">Installation –Renovation</option>
                     <option value="Monitoring">Monitoring</option>
                     <option value="Cross Check">Cross Check</option>
+					<option value="Arsenic Screening">Arsenic Screening</option>
                 </select>
                 
             </li>
-        </ul>
+        </ul>		
         <div id="providedByDiv"></div>
         <ul data-role="listview" data-inset="true">
             <li style="background-color:#F2F2F2;"></li>
@@ -1239,8 +1387,8 @@
                
                 <input name="wq_photo" id="wq_photo"    type="hidden">
                <!-- <input name="wqLocation" id="wqLocation"   type="text">-->
-                <input name="wq_lat" id="wq_lat"  type="hidden">
-                <input name="wq_long" id="wq_long"  type="hidden">
+                <input name="wq_lat" id="wq_lat"  type="text">
+                <input name="wq_long" id="wq_long"  type="text">
         		<a data-role="button" onClick="getLocationInfoWq()" class="ui-btn" >confirm location</a>
                 <div id="checkLocationWq" style="color:#FF0000;"></div>
         		<br/><br/>
