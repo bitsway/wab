@@ -89,8 +89,7 @@ var imagePathW="";
 
 $(function(){
 	
-	$('#syncBasic').click(function() {
-					
+	$('#syncBasic').click(function() {					
 						  
 		var mobile=$("#mobile").val() ;
 	 	var password=$("#password").val() ;
@@ -621,7 +620,7 @@ function achiveDataSave(){
 						
 						}
 				}else{				
-					if (achiveSavArray.length >= 3){
+					if (achiveSavArray.length >= 6){
 						addFlag=false;					
 					}else{
 						localStorage.ach_save=achivementStr+'rdrd'+achivementSave
@@ -631,7 +630,7 @@ function achiveDataSave(){
 			}
 			
 			if (addFlag==false){
-				$(".errorChk").text("Maximum 3 records allowed to be saved for review");		
+				$(".errorChk").text("Maximum 6 records allowed to be saved for review");		
 			}else{
 				achPlanId='';
 				achID='';
@@ -1977,7 +1976,7 @@ function WaterQDataSave(){
 							
 							}
 					}else{				
-						if (waterQSavArray.length >= 3){
+						if (waterQSavArray.length >= 6){
 							addFlag=false;					
 						}else{
 							localStorage.water_q_save=waterQStr+'rdrd'+waterQualitySave
@@ -1987,7 +1986,7 @@ function WaterQDataSave(){
 				}
 				
 				if (addFlag==false){
-					$(".errorChk").text("Maximum 3 records allowed to be saved for review");		
+					$(".errorChk").text("Maximum 6 records allowed to be saved for review");		
 				}else{
 					wq_plan_id="";
 					wq_CBO_id=="";
@@ -2628,80 +2627,7 @@ wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_
 }
 
 
-/*function checkUrban(){
-		$("#pipe_conc").show();
-		
-		var url="#waterData";
-		$(location).attr('href',url);
-		
-		$("#piped_w_conn_y").click(function(){					
-			$("#pipe_w_sup").show();
-		});
-		
-		$("#piped_w_conn_n").click(function(){					
-			$("#pipe_w_sup").hide();
-			
-		});
-	
-	
-	
-	};
-*/
 
-function dateCheck(){
-	$(".dateErr").empty();
-	
-	var wQFstDate=$("#fstDate").val();
-	var wQLstDate=$("#lastDate").val();
-	var wQaDate=$("#aDate").val();
-	
-	if((wQFstDate!='' || wQLstDate!='' || wQaDate!='')){
-		if(wQFstDate>wQLstDate){
-			$(".dateErr").text("Check First Date");
-		}else if(wQLstDate>wQaDate){
-			$(".dateErr").text("Check last Date");
-		}else{
-			var url="#waterData5";
-			$(location).attr('href',url);
-			}
-	}else{
-		var url="#waterData5";
-			$(location).attr('href',url);
-		
-		}	
-	
-	/*if(wQLstDate!='' && wQaDate!=''){
-		if(wQLstDate>wQaDate){
-			$(".dateErr").text("Check last Date");
-		}else{
-			var url="#waterData5";
-			$(location).attr('href',url);
-			}
-	}else{
-		var url="#waterData5";
-			$(location).attr('href',url);
-		
-		}	*/
-		
-	
-	}
-	
-/*function countTotal(){
-	var conV1=$("#web_con").val();
-	var conV2=$("#comm_con").val();
-	
-	if(conV1!='' && conV1!=''){
-		var conTotal=eval(conV1)+eval(conV2);
-		$("#conTotal").text(conTotal);
-		
-		var url="#waterData12";
-		$(location).attr('href',url);
-		
-	}else{
-		var url="#waterData12";
-		$(location).attr('href',url);
-		}
-	}*/
 
 //---------------------------------check history date
 function checkDateWQ(){
@@ -2851,7 +2777,8 @@ function win(r) {
 }
 
 function fail(error) {
-    alert("An error has occurred: Code = " + error.code);
+	$(".errorChk").text('Memory Error. Please Save and Go to Review, Then take new picture and Submit');
+    //alert("An error has occurred: Code = " + error.code);
 //    console.log("upload error source " + error.source);
 //    console.log("upload error target " + error.target);
 }
