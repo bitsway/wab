@@ -1,9 +1,13 @@
 // report plan with progress
+//var apipath1="http://e2.businesssolutionapps.com/wateraid/analysis/";
 //local
-//var apipath1="http://127.0.0.1:8000/wateraid/analysis/";
+//var apipath1="http://127.0.0.1:8000/welcome/wab_analysis/";
 
-//online
-var apipath1="http://e2.businesssolutionapps.com/wateraid/analysis/";
+//---- online
+var apipath1="http://m.businesssolutionapps.com/welcome/wab_analysis/";
+
+
+
 
 var plan_list="";
 var ach_list="";
@@ -17,10 +21,10 @@ var ach_array=[];
 var plan_ach_array="";
 var temp_ach_array="";
 
-function field_force_detail(){
-	//alert(apipath1+'get_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code);
+function field_force_detail(){	
+	//alert(apipath1+'sync_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code);
 		$.ajax({
-				url:apipath1+'get_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code,
+				url:apipath1+'sync_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code,
 			  	success: function(result) {
 				ff_detail_Result=result;
 				var ff_array=ff_detail_Result.split("fdfd");
@@ -48,15 +52,24 @@ function ff_plan_all_activity_progress() {
 		to_year=$("#to_year").val();
 		to_month=$("#to_month").val();
 		sector=$("#sector").val();		
-		//alert(apipath+'get_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month);
+		//alert(apipath+'sync_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month);
+		
+		if (from_year=="" || from_month=="" || to_year=="" || to_month=="" ){
+			$('#loader').hide();
+			$(".errorChk").html("Required date");
 			
-		$.ajax({
-			url:apipath1+'get_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
-		  success: function(result) {
-			plan_list=result;				
-			ff_ach_all_activity_progress();
-					}
-			   });	   
+		}else{
+			$(".errorChk").hide();
+			$(".dataChk").hide();
+			
+			$.ajax({
+				url:apipath1+'sync_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
+			  success: function(result) {
+				plan_list=result;				
+				ff_ach_all_activity_progress();
+						}
+				   });
+		}
 			
 }
 
@@ -70,9 +83,9 @@ function ff_ach_all_activity_progress() {
 		to_month=$("#to_month").val();
 		
 		sector=$("#sector").val();
-		//alert(apipath1+'get_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector);
+		//alert(apipath1+'sync_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector);
 			$.ajax({
-				url:apipath1+'get_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
+				url:apipath1+'sync_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
 			  success: function(result) {
 				ach_list=result
 					//alert(ach_list);
@@ -93,13 +106,11 @@ function compare_data() {
 	
 		
 	for(j=0;j<ach_list_count;j++){
-		ach_array=ach_list_array[j].split("fdfd");
-		
-		temp_ach_array[j][0]=ach_array[0]; //sector
-		temp_ach_array[j][1]=ach_array[1]; // activity
-		temp_ach_array[j][2]=ach_array[2]; // achievement qty
-		temp_ach_array[j][3]=ach_array[3]; // ach population		
-		temp_ach_array[j][4]=0;	// flag
+		ach_array=ach_list_array[j].split("fdfd");		
+		temp_ach_array[j][0]=ach_array[0]; //activity
+		temp_ach_array[j][1]=ach_array[1]; // achievement qty
+		temp_ach_array[j][2]=ach_array[2]; // ach population		
+		temp_ach_array[j][3]=0;	// flag
 		
 		}
 	
@@ -113,24 +124,24 @@ function compare_data() {
 	$('#plan_text').val('testaaa');
 	for(i=0;i<plan_list_count;i++){
 		plan_array=plan_list_array[i].split("fdfd")
-		plan_ach_array[i][0]=plan_array[0]; //sector
-		plan_ach_array[i][1]=plan_array[1]; //activity
-		plan_ach_array[i][2]=plan_array[2]; //output qty
-		plan_ach_array[i][3]=plan_array[3]; //output population
+		plan_ach_array[i][0]=plan_array[0]; //activity
+		plan_ach_array[i][1]=plan_array[1]; //output qty
+		plan_ach_array[i][2]=plan_array[2]; //output population
+		plan_ach_array[i][3]=0;	//AchQty
+		plan_ach_array[i][4]=0;	//achPopulation	
 				
 		for(j=0;j<ach_list_count;j++){
-			if ((plan_ach_array[i][0]==temp_ach_array[j][0]) && 
-					(plan_ach_array[i][1]==temp_ach_array[j][1])){
+			if ((plan_ach_array[i][0]==temp_ach_array[j][0])){
 				
-				plan_ach_array[i][4]=temp_ach_array[j][2];	//AchQty
-				plan_ach_array[i][5]=temp_ach_array[j][3];	//achPopulation
-				temp_ach_array[j][4] = 1;
+				plan_ach_array[i][3]=temp_ach_array[j][1];	//AchQty
+				plan_ach_array[i][4]=temp_ach_array[j][2];	//achPopulation
+				temp_ach_array[j][3] = 1;
 				}
-				else
+				/*else
 					{
 					plan_ach_array[i][4]=0;	//AchQty
 					plan_ach_array[i][5]=0;	//achPopulation
-				}		
+				}		*/
 			
 			}
 		}
@@ -140,8 +151,8 @@ function compare_data() {
 	
 	//Push the Records those are in achivement, but not im plan	
 	for(j=0;j<ach_list_count;j++){
-			if (temp_ach_array[j][4] == 0){
-				plan_ach_array.push([temp_ach_array[j][1],temp_ach_array[j][2],0,0,temp_ach_array[j][2],temp_ach_array[j][3]]);
+			if (temp_ach_array[j][3] == 0){
+				plan_ach_array.push([temp_ach_array[j][0],temp_ach_array[j][1],0,0,temp_ach_array[j][2],temp_ach_array[j][3]]);
 			}
 		}
 	
@@ -166,10 +177,13 @@ function show_report(){
 		
 	for (i=0;i<plan_ach_array_count;i++){		
 		plan_show_array=plan_ach_array[i];
-		
-		$('#plan_details_progress_all_activity').append('<tr class="plan_tr" style="font-size:11px;"><td >'+plan_show_array[1]+'</td><td>'+plan_show_array[2]+'</td><td>'+plan_show_array[3]+'</td><td>'+plan_show_array[4]+'</td><td>'+plan_show_array[5]+'</td></tr>');
-		
-		$('#loader').hide();
+		if(plan_show_array[1]!=undefined){
+			$('#plan_details_progress_all_activity').append('<tr class="plan_tr" style="font-size:11px;"><td >'+plan_show_array[0]+'</td><td>'+plan_show_array[1]+'</td><td>'+plan_show_array[2]+'</td><td>'+plan_show_array[3]+'</td><td>'+plan_show_array[4]+'</td></tr>');
+			$('#loader').hide();
+		}else{
+			$('#loader').hide();
+			$('#dataChk').text("No data found");
+			}
 		}
 	
 }

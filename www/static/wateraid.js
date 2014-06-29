@@ -96,15 +96,16 @@ $(function(){
 	 	var password=$("#password").val() ;
 		
 		if (mobile=="" || password==""){
-			 $(".errorChk").html("Required mobile no and password");	
+			 $(".errorChk").html("Require mobile no and password");	
 		 }else{	
-			 
+			 $('#syncBasic').hide();			 
+			 $(".errorChk").html("Sync in progress. please wait...");
 			if(localStorage.sync_code==undefined || localStorage.sync_code==""){
 					localStorage.sync_code=0
 				}
 			
 		 	//alert(apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code);
-			$.ajax({
+			$.ajax({				   
 //			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password),
 				url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
 			  success: function(result) {
@@ -129,6 +130,7 @@ $(function(){
 						$(".errorChk").html("Sync Successful");
 						//alert('aa');
 						
+						$('#syncBasic').show();
 						
 						if (planFlag==0){
 							$("#planlistDiv").html(localStorage.plan_list);
@@ -621,7 +623,7 @@ function achiveDataSave(){
 						
 						}
 				}else{				
-					if (achiveSavArray.length >= 3){
+					if (achiveSavArray.length >= 6){
 						addFlag=false;					
 					}else{
 						localStorage.ach_save=achivementStr+'rdrd'+achivementSave
@@ -631,7 +633,7 @@ function achiveDataSave(){
 			}
 			
 			if (addFlag==false){
-				$(".errorChk").text("Maximum 3 records allowed to be saved for review");		
+				$(".errorChk").text("Maximum 6 records allowed to be saved for review");		
 			}else{
 				achPlanId='';
 				achID='';
@@ -1977,7 +1979,7 @@ function WaterQDataSave(){
 							
 							}
 					}else{				
-						if (waterQSavArray.length >= 3){
+						if (waterQSavArray.length >= 6){
 							addFlag=false;					
 						}else{
 							localStorage.water_q_save=waterQStr+'rdrd'+waterQualitySave
@@ -1987,7 +1989,7 @@ function WaterQDataSave(){
 				}
 				
 				if (addFlag==false){
-					$(".errorChk").text("Maximum 3 records allowed to be saved for review");		
+					$(".errorChk").text("Maximum 6 records allowed to be saved for review");		
 				}else{
 					wq_plan_id="";
 					wq_CBO_id=="";
@@ -2851,7 +2853,8 @@ function win(r) {
 }
 
 function fail(error) {
-    alert("An error has occurred: Code = " + error.code);
+	$(".errorChk").text('Memory Error. Please Save and Go to Review, Then take new picture and Submit');
+    //alert("An error has occurred: Code = " + error.code);
 //    console.log("upload error source " + error.source);
 //    console.log("upload error target " + error.target);
 }
