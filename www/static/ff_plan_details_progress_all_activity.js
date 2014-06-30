@@ -120,7 +120,7 @@ function compare_data() {
 	var plan_list_count=plan_list_array.length;							
 	plan_ach_array = createArray(plan_list_count, 6);
 	var temp='';
-	/* Sector , Activity, Output_Qty, OutputPopulation, AchQty , achPopulation */
+	/* Activity, Output_Qty, OutputPopulation, AchQty , achPopulation */
 	$('#plan_text').val('testaaa');
 	for(i=0;i<plan_list_count;i++){
 		plan_array=plan_list_array[i].split("fdfd")
@@ -182,7 +182,7 @@ function show_report(){
 			$('#loader').hide();
 		}else{
 			$('#loader').hide();
-			$('#dataChk').text("No data found");
+			$('.dataChk').text("No data available");
 			}
 		}
 	

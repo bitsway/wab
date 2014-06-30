@@ -96,10 +96,10 @@ $(function(){
 	 	var password=$("#password").val() ;
 		
 		if (mobile=="" || password==""){
-			 $(".errorChk").html("Require mobile no and password");	
+			 $(".errorChk").html("Required mobile no and password");	
 		 }else{	
 			 $('#syncBasic').hide();			 
-			 $(".errorChk").html("Sync in progress. please wait...");
+			 $(".errorChk").html("Sync data please wait.");
 			if(localStorage.sync_code==undefined || localStorage.sync_code==""){
 					localStorage.sync_code=0
 				}
@@ -177,6 +177,7 @@ $(function(){
 					else {
 						
 						$(".errorChk").html("Sync Failed. Authorization or Network Error.");
+						$('#syncBasic').show();
 					}
 				
 			  }//----/success f
@@ -2649,125 +2650,6 @@ wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_
 	
 	};
 */
-
-function dateCheck(){
-	$(".dateErr").empty();
-	
-	var wQFstDate=$("#fstDate").val();
-	var wQLstDate=$("#lastDate").val();
-	var wQaDate=$("#aDate").val();
-	
-	if((wQFstDate!='' || wQLstDate!='' || wQaDate!='')){
-		if(wQFstDate>wQLstDate){
-			$(".dateErr").text("Check First Date");
-		}else if(wQLstDate>wQaDate){
-			$(".dateErr").text("Check last Date");
-		}else{
-			var url="#waterData5";
-			$(location).attr('href',url);
-			}
-	}else{
-		var url="#waterData5";
-			$(location).attr('href',url);
-		
-		}	
-	
-	/*if(wQLstDate!='' && wQaDate!=''){
-		if(wQLstDate>wQaDate){
-			$(".dateErr").text("Check last Date");
-		}else{
-			var url="#waterData5";
-			$(location).attr('href',url);
-			}
-	}else{
-		var url="#waterData5";
-			$(location).attr('href',url);
-		
-		}	*/
-		
-	
-	}
-	
-/*function countTotal(){
-	var conV1=$("#web_con").val();
-	var conV2=$("#comm_con").val();
-	
-	if(conV1!='' && conV1!=''){
-		var conTotal=eval(conV1)+eval(conV2);
-		$("#conTotal").text(conTotal);
-		
-		var url="#waterData12";
-		$(location).attr('href',url);
-		
-	}else{
-		var url="#waterData12";
-		$(location).attr('href',url);
-		}
-	}*/
-
-//---------------------------------check history date
-function checkDateWQ(){
-	$(".dateErr").empty();
-	/*$("#conTotal").empty();
-	$("#conV1").empty();
-	$("#conV2").empty();*/
-	
-	var appDate=$("#appDate").val();
-	var sSDate=$("#siteSeDate").val();
-	var conSDate=$("#conStDate").val();
-	var conEDate=$("#conStDate").val();
-	var hODate=$("#HndOvrDate").val();
-	
-	if(appDate!='' && sSDate!=''){
-		if(appDate>sSDate){
-			$(".dateErr").text("Check Application Date");
-			
-		}else{
-			var url="#waterData12";
-			$(location).attr('href',url);
-			} 
-	}else{
-		var url="#waterData12";
-			$(location).attr('href',url);
-		}
-	
-	if(sSDate!='' && conSDate!=''){
-		if(sSDate>conSDate){
-			$(".dateErr").text("Check site selection Date");
-		}else{
-			var url="#waterData12";
-			$(location).attr('href',url);
-			} 
-	}else{
-		var url="#waterData12";
-			$(location).attr('href',url);
-		}
-	
-	if(conSDate!='' && conEDate!=''){
-		if(conSDate>conEDate){
-			$(".dateErr").text("Check Constraction Start Date");
-		}else{
-			var url="#waterData12";
-			$(location).attr('href',url);
-			} 
-	}else{
-		var url="#waterData12";
-			$(location).attr('href',url);
-		}
-	
-	if(conEDate!='' && hODate!=''){	
-		if(conEDate>hODate){
-			$(".dateErr").text("Check Constraction End Date");
-		}else{
-			var url="#waterData12";
-			$(location).attr('href',url);
-			}
-	}else{
-		var url="#waterData12";
-			$(location).attr('href',url);
-		}
-	
-}
 
 
 function exit() {
