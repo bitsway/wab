@@ -1279,7 +1279,7 @@ function waterData3Next(){
 		}else if (last_d=="" || last_m=="" || last_y=="" ){
 			$(".errorChk").text("Required Valid Last Date ");
 		}else if (sample_c_d=="" || sample_c_m=="" || sample_c_y=="" ){
-			$(".errorChk").text("Required Valid Analysis Date ");
+			$(".errorChk").text("Required Valid Sample Collection Date ");
 		}else{
 			
 			var now = new Date();
