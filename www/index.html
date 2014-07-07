@@ -669,20 +669,17 @@
                         <td colspan="3"><strong>Other Particulars</strong></td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;"> Depth(m)</td>
+                        <td width="70%" style="vertical-align:middle;"> Depth(m)<sup class="reqField">*</sup></td>
                         <td width="30%"><input name="depth" id="depth" placeholder="" value="" type="number"></td>
-                        <td width="5"><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;">Static water level(m) </td>
                         <td width="30%"><input name="sWaterL" id="sWaterL" placeholder="" value="" type="number"></td>
-                        <td width="5">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="100%" colspan="2" style="vertical-align:middle;"> First date of water quality test                        
-							<table>
-								<tr>								
-									<td>
+                        <td colspan="3" style="vertical-align:middle; width:auto;"> First date of water quality test<sup class="reqField">*</sup> 
+						     <div class="ui-grid-b">
+								<div class="ui-block-a">
 										<select name="first_d" id="first_d" data-native-menu="false">
 											 <option value="">D</option>						
 											 <option value="01">01</option>
@@ -717,9 +714,10 @@
 											 <option value="30">30</option>
 											 <option value="31">31</option>											 												
 										  </select>	
-									</td>
-									<td>
-										<select name="first_m" id="first_m" data-native-menu="false">
+								
+								</div>
+								<div class="ui-block-b">
+								  		<select name="first_m" id="first_m" data-native-menu="false">
 												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
@@ -733,9 +731,10 @@
 												 <option value="10">10</option>
 												 <option value="11">11</option>
 												 <option value="12">12</option>												
-										  </select>								
-									</td>
-									<td>
+										  </select>	
+								
+								</div>
+								<div class="ui-block-c">
 										<select name="first_y" id="first_y" data-native-menu="false">
 											 <option value="">Y</option>										 
 											 <option value="2014">14</option>
@@ -743,21 +742,21 @@
 											 <option value="2016">16</option>
 											 <option value="2017">17</option>
 											 <option value="2018">18</option>											 	
-										  </select>										
-									</td>
-								</tr>
-							</table>
-						</td>
-                        <td style="width:2px;"><sup class="reqField">*</sup></td>
+										  </select>				
+								</div>	
+									
+							</div>
+							
+						</td>                       
                     </tr>
 					
                     <tr>
-                        <td width="100%" colspan="2" style="vertical-align:middle;"> Last date of water quality test
-							<table>
-								<tr>								
-									<td>
+                        <td colspan="3" style="vertical-align:middle; width:auto;"> Last date of water quality test<sup class="reqField">*</sup>
+							
+							<div class="ui-grid-b">
+								<div class="ui-block-a">
 										<select name="last_d" id="last_d" data-native-menu="false">
-											 <option value="">D</option>
+											 <option value="">D</option>						
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -769,7 +768,7 @@
 											 <option value="09">09</option>
 											 <option value="10">10</option>
 											 <option value="11">11</option>
-											 <option value="12">12</option>											 
+											 <option value="12">12</option>	
 											 <option value="13">13</option>
 											 <option value="14">14</option>
 											 <option value="15">15</option>
@@ -790,9 +789,10 @@
 											 <option value="30">30</option>
 											 <option value="31">31</option>											 												
 										  </select>	
-									</td>
-									<td>
-										<select name="last_m" id="last_m" data-native-menu="false">
+								
+								</div>
+								<div class="ui-block-b">
+								  		<select name="last_m" id="last_m" data-native-menu="false">
 												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
@@ -806,30 +806,31 @@
 												 <option value="10">10</option>
 												 <option value="11">11</option>
 												 <option value="12">12</option>												
-										  </select>								
-									</td>
-									<td>
+										  </select>	
+								
+								</div>
+								<div class="ui-block-c">
 										<select name="last_y" id="last_y" data-native-menu="false">
-											 <option value="">Y</option>						
+											 <option value="">Y</option>										 
 											 <option value="2014">14</option>
 											 <option value="2015">15</option>
 											 <option value="2016">16</option>
 											 <option value="2017">17</option>
-											 <option value="2018">18</option>			
-										  </select>										
-									</td>
-								</tr>
-							</table>					
+											 <option value="2018">18</option>											 	
+										  </select>				
+								</div>	
+									
+							</div>
 						</td>
-                        <td style="width:2px;"><sup class="reqField">*</sup></td>
+                       
                     </tr>
                     <tr>
-                        <td width="100%" colspan="2" style="vertical-align:middle;">Sample collection date
-							<table>
-								<tr>								
-									<td>
+                        <td colspan="3" style="vertical-align:middle; width:auto;">Sample collection date<sup class="reqField">*</sup>
+							
+							<div class="ui-grid-b">
+								<div class="ui-block-a">
 										<select name="sample_c_d" id="sample_c_d" data-native-menu="false">
-											 <option value="">D</option>
+											 <option value="">D</option>						
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -841,7 +842,7 @@
 											 <option value="09">09</option>
 											 <option value="10">10</option>
 											 <option value="11">11</option>
-											 <option value="12">12</option>										 
+											 <option value="12">12</option>	
 											 <option value="13">13</option>
 											 <option value="14">14</option>
 											 <option value="15">15</option>
@@ -862,9 +863,10 @@
 											 <option value="30">30</option>
 											 <option value="31">31</option>											 												
 										  </select>	
-									</td>
-									<td>
-										<select name="sample_c_m" id="sample_c_m" data-native-menu="false">
+								
+								</div>
+								<div class="ui-block-b">
+								  		<select name="sample_c_m" id="sample_c_m" data-native-menu="false">
 												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
@@ -878,22 +880,23 @@
 												 <option value="10">10</option>
 												 <option value="11">11</option>
 												 <option value="12">12</option>												
-										  </select>								
-									</td>
-									<td>
+										  </select>	
+								
+								</div>
+								<div class="ui-block-c">
 										<select name="sample_c_y" id="sample_c_y" data-native-menu="false">
-											 <option value="">Y</option>						
+											 <option value="">Y</option>										 
 											 <option value="2014">14</option>
 											 <option value="2015">15</option>
 											 <option value="2016">16</option>
 											 <option value="2017">17</option>
-											 <option value="2018">18</option>					
-										  </select>										
-									</td>
-								</tr>
-							</table>
-						  </td>
-                        <td style="width:2px;"><sup class="reqField">*</sup></td>
+											 <option value="2018">18</option>											 	
+										  </select>				
+								</div>	
+									
+							</div>
+							
+						  </td>                        
                     </tr>
                 </table>
                 
@@ -922,15 +925,15 @@
             <div class="errorChk"></div>
             <table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
                     <tr>
-                        <td colspan="2"><strong>Other Particulars (History) </strong><sup class="reqField">*</sup></td>
+                        <td><strong>Other Particulars (History) </strong><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
-                        <td width="100%" colspan="2" style="vertical-align:middle;">Application Date
-							<table>
-								<tr>								
-									<td>
+                        <td style="vertical-align:middle; width:auto;">Application Date
+						
+							<div class="ui-grid-b">
+								<div class="ui-block-a">
 										<select name="app_d" id="app_d" data-native-menu="false">
-											 <option value="">D</option>
+											 <option value="">D</option>						
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -942,7 +945,7 @@
 											 <option value="09">09</option>
 											 <option value="10">10</option>
 											 <option value="11">11</option>
-											 <option value="12">12</option>											 
+											 <option value="12">12</option>	
 											 <option value="13">13</option>
 											 <option value="14">14</option>
 											 <option value="15">15</option>
@@ -963,9 +966,10 @@
 											 <option value="30">30</option>
 											 <option value="31">31</option>											 												
 										  </select>	
-									</td>
-									<td>
-										<select name="app_m" id="app_m" data-native-menu="false">
+								
+								</div>
+								<div class="ui-block-b">
+								  		<select name="app_m" id="app_m" data-native-menu="false">
 												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
@@ -979,29 +983,30 @@
 												 <option value="10">10</option>
 												 <option value="11">11</option>
 												 <option value="12">12</option>												
-										  </select>								
-									</td>
-									<td>
+										  </select>	
+								
+								</div>
+								<div class="ui-block-c">
 										<select name="app_y" id="app_y" data-native-menu="false">
-											 <option value="">Y</option>						
+											 <option value="">Y</option>										 
 											 <option value="2014">14</option>
 											 <option value="2015">15</option>
 											 <option value="2016">16</option>
 											 <option value="2017">17</option>
-											 <option value="2018">18</option>				
-										  </select>										
-									</td>
-								</tr>
-							</table>
+											 <option value="2018">18</option>											 	
+										  </select>				
+								</div>	
+									
+							</div>							
 						</td>
                     </tr>
                     <tr>
-                        <td width="100%" colspan="2" style="vertical-align:middle;">  Handover Date
-							<table>
-								<tr>								
-									<td>
+                        <td style="vertical-align:middle; width:auto;">  Handover Date
+							
+							<div class="ui-grid-b">
+								<div class="ui-block-a">
 										<select name="hnd_ovr_d" id="hnd_ovr_d" data-native-menu="false">
-											 <option value="">D</option>
+											 <option value="">D</option>						
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -1013,7 +1018,7 @@
 											 <option value="09">09</option>
 											 <option value="10">10</option>
 											 <option value="11">11</option>
-											 <option value="12">12</option>										 
+											 <option value="12">12</option>	
 											 <option value="13">13</option>
 											 <option value="14">14</option>
 											 <option value="15">15</option>
@@ -1034,9 +1039,10 @@
 											 <option value="30">30</option>
 											 <option value="31">31</option>											 												
 										  </select>	
-									</td>
-									<td>
-										<select name="hnd_ovr_m" id="hnd_ovr_m" data-native-menu="false">
+								
+								</div>
+								<div class="ui-block-b">
+								  		<select name="hnd_ovr_m" id="hnd_ovr_m" data-native-menu="false">
 												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
@@ -1050,20 +1056,22 @@
 												 <option value="10">10</option>
 												 <option value="11">11</option>
 												 <option value="12">12</option>												
-										  </select>								
-									</td>
-									<td>
+										  </select>	
+								
+								</div>
+								<div class="ui-block-c">
 										<select name="hnd_ovr_y" id="hnd_ovr_y" data-native-menu="false">
-											 <option value="">Y</option>						
+											 <option value="">Y</option>										 
 											 <option value="2014">14</option>
 											 <option value="2015">15</option>
 											 <option value="2016">16</option>
 											 <option value="2017">17</option>
-											 <option value="2018">18</option>				
-										  </select>										
-									</td>
-								</tr>
-							</table>
+											 <option value="2018">18</option>											 	
+										  </select>				
+								</div>	
+									
+							</div>			
+							
 						</td>
                         
                     </tr>
