@@ -16,6 +16,7 @@
 	
 	<script>
 		function syncPage(){
+			$(".errorChk").text("");
 			$.mobile.navigate("#pagesync")
 			};		
 		
@@ -110,7 +111,7 @@
 						 <option value="2017">2017</option>
 						 <option value="2018">2018</option>
 						 <option value="2019">2019</option>
-						 <option value="2010">2010</option>			
+						 <option value="2020">2020</option>			
 					  </select>	
 					
 					</div>
@@ -150,7 +151,7 @@
 					 <option value="2017">2017</option>
 					 <option value="2018">2018</option>
 					 <option value="2019">2019</option>
-					 <option value="2010">2010</option>			
+					 <option value="2020">2020</option>			
 				  </select>	
 				
 				</div>
@@ -190,7 +191,7 @@
 			</div><!-- grid-->
 			
 		<br />       
-        <a data-role="button" onclick="getEmpty(); ff_plan_all_activity_progress();" data-transition="slide" >Show</a>
+        <a data-role="button" id="btn_report_show" onclick="getEmpty(); ff_plan_all_activity_progress();" data-transition="slide" >Show</a>
 		<br/>
 		
 		<br/>
@@ -470,13 +471,13 @@
         <img src="" width="128" height="128" alt="image" id="myImageA">
         <input name="achPhoto" id="achPhoto"   type="hidden">
        <!-- <input name="achlocation" id="achlocation"   type="text">-->
-        <input name="ach_lat" id="ach_lat"   type="text">
-        <input name="ach_long" id="ach_long"  type="text">
+        <input name="ach_lat" id="ach_lat"   type="hidden">
+        <input name="ach_long" id="ach_long"  type="hidden">
         <a data-role="button" onClick="getLocationInfoAch();" class="ui-btn" >Confirm Location</a>
         <div id="checkLocationAch" style="color:#FF0000;"></div>
         <br/><br/>
-        <a data-role="button" onClick="achiveDataSave();" class="ui-btn" >Save</a>
-        <a data-role="button" onClick="achiveDataSubmit();" class="ui-btn"  >Submit</a>
+        <a data-role="button" id="btn_ach_save" onClick="achiveDataSave();" class="ui-btn" >Save</a>
+        <a data-role="button" id="btn_ach_submit" onClick="achiveDataSubmit();" class="ui-btn"  >Submit</a>
         
     </div>
     
@@ -677,19 +678,242 @@
                         <td width="5">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;"> First date of water quality test(<span style="font-size:10px;">mm/dd/yyyy</span>)  </td>
-                        <td width="30%"><input name="fstDate" id="fstDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
-                        <td width="5"><sup class="reqField">*</sup></td>
+                        <td width="70%" style="vertical-align:middle;"> First date of water quality test</td>
+                        <td width="30%">
+							<table>
+								<tr>								
+									<td>
+										<select name="first_d" id="first_d" data-native-menu="false">
+											 <option value="">Day</option>						
+											 <option value="01">01</option>
+											 <option value="02">02</option>
+											 <option value="03">03</option>
+											 <option value="04">04</option>
+											 <option value="05">05</option>
+											 <option value="06">06</option>
+											 <option value="07">07</option>
+											 <option value="08">08</option>
+											 <option value="09">09</option>
+											 <option value="10">10</option>
+											 <option value="11">11</option>
+											 <option value="12">12</option>	
+											 <option value="13">13</option>
+											 <option value="14">14</option>
+											 <option value="15">15</option>
+											 <option value="16">16</option>
+											 <option value="17">17</option>
+											 <option value="18">18</option>
+											 <option value="19">19</option>
+											 <option value="20">20</option>
+											 <option value="21">21</option>
+											 <option value="22">22</option>
+											 <option value="23">23</option>
+											 <option value="24">24</option>
+											 <option value="25">25</option>
+											 <option value="26">26</option>
+											 <option value="27">27</option>
+											 <option value="28">28</option>
+											 <option value="29">29</option>
+											 <option value="30">30</option>
+											 <option value="31">31</option>											 												
+										  </select>	
+									</td>
+									<td>
+										<select name="first_m" id="first_m" data-native-menu="false">
+												<option value="">Month</option>
+												<option value="01">01</option>
+												 <option value="02">02</option>
+												 <option value="03">03</option>
+												 <option value="04">04</option>
+												 <option value="05">05</option>
+												 <option value="06">06</option>
+												 <option value="07">07</option>
+												 <option value="08">08</option>
+												 <option value="09">09</option>
+												 <option value="10">10</option>
+												 <option value="11">11</option>
+												 <option value="12">12</option>												
+										  </select>								
+									</td>
+									<td>
+										<select name="first_y" id="first_y" data-native-menu="false">
+											 <option value="">Year</option>						
+											 <option value="2010">2010</option>
+											 <option value="2011">2011</option>
+											 <option value="2012">2012</option>
+											 <option value="2013">2013</option>
+											 <option value="2014">2014</option>
+											 <option value="2015">2015</option>
+											 <option value="2016">2016</option>
+											 <option value="2017">2017</option>
+											 <option value="2018">2018</option>
+											 <option value="2019">2019</option>
+											 <option value="2020">2020</option>			
+										  </select>										
+									</td>
+								</tr>
+							</table>
+						</td>
+                        <td style="width:2px;"><sup class="reqField">*</sup></td>
+                    </tr>
+					
+                    <tr>
+                        <td width="70%" style="vertical-align:middle;"> Last date of water quality test</td>
+                        <td width="30%">
+							<table>
+								<tr>								
+									<td>
+										<select name="last_d" id="last_d" data-native-menu="false">
+											 <option value="">Day</option>
+											 <option value="01">01</option>
+											 <option value="02">02</option>
+											 <option value="03">03</option>
+											 <option value="04">04</option>
+											 <option value="05">05</option>
+											 <option value="06">06</option>
+											 <option value="07">07</option>
+											 <option value="08">08</option>
+											 <option value="09">09</option>
+											 <option value="10">10</option>
+											 <option value="11">11</option>
+											 <option value="12">12</option>											 
+											 <option value="13">13</option>
+											 <option value="14">14</option>
+											 <option value="15">15</option>
+											 <option value="16">16</option>
+											 <option value="17">17</option>
+											 <option value="18">18</option>
+											 <option value="19">19</option>
+											 <option value="20">20</option>
+											 <option value="21">21</option>
+											 <option value="22">22</option>
+											 <option value="23">23</option>
+											 <option value="24">24</option>
+											 <option value="25">25</option>
+											 <option value="26">26</option>
+											 <option value="27">27</option>
+											 <option value="28">28</option>
+											 <option value="29">29</option>
+											 <option value="30">30</option>
+											 <option value="31">31</option>											 												
+										  </select>	
+									</td>
+									<td>
+										<select name="last_m" id="last_m" data-native-menu="false">
+												<option value="">Month</option>
+												<option value="01">01</option>
+												 <option value="02">02</option>
+												 <option value="03">03</option>
+												 <option value="04">04</option>
+												 <option value="05">05</option>
+												 <option value="06">06</option>
+												 <option value="07">07</option>
+												 <option value="08">08</option>
+												 <option value="09">09</option>
+												 <option value="10">10</option>
+												 <option value="11">11</option>
+												 <option value="12">12</option>												
+										  </select>								
+									</td>
+									<td>
+										<select name="last_y" id="last_y" data-native-menu="false">
+											 <option value="">Year</option>						
+											 <option value="2010">2010</option>
+											 <option value="2011">2011</option>
+											 <option value="2012">2012</option>
+											 <option value="2013">2013</option>
+											 <option value="2014">2014</option>
+											 <option value="2015">2015</option>
+											 <option value="2016">2016</option>
+											 <option value="2017">2017</option>
+											 <option value="2018">2018</option>
+											 <option value="2019">2019</option>
+											 <option value="2020">2020</option>			
+										  </select>										
+									</td>
+								</tr>
+							</table>					
+						</td>
+                        <td style="width:2px;"><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;"> Last date of water quality test(<span style="font-size:10px;">mm/dd/yyyy</span>)</td>
-                        <td width="30%"><input name="lastDate" id="lastDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
-                        <td width="5"><sup class="reqField">*</sup></td>
-                    </tr>
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Sample collection date(<span style="font-size:10px;">mm/dd/yyyy</span>) </td>
-                        <td width="30%"><input name="aDate" id="aDate" placeholder="mm/dd/yyyy" value="" type="date">	</td>
-                        <td width="5"><sup class="reqField">*</sup></td>
+                        <td width="70%" style="vertical-align:middle;">Sample collection date</td>
+                        <td width="30%">
+							<table>
+								<tr>								
+									<td>
+										<select name="sample_c_d" id="sample_c_d" data-native-menu="false">
+											 <option value="">Day</option>
+											 <option value="01">01</option>
+											 <option value="02">02</option>
+											 <option value="03">03</option>
+											 <option value="04">04</option>
+											 <option value="05">05</option>
+											 <option value="06">06</option>
+											 <option value="07">07</option>
+											 <option value="08">08</option>
+											 <option value="09">09</option>
+											 <option value="10">10</option>
+											 <option value="11">11</option>
+											 <option value="12">12</option>										 
+											 <option value="13">13</option>
+											 <option value="14">14</option>
+											 <option value="15">15</option>
+											 <option value="16">16</option>
+											 <option value="17">17</option>
+											 <option value="18">18</option>
+											 <option value="19">19</option>
+											 <option value="20">20</option>
+											 <option value="21">21</option>
+											 <option value="22">22</option>
+											 <option value="23">23</option>
+											 <option value="24">24</option>
+											 <option value="25">25</option>
+											 <option value="26">26</option>
+											 <option value="27">27</option>
+											 <option value="28">28</option>
+											 <option value="29">29</option>
+											 <option value="30">30</option>
+											 <option value="31">31</option>											 												
+										  </select>	
+									</td>
+									<td>
+										<select name="sample_c_m" id="sample_c_m" data-native-menu="false">
+												<option value="">Month</option>
+												<option value="01">01</option>
+												 <option value="02">02</option>
+												 <option value="03">03</option>
+												 <option value="04">04</option>
+												 <option value="05">05</option>
+												 <option value="06">06</option>
+												 <option value="07">07</option>
+												 <option value="08">08</option>
+												 <option value="09">09</option>
+												 <option value="10">10</option>
+												 <option value="11">11</option>
+												 <option value="12">12</option>												
+										  </select>								
+									</td>
+									<td>
+										<select name="sample_c_y" id="sample_c_y" data-native-menu="false">
+											 <option value="">Year</option>						
+											 <option value="2010">2010</option>
+											 <option value="2011">2011</option>
+											 <option value="2012">2012</option>
+											 <option value="2013">2013</option>
+											 <option value="2014">2014</option>
+											 <option value="2015">2015</option>
+											 <option value="2016">2016</option>
+											 <option value="2017">2017</option>
+											 <option value="2018">2018</option>
+											 <option value="2019">2019</option>
+											 <option value="2020">2020</option>			
+										  </select>										
+									</td>
+								</tr>
+							</table>
+						  </td>
+                        <td style="width:2px;"><sup class="reqField">*</sup></td>
                     </tr>
                 </table>
                 
@@ -721,12 +945,160 @@
                         <td colspan="2"><strong>Other Particulars (History) </strong><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">Application Date (<span style="font-size:10px;">mm/dd/yyyy</span>) </td>
-                        <td width="30%"><input name="appDate" id="appDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
+                        <td width="70%" style="vertical-align:middle;">Application Date </td>
+                        <td width="30%">
+							<table>
+								<tr>								
+									<td>
+										<select name="app_d" id="app_d" data-native-menu="false">
+											 <option value="">Day</option>
+											 <option value="01">01</option>
+											 <option value="02">02</option>
+											 <option value="03">03</option>
+											 <option value="04">04</option>
+											 <option value="05">05</option>
+											 <option value="06">06</option>
+											 <option value="07">07</option>
+											 <option value="08">08</option>
+											 <option value="09">09</option>
+											 <option value="10">10</option>
+											 <option value="11">11</option>
+											 <option value="12">12</option>											 
+											 <option value="13">13</option>
+											 <option value="14">14</option>
+											 <option value="15">15</option>
+											 <option value="16">16</option>
+											 <option value="17">17</option>
+											 <option value="18">18</option>
+											 <option value="19">19</option>
+											 <option value="20">20</option>
+											 <option value="21">21</option>
+											 <option value="22">22</option>
+											 <option value="23">23</option>
+											 <option value="24">24</option>
+											 <option value="25">25</option>
+											 <option value="26">26</option>
+											 <option value="27">27</option>
+											 <option value="28">28</option>
+											 <option value="29">29</option>
+											 <option value="30">30</option>
+											 <option value="31">31</option>											 												
+										  </select>	
+									</td>
+									<td>
+										<select name="app_m" id="app_m" data-native-menu="false">
+												<option value="">Month</option>
+												<option value="01">01</option>
+												 <option value="02">02</option>
+												 <option value="03">03</option>
+												 <option value="04">04</option>
+												 <option value="05">05</option>
+												 <option value="06">06</option>
+												 <option value="07">07</option>
+												 <option value="08">08</option>
+												 <option value="09">09</option>
+												 <option value="10">10</option>
+												 <option value="11">11</option>
+												 <option value="12">12</option>												
+										  </select>								
+									</td>
+									<td>
+										<select name="app_y" id="app_y" data-native-menu="false">
+											 <option value="">Year</option>						
+											 <option value="2010">2010</option>
+											 <option value="2011">2011</option>
+											 <option value="2012">2012</option>
+											 <option value="2013">2013</option>
+											 <option value="2014">2014</option>
+											 <option value="2015">2015</option>
+											 <option value="2016">2016</option>
+											 <option value="2017">2017</option>
+											 <option value="2018">2018</option>
+											 <option value="2019">2019</option>
+											 <option value="2020">2020</option>			
+										  </select>										
+									</td>
+								</tr>
+							</table>
+						</td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">  Handover Date (<span style="font-size:10px;">mm/dd/yyyy</span>) </td>
-                        <td width="30%"><input name="handOvrDate" id="handOvrDate" placeholder="mm/dd/yyyy" value="" type="date"></td>
+                        <td width="70%" style="vertical-align:middle;">  Handover Date </td>
+                        <td width="30%">
+							<table>
+								<tr>								
+									<td>
+										<select name="hnd_ovr_d" id="hnd_ovr_d" data-native-menu="false">
+											 <option value="">Day</option>
+											 <option value="01">01</option>
+											 <option value="02">02</option>
+											 <option value="03">03</option>
+											 <option value="04">04</option>
+											 <option value="05">05</option>
+											 <option value="06">06</option>
+											 <option value="07">07</option>
+											 <option value="08">08</option>
+											 <option value="09">09</option>
+											 <option value="10">10</option>
+											 <option value="11">11</option>
+											 <option value="12">12</option>										 
+											 <option value="13">13</option>
+											 <option value="14">14</option>
+											 <option value="15">15</option>
+											 <option value="16">16</option>
+											 <option value="17">17</option>
+											 <option value="18">18</option>
+											 <option value="19">19</option>
+											 <option value="20">20</option>
+											 <option value="21">21</option>
+											 <option value="22">22</option>
+											 <option value="23">23</option>
+											 <option value="24">24</option>
+											 <option value="25">25</option>
+											 <option value="26">26</option>
+											 <option value="27">27</option>
+											 <option value="28">28</option>
+											 <option value="29">29</option>
+											 <option value="30">30</option>
+											 <option value="31">31</option>											 												
+										  </select>	
+									</td>
+									<td>
+										<select name="hnd_ovr_m" id="hnd_ovr_m" data-native-menu="false">
+												<option value="">Month</option>
+												<option value="01">01</option>
+												 <option value="02">02</option>
+												 <option value="03">03</option>
+												 <option value="04">04</option>
+												 <option value="05">05</option>
+												 <option value="06">06</option>
+												 <option value="07">07</option>
+												 <option value="08">08</option>
+												 <option value="09">09</option>
+												 <option value="10">10</option>
+												 <option value="11">11</option>
+												 <option value="12">12</option>												
+										  </select>								
+									</td>
+									<td>
+										<select name="hnd_ovr_y" id="hnd_ovr_y" data-native-menu="false">
+											 <option value="">Year</option>						
+											 <option value="2010">2010</option>
+											 <option value="2011">2011</option>
+											 <option value="2012">2012</option>
+											 <option value="2013">2013</option>
+											 <option value="2014">2014</option>
+											 <option value="2015">2015</option>
+											 <option value="2016">2016</option>
+											 <option value="2017">2017</option>
+											 <option value="2018">2018</option>
+											 <option value="2019">2019</option>
+											 <option value="2020">2020</option>			
+										  </select>										
+									</td>
+								</tr>
+							</table>
+						</td>
                         
                     </tr>
       </table>
@@ -1385,18 +1757,18 @@
                 </ul>
                
                 <a data-role="button" onClick="getWaterImage();" class="ui-btn" >Take Picture</a>
-                <div class="errorChk"></div>
+                <div id="checkPhotoWq"></div>
                 <img src="" width="128" height="128" alt="image" id="myImageW">
                
                 <input name="wq_photo" id="wq_photo"    type="hidden">
                <!-- <input name="wqLocation" id="wqLocation"   type="text">-->
-                <input name="wq_lat" id="wq_lat"  type="text">
-                <input name="wq_long" id="wq_long"  type="text">
+                <input name="wq_lat" id="wq_lat"  type="hidden">
+                <input name="wq_long" id="wq_long"  type="hidden">
         		<a data-role="button" onClick="getLocationInfoWq();" class="ui-btn" >confirm location</a>
                 <div id="checkLocationWq" style="color:#FF0000;"></div>
         		<br/><br/>
-                <a data-role="button" href="#" onClick="WaterQDataSave();"  >Save</a>
-                <a data-role="button" href="#" onClick="waterQDataSubmit();" >Submit</a>
+                <a data-role="button" id="btn_wq_save" href="#" onClick="WaterQDataSave();"  >Save</a>
+                <a data-role="button" id="btn_wq_submit" href="#" onClick="waterQDataSubmit();" >Submit</a>
                 <div class="errorChk"></div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>

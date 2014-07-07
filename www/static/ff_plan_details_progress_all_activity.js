@@ -61,6 +61,7 @@ function ff_plan_all_activity_progress() {
 		}else{
 			$(".errorChk").hide();
 			$(".dataChk").hide();
+			$("#btn_report_show").hide();
 			
 			$.ajax({
 				url:apipath1+'sync_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
