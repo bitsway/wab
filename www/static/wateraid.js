@@ -1254,127 +1254,34 @@ function waterData2Next(){
 //---------------------------Water quality data3 page 
 var currentDay = "";
 
-/*function waterData3Next(){
-		wq_depth=$("#depth").val();
-		wq_static_w_l=$("#sWaterL").val();
-		wq_first_date=$("#fstDate").val();
-		wq_last_date=$("#lastDate").val();
-		wq_analysis_date=$("#aDate").val();
-		
-		
-		
-		if (wq_depth=="" ){
-			$(".errorChk").text("Required Depth ");
-		}else if (wq_first_date=="" ){
-			$(".errorChk").text("Required First Date ");
-		}else if (wq_last_date=="" ){
-			$(".errorChk").text("Required Last Date ");
-		}else if (wq_analysis_date=="" ){
-			$(".errorChk").text("Required Analysis Date ");
-		}else{			
-			var now = new Date();
-			var month=now.getUTCMonth()+1;
-			if (month<10){
-				month="0"+month
-				}
-			var day=now.getUTCDate();
-			if (day<10){
-				day="0"+day
-				}
-			currentDay = now.getUTCFullYear()+ "-" + month + "-" + day ;			
-			
-			if (wq_first_date>currentDay){
-				$(".errorChk").text("First Date is greater then Today");				
-			}else if(wq_last_date>currentDay){
-				$(".errorChk").text("Last Date is greater then Today");
-			}else if(wq_analysis_date>currentDay){
-				$(".errorChk").text("Sample collection Date is greater then Today");
-			}else{
-				if(wq_first_date>wq_last_date){
-					$(".errorChk").text("First Date is greater then Last Date");				
-				}else{
-					if(wq_last_date>wq_analysis_date){
-						$(".errorChk").text("Last Date is greater then sample collection Date");
-					}else{
-						$(".errorChk").text("");
-						var url="#waterData4";				
-						$.mobile.navigate(url);
-						//$(location).attr('href',url);
-						}
-					} 
-			
-				}
-			}
-	
-	};	
-*/
 function waterData3Next(){
 		wq_depth=$("#depth").val();
 		wq_static_w_l=$("#sWaterL").val();
-		wq_first_date=$("#fstDate").val();
-		wq_last_date=$("#lastDate").val();
-		wq_analysis_date=$("#aDate").val();
+		
+		var first_d=$("#first_d").val();
+		var first_m=$("#first_m").val();
+		var first_y=$("#first_y").val();
+		
+		var last_d=$("#last_d").val();
+		var last_m=$("#last_m").val();
+		var last_y=$("#last_y").val();
+		
+		var sample_c_d=$("#sample_c_d").val();
+		var sample_c_m=$("#sample_c_m").val();
+		var sample_c_y=$("#sample_c_y").val();
 		
 				
+		
 		if (wq_depth=="" ){
 			$(".errorChk").text("Required Depth ");
-		}else if (wq_first_date=="" ){
-			$(".errorChk").text("Required First Date ");
-		}else if (wq_last_date=="" ){
-			$(".errorChk").text("Required Last Date ");
-		}else if (wq_analysis_date=="" ){
-			$(".errorChk").text("Required Analysis Date ");
+		}else if (first_d=="" || first_m=="" || first_y=="" ){
+			$(".errorChk").text("Required Valid First Date ");
+		}else if (last_d=="" || last_m=="" || last_y=="" ){
+			$(".errorChk").text("Required Valid Last Date ");
+		}else if (sample_c_d=="" || sample_c_m=="" || sample_c_y=="" ){
+			$(".errorChk").text("Required Valid Analysis Date ");
 		}else{
-			var url="#waterData4";				
-			$.mobile.navigate(url);
 			
-			/*var now = new Date();
-			var month=now.getUTCMonth()+1;
-			if (month<10){
-				month="0"+month
-				}
-			var day=now.getUTCDate();
-			if (day<10){
-				day="0"+day
-				}
-			currentDay = day+ "/" + month + "/" +now.getUTCFullYear();			
-			
-			if (wq_first_date>currentDay){
-				$(".errorChk").text("First Date is greater then Today");				
-			}else if(wq_last_date>currentDay){
-				$(".errorChk").text("Last Date is greater then Today");
-			}else if(wq_analysis_date>currentDay){
-				$(".errorChk").text("Sample collection Date is greater then Today");
-			}else{
-				if(wq_first_date>wq_last_date){
-					$(".errorChk").text("First Date is greater then Last Date");				
-				}else{
-					if(wq_last_date>wq_analysis_date){
-						$(".errorChk").text("Last Date is greater then sample collection Date");
-					}else{
-						$(".errorChk").text("");
-						var url="#waterData4";				
-						$.mobile.navigate(url);
-						//$(location).attr('href',url);
-						}
-					} 
-			
-				}*/
-			}
-	
-	};	
-
-//----------------------------water quality data 4
-
-/*function waterData4Next(){
-		wq_appDate=$("#appDate").val();
-		wq_handOvrDate=$("#handOvrDate").val();
-		
-		if(wq_appDate==""){
-			$(".errorChk").text("Required application Date");
-		}else if(wq_handOvrDate==""){
-			$(".errorChk").text("Required Handover Date");
-		}else{
 			var now = new Date();
 			var month=now.getUTCMonth()+1;
 			if (month<10){
@@ -1384,38 +1291,90 @@ function waterData3Next(){
 			if (day<10){
 				day="0"+day
 				}
-			currentDay = now.getUTCFullYear()+ "-" + month + "-" + day;
-			if (wq_appDate>currentDay){
-				$(".errorChk").text("Application date is greater then Today");				
-			}else if(wq_handOvrDate>currentDay){
-				$(".errorChk").text("Handover date is greater then Today");
-			}else{
-				if(wq_appDate>wq_handOvrDate){
-						$(".errorChk").text("Application Date is greater then Handover Date");
-					}else{
-						$(".errorChk").text("");
-						var url="#waterData5";				
-						$.mobile.navigate(url);
-						//$(location).attr('href',url);
-						}
-				}
+				
+			var year=now.getUTCFullYear();
 			
+			var currentDay = new Date(year+ "-" + month + "-" + day);	
+			
+			/*alert(day);
+			alert(month);
+			alert(year);
+			alert(currentDay);*/
+			//---------------------
+						
+			wq_first_date=first_y+"-"+first_m+"-"+first_d;
+			wq_last_date=last_y+"-"+last_m+"-"+last_d;
+			wq_analysis_date=sample_c_y+"-"+sample_c_m+"-"+sample_c_d;		
+			
+			
+			var wq_first = new Date(wq_first_date);
+			var wq_last = new Date(wq_last_date);
+			var wq_analysis = new Date(wq_analysis_date);
+			
+			var date_flag=true;
+			var dateError="";
+			
+			if (wq_first=='Invalid Date'){
+				date_flag=false;
+				dateError="Invalid First Date "+wq_first_date;				
+			}else if(wq_last=='Invalid Date'){
+				date_flag=false;
+				dateError="Invalid Last Date "+wq_last_date;	
+			}else if(wq_first=='Invalid Date'){
+				date_flag=false;
+				dateError="Invalid Sample Collection Date "+wq_analysis_date;;	
 			}
-}*/
+						
+			//------------------------
+			if (date_flag==false){				
+				$(".errorChk").text(dateError);
+			}else{			
+					if (wq_first>currentDay){
+						$(".errorChk").text("Required First Date Less than Today");				
+					}else if(wq_last>currentDay){
+						$(".errorChk").text("Required Last Date Less than Today");
+					}else if(wq_analysis>currentDay){
+						$(".errorChk").text("Required Sample collection Date Less than Today");
+					}else{
+						if(wq_first>wq_last){
+							$(".errorChk").text("Required Last Date greater than First Date");				
+						}else{
+							if(wq_last>wq_analysis){
+								$(".errorChk").text("Required sample collection Date greater then Last Date");
+							}else{
+								$(".errorChk").text("");
+								var url="#waterData4";				
+								$.mobile.navigate(url);
+								//$(location).attr('href',url);
+								}
+							  } 
+							}
+					}//
+			}
+	
+	};	
+
+
+//----------------------------water quality data 4
 
 function waterData4Next(){
 		wq_appDate=$("#appDate").val();
 		wq_handOvrDate=$("#handOvrDate").val();
 		
-		if(wq_appDate==""){
-			$(".errorChk").text("Required application Date");
-		}else if(wq_handOvrDate==""){
-			$(".errorChk").text("Required Handover Date");
+		var app_d=$("#app_d").val();
+		var app_m=$("#app_m").val();
+		var app_y=$("#app_y").val();
+		
+		var hnd_ovr_d=$("#hnd_ovr_d").val();
+		var hnd_ovr_m=$("#hnd_ovr_m").val();
+		var hnd_ovr_y=$("#hnd_ovr_y").val();
+		
+		if(app_d=="" || app_m=="" || app_y==""){
+			$(".errorChk").text("Required Valid application Date");
+		}else if(hnd_ovr_d=="" || hnd_ovr_m=="" || hnd_ovr_y==""){
+			$(".errorChk").text("Required Valid Handover Date");
 		}else{
-			var url="#waterData5";				
-			$.mobile.navigate(url);
-			
-			/*var now = new Date();
+			var now = new Date();
 			var month=now.getUTCMonth()+1;
 			if (month<10){
 				month="0"+month
@@ -1424,25 +1383,50 @@ function waterData4Next(){
 			if (day<10){
 				day="0"+day
 				}
-			currentDay = day+ "/" + month + "/" +now.getUTCFullYear();
+				
+			var year=now.getUTCFullYear();
 			
-			if (wq_appDate>currentDay){
-				$(".errorChk").text("Application date is greater then Today");				
-			}else if(wq_handOvrDate>currentDay){
-				$(".errorChk").text("Handover date is greater then Today");
-			}else{
-				if(wq_appDate>wq_handOvrDate){
-						$(".errorChk").text("Application Date is greater then Handover Date");
-					}else{
-						$(".errorChk").text("");
-						var url="#waterData5";				
-						$.mobile.navigate(url);
-						//$(location).attr('href',url);
-						}
-				}*/
+			var currentDay = new Date(year+ "-" + month + "-" + day);
 			
+			wq_appDate=app_y+"-"+app_m+"-"+app_d;
+			wq_handOvrDate=hnd_ovr_y+"-"+hnd_ovr_m+"-"+hnd_ovr_d;
+			
+			var wq_app_d = new Date(wq_appDate);
+			var wq_hand_d = new Date(wq_handOvrDate);
+			
+			var date_flag=true;
+			var dateError="";
+			
+			if (wq_app_d=='Invalid Date'){
+				date_flag=false;
+				dateError="Invalid Application Date "+wq_appDate;				
+			}else if(wq_hand_d=='Invalid Date'){
+				date_flag=false;
+				dateError="Invalid Handover Date "+wq_handOvrDate;
 			}
+			
+			if (date_flag==false){				
+				$(".errorChk").text(dateError);
+			}else{
+				if (wq_app_d>currentDay){
+					$(".errorChk").text("Required Application date Less than Today");				
+				}else if(wq_hand_d>currentDay){
+					$(".errorChk").text("Required Handover date Less Than Today");
+				}else{
+					if(wq_app_d>wq_hand_d){
+							$(".errorChk").text("Required Handover Date greater than Application Date");
+						}else{
+							$(".errorChk").text("");
+							var url="#waterData5";				
+							$.mobile.navigate(url);
+							//$(location).attr('href',url);
+							}
+					}
+				
+				}
+		}
 }
+
 
 //---------------------------Water quality data5 page 
 function waterData5Next(){
@@ -2261,12 +2245,40 @@ function reviewWqDataNext(){
 		
 		$("#depth").val(waterQRevDetailsArray[12]);
 		$("#sWaterL").val(waterQRevDetailsArray[13]);
-		$("#fstDate").val(waterQRevDetailsArray[14]);
-		$("#lastDate").val(waterQRevDetailsArray[15]);
-		$("#aDate").val(waterQRevDetailsArray[16]);
 		
-		$("#appDate").val(waterQRevDetailsArray[17]);
-		$("#handOvrDate").val(waterQRevDetailsArray[18]);
+		var first_date_array=waterQRevDetailsArray[14].split("-");
+		
+		$("#first_d").val(first_date_array[2]);
+		$("#first_m").val(first_date_array[1]);
+		$("#first_y").val(first_date_array[0]);
+		
+		var last_date_array=waterQRevDetailsArray[15].split("-");
+		$("#last_d").val(last_date_array[2]);
+		$("#last_m").val(last_date_array[1]);
+		$("#last_y").val(last_date_array[0]);
+		
+		var sample_date_array=waterQRevDetailsArray[16].split("-");
+		$("#sample_c_d").val(sample_date_array[2]);
+		$("#sample_c_m").val(sample_date_array[1]);
+		$("#sample_c_y").val(sample_date_array[0]);
+		
+		//$("#fstDate").val(waterQRevDetailsArray[14]);
+		//$("#lastDate").val(waterQRevDetailsArray[15]);
+		//$("#aDate").val(waterQRevDetailsArray[16]);
+		
+		//$("#appDate").val(waterQRevDetailsArray[17]);
+		//$("#handOvrDate").val(waterQRevDetailsArray[18]);
+		
+		var app_date_array=waterQRevDetailsArray[17].split("-");		
+		$("#app_d").val(app_date_array[2]);
+		$("#app_m").val(app_date_array[1]);
+		$("#app_y").val(app_date_array[0]);
+		
+		var hand_date_array=waterQRevDetailsArray[18].split("-");
+		$("#hnd_ovr_d").val(hand_date_array[2]);
+		$("#hnd_ovr_m").val(hand_date_array[1]);
+		$("#hnd_ovr_y").val(hand_date_array[0]);
+		
 		//------------------------------------------------------------
 		$("#ownerName").val(waterQRevDetailsArray[19]);
 		$("#ownerPhone").val(waterQRevDetailsArray[20]);		
