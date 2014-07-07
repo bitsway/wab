@@ -32,6 +32,7 @@
 		
 	</script>       
     <style>
+	
         .reqField{ color:#FF0000;}
         .errorChk{ color:#FF0000; text-shadow:none;}
     </style>	
@@ -471,8 +472,8 @@
         <img src="" width="128" height="128" alt="image" id="myImageA">
         <input name="achPhoto" id="achPhoto"   type="hidden">
        <!-- <input name="achlocation" id="achlocation"   type="text">-->
-        <input name="ach_lat" id="ach_lat"   type="hidden">
-        <input name="ach_long" id="ach_long"  type="hidden">
+        <input name="ach_lat" id="ach_lat"   type="text">
+        <input name="ach_long" id="ach_long"  type="text">
         <a data-role="button" onClick="getLocationInfoAch();" class="ui-btn" >Confirm Location</a>
         <div id="checkLocationAch" style="color:#FF0000;"></div>
         <br/><br/>
@@ -684,7 +685,7 @@
 								<tr>								
 									<td>
 										<select name="first_d" id="first_d" data-native-menu="false">
-											 <option value="">Day</option>						
+											 <option value="">D</option>						
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -720,7 +721,7 @@
 									</td>
 									<td>
 										<select name="first_m" id="first_m" data-native-menu="false">
-												<option value="">Month</option>
+												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
 												 <option value="03">03</option>
@@ -737,18 +738,12 @@
 									</td>
 									<td>
 										<select name="first_y" id="first_y" data-native-menu="false">
-											 <option value="">Year</option>						
-											 <option value="2010">2010</option>
-											 <option value="2011">2011</option>
-											 <option value="2012">2012</option>
-											 <option value="2013">2013</option>
-											 <option value="2014">2014</option>
-											 <option value="2015">2015</option>
-											 <option value="2016">2016</option>
-											 <option value="2017">2017</option>
-											 <option value="2018">2018</option>
-											 <option value="2019">2019</option>
-											 <option value="2020">2020</option>			
+											 <option value="">Y</option>										 
+											 <option value="2014">14</option>
+											 <option value="2015">15</option>
+											 <option value="2016">16</option>
+											 <option value="2017">17</option>
+											 <option value="2018">18</option>											 	
 										  </select>										
 									</td>
 								</tr>
@@ -764,7 +759,7 @@
 								<tr>								
 									<td>
 										<select name="last_d" id="last_d" data-native-menu="false">
-											 <option value="">Day</option>
+											 <option value="">D</option>
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -800,7 +795,7 @@
 									</td>
 									<td>
 										<select name="last_m" id="last_m" data-native-menu="false">
-												<option value="">Month</option>
+												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
 												 <option value="03">03</option>
@@ -817,18 +812,12 @@
 									</td>
 									<td>
 										<select name="last_y" id="last_y" data-native-menu="false">
-											 <option value="">Year</option>						
-											 <option value="2010">2010</option>
-											 <option value="2011">2011</option>
-											 <option value="2012">2012</option>
-											 <option value="2013">2013</option>
-											 <option value="2014">2014</option>
-											 <option value="2015">2015</option>
-											 <option value="2016">2016</option>
-											 <option value="2017">2017</option>
-											 <option value="2018">2018</option>
-											 <option value="2019">2019</option>
-											 <option value="2020">2020</option>			
+											 <option value="">Y</option>						
+											 <option value="2014">14</option>
+											 <option value="2015">15</option>
+											 <option value="2016">16</option>
+											 <option value="2017">17</option>
+											 <option value="2018">18</option>			
 										  </select>										
 									</td>
 								</tr>
@@ -843,7 +832,7 @@
 								<tr>								
 									<td>
 										<select name="sample_c_d" id="sample_c_d" data-native-menu="false">
-											 <option value="">Day</option>
+											 <option value="">D</option>
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -879,7 +868,7 @@
 									</td>
 									<td>
 										<select name="sample_c_m" id="sample_c_m" data-native-menu="false">
-												<option value="">Month</option>
+												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
 												 <option value="03">03</option>
@@ -896,18 +885,12 @@
 									</td>
 									<td>
 										<select name="sample_c_y" id="sample_c_y" data-native-menu="false">
-											 <option value="">Year</option>						
-											 <option value="2010">2010</option>
-											 <option value="2011">2011</option>
-											 <option value="2012">2012</option>
-											 <option value="2013">2013</option>
-											 <option value="2014">2014</option>
-											 <option value="2015">2015</option>
-											 <option value="2016">2016</option>
-											 <option value="2017">2017</option>
-											 <option value="2018">2018</option>
-											 <option value="2019">2019</option>
-											 <option value="2020">2020</option>			
+											 <option value="">Y</option>						
+											 <option value="2014">14</option>
+											 <option value="2015">15</option>
+											 <option value="2016">16</option>
+											 <option value="2017">17</option>
+											 <option value="2018">18</option>					
 										  </select>										
 									</td>
 								</tr>
@@ -951,7 +934,7 @@
 								<tr>								
 									<td>
 										<select name="app_d" id="app_d" data-native-menu="false">
-											 <option value="">Day</option>
+											 <option value="">D</option>
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -987,7 +970,7 @@
 									</td>
 									<td>
 										<select name="app_m" id="app_m" data-native-menu="false">
-												<option value="">Month</option>
+												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
 												 <option value="03">03</option>
@@ -1004,18 +987,12 @@
 									</td>
 									<td>
 										<select name="app_y" id="app_y" data-native-menu="false">
-											 <option value="">Year</option>						
-											 <option value="2010">2010</option>
-											 <option value="2011">2011</option>
-											 <option value="2012">2012</option>
-											 <option value="2013">2013</option>
-											 <option value="2014">2014</option>
-											 <option value="2015">2015</option>
-											 <option value="2016">2016</option>
-											 <option value="2017">2017</option>
-											 <option value="2018">2018</option>
-											 <option value="2019">2019</option>
-											 <option value="2020">2020</option>			
+											 <option value="">Y</option>						
+											 <option value="2014">14</option>
+											 <option value="2015">15</option>
+											 <option value="2016">16</option>
+											 <option value="2017">17</option>
+											 <option value="2018">18</option>				
 										  </select>										
 									</td>
 								</tr>
@@ -1029,7 +1006,7 @@
 								<tr>								
 									<td>
 										<select name="hnd_ovr_d" id="hnd_ovr_d" data-native-menu="false">
-											 <option value="">Day</option>
+											 <option value="">D</option>
 											 <option value="01">01</option>
 											 <option value="02">02</option>
 											 <option value="03">03</option>
@@ -1065,7 +1042,7 @@
 									</td>
 									<td>
 										<select name="hnd_ovr_m" id="hnd_ovr_m" data-native-menu="false">
-												<option value="">Month</option>
+												<option value="">M</option>
 												<option value="01">01</option>
 												 <option value="02">02</option>
 												 <option value="03">03</option>
@@ -1082,18 +1059,12 @@
 									</td>
 									<td>
 										<select name="hnd_ovr_y" id="hnd_ovr_y" data-native-menu="false">
-											 <option value="">Year</option>						
-											 <option value="2010">2010</option>
-											 <option value="2011">2011</option>
-											 <option value="2012">2012</option>
-											 <option value="2013">2013</option>
-											 <option value="2014">2014</option>
-											 <option value="2015">2015</option>
-											 <option value="2016">2016</option>
-											 <option value="2017">2017</option>
-											 <option value="2018">2018</option>
-											 <option value="2019">2019</option>
-											 <option value="2020">2020</option>			
+											 <option value="">Y</option>						
+											 <option value="2014">14</option>
+											 <option value="2015">15</option>
+											 <option value="2016">16</option>
+											 <option value="2017">17</option>
+											 <option value="2018">18</option>				
 										  </select>										
 									</td>
 								</tr>
@@ -1762,8 +1733,8 @@
                
                 <input name="wq_photo" id="wq_photo"    type="hidden">
                <!-- <input name="wqLocation" id="wqLocation"   type="text">-->
-                <input name="wq_lat" id="wq_lat"  type="hidden">
-                <input name="wq_long" id="wq_long"  type="hidden">
+                <input name="wq_lat" id="wq_lat"  type="text">
+                <input name="wq_long" id="wq_long"  type="text">
         		<a data-role="button" onClick="getLocationInfoWq();" class="ui-btn" >confirm location</a>
                 <div id="checkLocationWq" style="color:#FF0000;"></div>
         		<br/><br/>
