@@ -2811,7 +2811,7 @@ function showLatLong(){
 
 //Acheivement
 function getAchivementImage() {
-	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 10,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
@@ -2830,7 +2830,7 @@ function onFailA(message) {
 
 //Water
 function getWaterImage() {
-	navigator.camera.getPicture(onSuccessW, onFailW, { quality: 20,
+	navigator.camera.getPicture(onSuccessW, onFailW, { quality: 10,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
