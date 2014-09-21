@@ -966,7 +966,7 @@ function achiveDataSubmit(){
 			longitude=0;
 			}
 		
-		if (achImageFlag==0){
+		if (achPhoto=="" || achPhoto==undefined){
 			$(".errorChk").text("Please take photo ");
 			$("#btn_ach_submit").show();
 			$("#btn_ach_save").show();
@@ -1005,7 +1005,7 @@ function achiveDataSubmit(){
 									//------------------------
 									
 									if (imagePathA!=""){
-										$("#checkLocationAch").text("Sync in progress please wait..")
+										$(".errorChk").text("Sync in progress please wait..")
 										//imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 										uploadPhoto(imagePathA, imageName);
 									}
@@ -2736,8 +2736,8 @@ function waterQDataSubmit(){
 wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+sw_option+'&alt_option='+alt_option+'&sw_distance='+sw_distance+'&ac_taken='+ac_taken+'&arc_patient='+arc_patient+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+wq_res_non_potable+'&wq_no_potable_initiative_taken='+wq_no_potable_initiative_taken+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+wq_res_n_test+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+imageName+'&wq_startDt='+startDtWq);*/
 
 
-if (wqImageFlag==0){
-	$(".errorChk").text("Please confirm photo");
+if (wq_photo=="" || wq_photo==undefined){
+	$(".errorChk").text("Please take photo");
 	$("#btn_wq_submit").show();
 	$("#btn_wq_save").show();
 }else{	
@@ -2771,7 +2771,7 @@ if (wqImageFlag==0){
 							if(result=='Success'){
 								
 								if (imagePathW!=""){
-									$("#checkPhotoWq").text("Sync in progress please wait...")
+									$(".errorChk").text("Sync in progress please wait...")
 									//var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
 									uploadPhoto(imagePathW, imageName);
 								}
