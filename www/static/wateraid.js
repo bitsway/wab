@@ -583,6 +583,8 @@ function serviceRecipentNext(){
 	
 //-----------------------------planid,CBO ID, ID, Population, Household,male,Female,girls Under, boys Under,girls,boys,DAP male, DAP Female,Poor A,Poor B ,Poor C, Poor D, Ethnic Male, Ethnic Female, service Recepent, service recepent value
 function achiveDataSave(){
+		$("#btn_ach_submit").hide();
+		
 		$(".errorChk").text("");		
 		$("#btn_ach_save").hide();
 		latitude=$("#ach_lat").val();
@@ -939,6 +941,7 @@ function reviewDataNext(){
 
 function achiveDataSubmit(){
 		$("#btn_ach_submit").hide();
+		$("#btn_ach_save").hide();
 		
 		var d = new Date();	
 		var get_time=d.getTime();		
@@ -946,7 +949,7 @@ function achiveDataSubmit(){
 //		alert(imagePathA);
 
 		
-		$("#checkLocationAch").text("Syncing data..");
+		//$("#checkLocationAch").text("Syncing data..");
 		
 		latitude=$("#ach_lat").val();
 		longitude=$("#ach_long").val();
@@ -966,11 +969,13 @@ function achiveDataSubmit(){
 		if (achPhoto=='' || achPhoto==undefined){
 			$(".errorChk").text("Please confirm photo ");
 			$("#btn_ach_submit").show();
+			$("#btn_ach_save").show();
 		}else{
 		
 			if(latitude==0 || longitude==0){
 				$(".errorChk").text("Please confirm your location ");
 				$("#btn_ach_submit").show();
+				$("#btn_ach_save").show();
 			}else{
 				
 			
@@ -979,7 +984,7 @@ function achiveDataSubmit(){
 			
 				if (achPlanId=='' || achCBOid=='' ){
 					$(".errorChk").text("New records not available");
-					$("#btn_ach_submit").show();
+					$("#btn_ach_submit").show();					
 				}else{
 					//alert(apipath+'dataSyncAchivement?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+imageName+'&ach_startDt='+startDt);
 					
@@ -1036,6 +1041,7 @@ function achiveDataSubmit(){
 									//$(".errorChk").text('Failed to Submit');
 									$(".errorChk").text('Try again after 5 minutes');
 									$("#btn_ach_submit").show();
+									$("#btn_ach_save").show();
 									}
 									
 							   }//end result
@@ -1906,6 +1912,7 @@ wq_select_tech,wq_pota,wq_delAgua,wq_hach_ez_as,wq_solinity_meter,wq_mn_test_kit
 function WaterQDataSave(){
 		$(".errorChk").text("");
 		$("#btn_wq_save").hide();
+		$("#btn_wq_submit").hide();
 		
 		wq_management_committee_exist=$("input[name='m_comm_ext']:checked").val();
 		wq_management_committee_ori=$("input[name='m_comm_ori_complt']:checked").val();
@@ -2433,6 +2440,7 @@ function reviewWqDataNext(){
 
 
 function waterQDataSubmit(){
+		$("#btn_wq_save").hide();
 		$("#btn_wq_submit").hide();
 		latitudewq=$("#wq_lat").val();
 		longitudewq=$("#wq_long").val();
@@ -2720,15 +2728,17 @@ wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_
 if (wq_photo=="" || wq_photo==undefined){
 	$(".errorChk").text("Please confirm photo");
 	$("#btn_wq_submit").show();
+	$("#btn_wq_save").show();
 }else{	
 	if(latitudewq==0 || longitudewq==0){
 			$(".errorChk").text("Please confirm your location");
 			$("#btn_wq_submit").show();
+			$("#btn_wq_save").show();
 		}else{
 			
 			if (wq_plan_id=='' || wq_CBO_id==''){
 				$(".errorChk").text("New records not available");
-				$("#btn_wq_submit").show();
+				$("#btn_wq_submit").show();				
 			}else{
 				
 				
@@ -2750,6 +2760,7 @@ if (wq_photo=="" || wq_photo==undefined){
 									if (arrayIdWq ==-1){							
 											$(".errorChk").text("Review Index value Error");
 											$("#btn_wq_submit").show();
+											$("#btn_wq_save").show();
 									}else{	
 										var waterSavArray2=localStorage.water_q_save.split('rdrd');
 											//alert(achiveSavArray2.length+','+arrayId);
@@ -2786,6 +2797,7 @@ if (wq_photo=="" || wq_photo==undefined){
 								//$(".errorChk").text('Failed to Submit');
 								$(".errorChk").text('Try again after 5 minutes');
 								$("#btn_wq_submit").show();
+								$("#btn_wq_save").show();
 								}
 							
 							/*$("#wqLocation").val(apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
