@@ -82,7 +82,7 @@ var wqPhoto='';
 var reviewAchFlag=0; //used for html triger
 var reviewAchDisplayFlag=false; //used for save data from review
 var arrayId=-1;
-
+var achImageFlag=0; //use for camera success
 var imageName = "";
 var imagePathA="";
 var imagePathW="";
@@ -966,7 +966,7 @@ function achiveDataSubmit(){
 			longitude=0;
 			}
 		
-		if (achPhoto=='' || achPhoto==undefined){
+		if (achImageFlag==0){
 			$(".errorChk").text("Please confirm photo ");
 			$("#btn_ach_submit").show();
 			$("#btn_ach_save").show();
@@ -988,11 +988,11 @@ function achiveDataSubmit(){
 				}else{
 					//alert(apipath+'dataSyncAchivement?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+imageName+'&ach_startDt='+startDt);
 					
-					if (imagePathA!=""){
+					/*if (imagePathA!=""){
 						$("#checkLocationAch").text("Syncing photo..")
 						imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 						uploadPhoto(imagePathA, imageName);
-					}
+					}*/
 					
 					$.ajax({
 							type: 'POST',
@@ -1002,6 +1002,13 @@ function achiveDataSubmit(){
 									//alert(result);
 								if(result=='Success'){							
 									//------------------------
+									
+									if (imagePathA!=""){
+										$("#checkLocationAch").text("Syncing photo..")
+										imageName = localStorage.mobile_no+"_"+get_time+".jpg";
+										uploadPhoto(imagePathA, imageName);
+									}
+									
 									
 									if (reviewAchDisplayFlag==true){					
 										if (arrayId ==-1){							
@@ -1158,6 +1165,7 @@ var wq_activities="";
 
 var reviewWQDisplayFlag=false;
 var reviewWqhFlag=0;
+var wqImageFlag=0;
 
 
 
@@ -2725,7 +2733,7 @@ function waterQDataSubmit(){
 wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+sw_option+'&alt_option='+alt_option+'&sw_distance='+sw_distance+'&ac_taken='+ac_taken+'&arc_patient='+arc_patient+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+wq_res_non_potable+'&wq_no_potable_initiative_taken='+wq_no_potable_initiative_taken+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+wq_res_n_test+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+imageName+'&wq_startDt='+startDtWq);*/
 
 
-if (wq_photo=="" || wq_photo==undefined){
+if (wqImageFlag==0){
 	$(".errorChk").text("Please confirm photo");
 	$("#btn_wq_submit").show();
 	$("#btn_wq_save").show();
@@ -2742,11 +2750,11 @@ if (wq_photo=="" || wq_photo==undefined){
 			}else{
 				
 				
-				if (imagePathW!=""){
+				/*if (imagePathW!=""){
 					$("#checkPhotoWq").text("Syncing photo..")
 					var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
 					uploadPhoto(imagePathW, imageName);
-				}
+				}*/
 				$.ajax({
 						type: 'POST',
 						url:apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
@@ -2754,7 +2762,13 @@ if (wq_photo=="" || wq_photo==undefined){
 						   
 						   success: function(result) {
 								//alert(result);
-							if(result=='Success'){							
+							if(result=='Success'){
+								
+								if (imagePathW!=""){
+									$("#checkPhotoWq").text("Syncing photo..")
+									var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
+									uploadPhoto(imagePathW, imageName);
+								}
 								//------------------------							
 								if (reviewWQDisplayFlag==true){					
 									if (arrayIdWq ==-1){							
@@ -2860,6 +2874,7 @@ function onSuccessA(imageURI) {
     image.src = imageURI;
 	imagePathA = imageURI;
 	$("#achPhoto").val(imagePathA);
+	achImageFlag=1;
 	
 }
 
@@ -2880,6 +2895,7 @@ function onSuccessW(imageURI) {
     image.src = imageURI;
 	imagePathW = imageURI;
 	$("#wq_photo").val(imagePathW);
+	wqImageFlag=1;
 	
 }
 
