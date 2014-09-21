@@ -1005,12 +1005,13 @@ function achiveDataSubmit(){
 									//------------------------
 									
 									if (imagePathA!=""){
-										$("#checkLocationAch").text("Syncing in progress please wait..")
+										$("#checkLocationAch").text("Sync in progress please wait..")
 										//imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 										uploadPhoto(imagePathA, imageName);
 									}
 									
 									
+/*									
 									if (reviewAchDisplayFlag==true){					
 										if (arrayId ==-1){							
 												$(".errorChk").text("Review Index value Error");
@@ -1042,7 +1043,9 @@ function achiveDataSubmit(){
 									
 									achPlanId="";
 									achCBOid="";
-									$(".errorChk").text('Successfully Submited');
+*/									
+									
+									//$(".errorChk").text('Successfully Submited');
 									//$("#achlocation").val('Successfully Submited');
 									<!--$("#achlocation").val(apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+$("#ach_lat").val()+'&longitude='+$("#ach_long").val()+'&ach_photo='+achPhoto);-->
 								}else{
@@ -2773,7 +2776,7 @@ if (wqImageFlag==0){
 									uploadPhoto(imagePathW, imageName);
 								}
 								//------------------------							
-								if (reviewWQDisplayFlag==true){					
+								/*if (reviewWQDisplayFlag==true){					
 									if (arrayIdWq ==-1){							
 											$(".errorChk").text("Review Index value Error");
 											$("#btn_wq_submit").show();
@@ -2807,9 +2810,9 @@ if (wqImageFlag==0){
 								$("#wq_cbo_combo").val("");
 								
 								wq_plan_id="";
-								wq_CBO_id="";
+								wq_CBO_id="";*/
 								
-								$(".errorChk").text('Successfully Submited');
+								//$(".errorChk").text('Successfully Submited');
 							}else{
 								//$(".errorChk").text('Failed to Submit');
 								$(".errorChk").text('Try again after 5 minutes');
@@ -2935,6 +2938,81 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function win(r) {
+	
+										
+			
+			//---------- achievement 
+			if (reviewAchDisplayFlag==true){					
+				if (arrayId ==-1){							
+						$(".errorChk").text("Review Index value Error");
+				}else{	
+						var achiveSavArray2=localStorage.ach_save.split('rdrd');
+						//alert(achiveSavArray2.length+','+arrayId);
+						achiveSavArray2.splice(arrayId,1);
+						
+						var achTemp2="";
+						var achTempStr2="";
+						for (j=0;j<achiveSavArray2.length;j++){
+							accTemp2=achiveSavArray2[j];
+							
+							if (achTempStr2==""){
+								achTempStr2=accTemp2
+							}else{
+								achTempStr2=achTempStr2+'rdrd'+accTemp2
+								}
+							
+						}										
+						localStorage.ach_save=achTempStr2;
+					}
+					
+					
+			$( "input:radio[name='plan_select'][value='"+achPlanId+"']" ).attr('checked','');
+			$("#cbo_combo").val("");
+					
+			}
+			
+			
+			//---------------- water quality
+			
+			if (reviewWQDisplayFlag==true){					
+				if (arrayIdWq ==-1){							
+						$(".errorChk").text("Review Index value Error");
+						$("#btn_wq_submit").show();
+						$("#btn_wq_save").show();
+				}else{	
+					var waterSavArray2=localStorage.water_q_save.split('rdrd');
+						//alert(achiveSavArray2.length+','+arrayId);
+						waterSavArray2.splice(arrayIdWq,1);
+						
+						var wqTemp2="";
+						var wqTempStr2="";
+						for (p=0;p<waterSavArray2.length;p++){
+							wqTemp2=waterSavArray2[p];
+							
+							if (wqTempStr2==""){
+								wqTempStr2=wqTemp2
+							}else{
+								wqTempStr2=wqTempStr2+'rdrd'+wqTemp2
+								}
+							
+						}
+						//alert(achiveSavArray2.length+','+arrayId);
+						//alert(achTempStr2);
+						localStorage.water_q_save=wqTempStr2;
+					}
+			$( "input:radio[name='plan_select_wq'][value='"+wq_plan_id+"']" ).attr('checked','');
+			$("#wq_cbo_combo").val("");
+			}
+			//----------------
+			
+			wq_plan_id="";
+			wq_CBO_id="";
+
+			
+			achPlanId="";
+			achCBOid="";
+
+		
 	$(".errorChk").text('Succeessfully submitted');
 //    console.log("Code = " + r.responseCode);
 //    console.log("Response = " + r.response);
