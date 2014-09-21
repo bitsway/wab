@@ -22,6 +22,7 @@ var plan_ach_array="";
 var temp_ach_array="";
 
 function field_force_detail(){	
+	$(".errorChk").text("");
 	//alert(apipath1+'sync_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code);
 		$.ajax({
 				url:apipath1+'sync_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code,

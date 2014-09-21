@@ -3013,7 +3013,7 @@ function win(r) {
 			achCBOid="";
 
 		
-	$(".errorChk").text('Succeessfully submitted');
+	$(".errorChk").text('Successfully submitted');
 //    console.log("Code = " + r.responseCode);
 //    console.log("Response = " + r.response);
 //    console.log("Sent = " + r.bytesSent);
