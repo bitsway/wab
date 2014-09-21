@@ -967,7 +967,7 @@ function achiveDataSubmit(){
 			}
 		
 		if (achImageFlag==0){
-			$(".errorChk").text("Please confirm photo ");
+			$(".errorChk").text("Please take photo ");
 			$("#btn_ach_submit").show();
 			$("#btn_ach_save").show();
 		}else{
@@ -993,6 +993,7 @@ function achiveDataSubmit(){
 						imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 						uploadPhoto(imagePathA, imageName);
 					}*/
+					imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 					
 					$.ajax({
 							type: 'POST',
@@ -1004,8 +1005,8 @@ function achiveDataSubmit(){
 									//------------------------
 									
 									if (imagePathA!=""){
-										$("#checkLocationAch").text("Syncing photo..")
-										imageName = localStorage.mobile_no+"_"+get_time+".jpg";
+										$("#checkLocationAch").text("Syncing in progress please wait..")
+										//imageName = localStorage.mobile_no+"_"+get_time+".jpg";
 										uploadPhoto(imagePathA, imageName);
 									}
 									
@@ -1166,7 +1167,6 @@ var wq_activities="";
 var reviewWQDisplayFlag=false;
 var reviewWqhFlag=0;
 var wqImageFlag=0;
-
 
 
 function waterQtyClick(){
@@ -2755,6 +2755,9 @@ if (wqImageFlag==0){
 					var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
 					uploadPhoto(imagePathW, imageName);
 				}*/
+				
+				imageName = localStorage.mobile_no+'_'+get_time+".jpg";
+				
 				$.ajax({
 						type: 'POST',
 						url:apipath+'dataSyncWater?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&test_type_val='+test_type_val+'&provided_by='+provided_by+'&wq_ref='+wq_ref+'&wq_id='+wq_id+'&wq_plat_condition='+wq_plat_condition+'&drain_condition='+drain_condition+'&wp_repair='+wp_repair+'&chamber_condition='+chamber_condition+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+wq_owner_name+'&wq_owner_phone='+wq_owner_phone+'&wq_caretaker='+wq_caretaker+'&caretakerPhone='+caretakerPhone+'&wq_select_tech='+
@@ -2765,8 +2768,8 @@ if (wqImageFlag==0){
 							if(result=='Success'){
 								
 								if (imagePathW!=""){
-									$("#checkPhotoWq").text("Syncing photo..")
-									var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
+									$("#checkPhotoWq").text("Sync in progress please wait...")
+									//var imageName = localStorage.mobile_no+'_'+get_time+".jpg";
 									uploadPhoto(imagePathW, imageName);
 								}
 								//------------------------							
@@ -2932,6 +2935,7 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function win(r) {
+	$(".errorChk").text('Succeessfully submitted');
 //    console.log("Code = " + r.responseCode);
 //    console.log("Response = " + r.response);
 //    console.log("Sent = " + r.bytesSent);
@@ -2939,6 +2943,9 @@ function win(r) {
 
 function fail(error) {
 	$(".errorChk").text('Memory Error. Please Save and Go to Review, Then take new picture and Submit');
+	//$("#btn_ach_submit").show();
+	$("#btn_ach_save").show();
+	$("#btn_wq_save").show();
     //alert("An error has occurred: Code = " + error.code);
 //    console.log("upload error source " + error.source);
 //    console.log("upload error target " + error.target);
