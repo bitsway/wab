@@ -10,6 +10,7 @@
         
     <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
     <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
+	
 	<script src="static/ff_plan_details_progress_all_activity.js">   </script>
 	
     <script src="static/wateraid.js">   </script>
@@ -22,18 +23,23 @@
 		
 			
 		$(document).ready(function(){
-			$('#loader').hide();
+			$('#loader').hide();				
+			
 		});
 		
 		function getEmpty(){
 			$(".plan_tr").empty();
 		};
 		
+	 
+ 
 		
-	</script>       
+	</script>
+	       
     <style>	
         .reqField{ color:#FF0000;}
         .errorChk{ color:#FF0000; text-shadow:none;}
+		
     </style>	
 </head>
 
@@ -46,17 +52,17 @@
         <a data-role="button" href="#leftpanel" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
         
         <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit();" >Exit </a>
-        <h3>Select Report</h3>
+        <h3>Select Field </h3>
     </div>
     <div data-role="content">
             <div class="errorChk"></div>
             <ul data-role="listview" data-inset="true">
                 <li><a  onClick="achivementclick();" data-transition="slide">Achievement</a></li>
-                <li><a  onClick="waterQtyClick();" data-transition="slide">Water Quality</a></li>
+                <li><a  onClick="waterQtyClick();" data-transition="slide">Water Quality Test</a></li>
             </ul>
             <ul data-role="listview" data-inset="true">
                 <li ><a href="#" onClick="reviewAchiveData();" data-transition="slide">Review Achievement</a></li>
-                <li><a href="#" onClick="reviewWaterQData();" data-transition="slide">Review Water Quality</a></li>
+                <li><a href="#" onClick="reviewWaterQData();" data-transition="slide">Review Water Quality Test</a></li>
                 <!--<li><a href="#" onClick="getAchivementImage()" id="#photo">Photo</a></a></li>
                 <li><a href="#" onClick="getLocationInfo()" id="#photo">location</a></a></li>-->
                 
@@ -191,7 +197,7 @@
 			</div><!-- grid-->
 			
 		<br />       
-        <a data-role="button" id="btn_report_show" onclick="ff_plan_all_activity_progress();" data-transition="slide" >Show</a>
+        <a data-role="button" id="btn_report_show" onclick="getEmpty(); ff_plan_all_activity_progress();" data-transition="slide" >Show</a>
 		<br/>
 		
 		<br/>
@@ -292,7 +298,7 @@
     <div data-theme="d" data-role="header" data-position="fixed" >
     <a data-role="button" onClick="waterAidClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
         <!--<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>-->
-        <h3>Select Plan</h3>
+        <h3>Select Indicator</h3>
     </div>
     <div data-role="content">
         <div class="errorChk"></div>
@@ -314,13 +320,13 @@
     <div data-theme="d" data-role="header" data-position="fixed" >
     <a data-role="button" onClick="waterAidClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
         <a data-role="button" onclick="backClick();" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>
-        <h3> People Supported</h3>
+        <h3> Enter Population</h3>
     </div>
     <div data-role="content">
         <div id="cboIdDiv"></div>
         <ul data-role="listview" data-inset="true" data-theme="d">
             <li class="ui-field-contain">
-                <label for="achID"> ID</label>
+                <label for="achID"> ID related to output</label>
                 <input name="achID" id="achID" placeholder="" value="" type="text">
             </li>
         </ul>
@@ -328,38 +334,49 @@
                 
          <table class="ui-body-d ui-shadow table-stripe ui-responsive"  data-role="table" data-theme="d"  data-mode="display:none" style="cell-spacing:0px;">
                     <tr valign="middle">
-                        <td colspan="3" ><strong>People Supported</strong></td>
+                        <td colspan="3" ><strong>Enter Population</strong></td>
                   </tr>
-                    
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Male 18+</td>
-                        <td width="30%"><input name="male" id="male" onBlur="totalPopulation();" placeholder="" value="" type="number"></td>
-                        <td width="5" align="left"><sup class="reqField">*</sup></td>
-                    </tr>
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Female 18+</td>
+				  <tr>
+                        <td width="70%" style="vertical-align:middle;">Female(18+)</td>
                         <td width="30%">
                         <input name="female" id="female" placeholder="" onBlur="totalPopulation();" value="" type="number"></td>
                         <td width="5" align="left"><sup class="reqField">*</sup></td>
                     </tr>
+                    
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">Girls(0-5years)</td>
+                        <td width="70%" style="vertical-align:middle;">Male(18+)</td>
+                        <td width="30%"><input name="male" id="male" onBlur="totalPopulation();" placeholder="" value="" type="number"></td>
+                        <td width="5" align="left"><sup class="reqField">*</sup></td>
+                    </tr>
+                    
+                    <tr>
+                        <td width="70%" style="vertical-align:middle;">Girl(0-5yrs)</td>
                         <td width="30%"><input name="girlsUnder" id="girlsUnder" placeholder="" onBlur="totalPopulation();" value="" type="number"></td>
                         <td width="5" align="left">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">Boys(0-5years)</td>
+                        <td width="70%" style="vertical-align:middle;">Boy(0-5yrs)</td>
                         <td width="30%"><input name="boysUnder" id="boysUnder" placeholder="" onBlur="totalPopulation();" value="" type="number"></td>
                         <td width="5" align="left">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">Girls(6-18years)</td>
+                        <td width="70%" style="vertical-align:middle;">Girl(6-18yrs)</td>
                         <td width="30%"><input name="girls" id="girls" placeholder="" value="" onBlur="totalPopulation();" min="0" type="number"></td>
                         <td width="5" align="left">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">Boys(6-18years)</td>
+                        <td width="70%" style="vertical-align:middle;">Boy(6-18yrs)</td>
                         <td width="30%"><input name="boys" id="boys" placeholder="" value="" min="0" onBlur="totalPopulation();" type="number"></td>
+                        <td width="5" align="left">&nbsp;</td>
+                    </tr>
+					<tr >
+                        <td width="70%" style="vertical-align:middle;">Total Population</td>
+                        <td width="30%"><input name="population" id="population"  placeholder="" value="" type="number" readonly="readonly" style="background-color:#EEEEEE;"></td>
+                        <td width="5" align="left"></td>
+                    </tr>
+					<tr>
+                        <td width="70%" style="vertical-align:middle;">DAP Female</td>
+                        <td width="30%"><input name="dapFemale" id="dapFemale" placeholder="" value="" type="number"></td>
                         <td width="5" align="left">&nbsp;</td>
                     </tr>
                     <tr>
@@ -368,56 +385,54 @@
                         <td width="5" align="left">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">DAP Female</td>
-                        <td width="30%"><input name="dapFemale" id="dapFemale" placeholder="" value="" type="number"></td>
+                        <td width="70%" style="vertical-align:middle;">Ethnic Female</td>
+                        <td width="30%"><input name="ethFemale" id="ethFemale" placeholder="" value="" type="number"></td>
                         <td width="5" align="left">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Poor (A Category) HH</td>
-                        <td width="30%"><input name="poorA" id="poorA" onBlur="totalhousehold();"  placeholder="" value="" type="number"></td>
-                        <td width="5" align="left"></td>
-                    </tr>
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Poor (B Category) HH</td>
-                        <td width="30%"><input name="poorB" id="poorB" onBlur="totalhousehold();" placeholder="" value="" type="number"></td>
-                        <td width="5" align="left"></td>
-                    </tr>
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Poor (C Category) HH</td>
-                        <td width="30%"><input name="poorC" id="poorC" onBlur="totalhousehold();" placeholder="" value="" type="number"></td>
-                        <td width="5" align="left"><sup class="reqField">*</sup></td>
-                    </tr>
-                    <tr>
-                        <td width="70%" style="vertical-align:middle;">Extreme Poor (D Category) HH</td>
-                        <td width="30%"><input name="poorEx" id="poorEx" onBlur="totalhousehold();" placeholder="" value="" type="number"></td>
-                        <td width="5" align="left"><sup class="reqField">*</sup></td>
                     </tr>
                     <tr>
                         <td width="70%" style="vertical-align:middle;">Ethnic Male</td>
                         <td width="30%"><input name="ethMale" id="ethMale" placeholder="" value="" type="number"></td>
                         <td width="5" align="left">&nbsp;</td>
                     </tr>
+			</table>
+			<br/>
+			<table class="ui-body-d ui-shadow table-stripe ui-responsive"  data-role="table" data-theme="d"  data-mode="display:none" style="cell-spacing:0px;">
+                    <tr valign="middle">
+                        <td colspan="3" ><strong>Enter Household</strong></td>
+                  </tr>							
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">Ethnic Female</td>
-                        <td width="30%"><input name="ethFemale" id="ethFemale" placeholder="" value="" type="number"></td>
-                        <td width="5" align="left">&nbsp;</td>
-                    </tr>
-					<tr >
-                        <td width="70%" style="vertical-align:middle;">Population</td>
-                        <td width="30%"><input name="population" id="population"  placeholder="" value="" type="number" readonly="readonly" style="background-color:#EEEEEE;"></td>
+                        <td width="70%" style="vertical-align:middle;">A Category</td>
+                        <td width="30%"><input name="poorA" id="poorA" onBlur="totalhousehold();"  placeholder="" value="" type="number"></td>
                         <td width="5" align="left"></td>
                     </tr>
                     <tr>
-                        <td width="70%" style="vertical-align:middle;">House hold</td>
+                        <td width="70%" style="vertical-align:middle;">B Category</td>
+                        <td width="30%"><input name="poorB" id="poorB" onBlur="totalhousehold();" placeholder="" value="" type="number"></td>
+                        <td width="5" align="left"></td>
+                    </tr>
+                    <tr>
+                        <td width="70%" style="vertical-align:middle;">C Category</td>
+                        <td width="30%"><input name="poorC" id="poorC" onBlur="totalhousehold();" placeholder="" value="" type="number"></td>
+                        <td width="5" align="left"><sup class="reqField">*</sup></td>
+                    </tr>
+                    <tr>
+                        <td width="70%" style="vertical-align:middle;">D Category</td>
+                        <td width="30%"><input name="poorEx" id="poorEx" onBlur="totalhousehold();" placeholder="" value="" type="number"></td>
+                        <td width="5" align="left"><sup class="reqField">*</sup></td>
+                    </tr>
+					<tr>
+                        <td width="70%" style="vertical-align:middle;">Total Households</td>
                         <td width="30%"><input name="household" id="household" placeholder="" value="" type="number" readonly="readonly" style="background-color:#EEEEEE;" ></td>
                         <td width="5" align="left"></td>
-                    </tr>
+                    </tr>					
+                    
          </table>
             
          <a data-role="button" href="#" onClick="achivementDataPSupport();"  data-transition="slide" >Next</a>
         
       <div class="errorChk"></div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		
             
     </div>
            
@@ -478,6 +493,7 @@
         <br/><br/>
         <a data-role="button" id="btn_ach_save" onClick="achiveDataSave();" class="ui-btn" >Save</a>
         <a data-role="button" id="btn_ach_submit" onClick="achiveDataSubmit();" class="ui-btn"  >Submit</a>
+		
         
     </div>
     
@@ -495,7 +511,7 @@
     <div data-theme="d" data-role="header" data-position="fixed" >
     <a data-role="button" onClick="waterAidClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="wateraid-logo-small.jpg"></a>
         <!--<a data-role="button" data-rel="back"  data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" data-transition="slide">Back</a>-->
-        <h3>Select water quality plan </h3>
+        <h3>Select Indicator</h3>
     </div>
     <div data-role="content">
         <div class="errorChk"></div>
@@ -1744,6 +1760,7 @@
                 <a data-role="button" id="btn_wq_submit" href="#" onClick="waterQDataSubmit();" >Submit</a>
                 <div class="errorChk"></div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			
     </div>
            
 	<div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting</div>

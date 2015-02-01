@@ -2,9 +2,10 @@
 //var apipath1="http://e2.businesssolutionapps.com/wateraid/analysis/";
 //local
 //var apipath1="http://127.0.0.1:8000/welcome/wab_analysis/";
-
+//var apipath1="http://127.0.0.1:8000/wateraid/analysis/";
 //---- online
-var apipath1="http://m.businesssolutionapps.com/welcome/wab_analysis/";
+var apipath1="http://e2.businesssolutionapps.com/wateraid/analysis/";
+//var apipath1="http://m.businesssolutionapps.com/welcome/wab_analysis/";
 
 
 
@@ -25,7 +26,7 @@ function field_force_detail(){
 	$(".errorChk").text("");
 	//alert(apipath1+'sync_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code);
 		$.ajax({
-				url:apipath1+'sync_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code,
+				url:apipath1+'get_ff_detail?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code,
 			  	success: function(result) {
 				ff_detail_Result=result;
 				var ff_array=ff_detail_Result.split("fdfd");
@@ -65,7 +66,7 @@ function ff_plan_all_activity_progress() {
 			$("#btn_report_show").hide();
 			
 			$.ajax({
-				url:apipath1+'sync_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
+				url:apipath1+'get_ff_plan_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
 			  success: function(result) {
 				plan_list=result;				
 				ff_ach_all_activity_progress();
@@ -87,7 +88,7 @@ function ff_ach_all_activity_progress() {
 		sector=$("#sector").val();
 		//alert(apipath1+'sync_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector);
 			$.ajax({
-				url:apipath1+'sync_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
+				url:apipath1+'get_ff_achievement_details_all_activity?cid=WAB&mobile='+localStorage.mobile_no+'&sync_code='+localStorage.sync_code+'&from_year='+from_year+'&from_month='+from_month+'&to_year='+to_year+'&to_month='+to_month+'&sector='+sector,
 			  success: function(result) {
 				ach_list=result
 					//alert(ach_list);
