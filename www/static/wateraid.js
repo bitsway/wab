@@ -1010,11 +1010,11 @@ function achiveDataSubmit(){
 				if (achPlanId=='' || achCBOid=='' ){
 					$(".errorChk").text("New records not available");
 					$("#btn_ach_submit").show();
-				}else{									
+				}else{					
 					if (imagePathA!=""){
 						$(".errorChk").text("Syncing photo..")
-						imageName = localStorage.mobile_no+"_"+get_time+".jpg";
-						uploadPhoto(imagePathA, imageName);
+						imageName = localStorage.mobile_no+"_"+get_time+".jpg";						
+						uploadPhotoAch(imagePathA, imageName);
 					}
 					
 				}
@@ -2953,7 +2953,9 @@ function onFailW(message) {
 
 //------------------------------------------------------------------------------
 //File upload 
-function uploadPhotoAch(imageURI, imageName) {
+function uploadPhotoAch(imageURI, imageName) {	
+	//$(".errorChk").text('inside upload photo..');
+	
     var options = new FileUploadOptions();
     options.fileKey="upload";
 //    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -2969,7 +2971,7 @@ function uploadPhotoAch(imageURI, imageName) {
 
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),winAch,fail,options);
-	//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),win,fail,options);	
+	//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),winAch,fail,options);	
 	
 	
 }
