@@ -2386,6 +2386,7 @@ function reviewWqDataNext(){
 var testKitChk="";
 var useOfChk="";
 function waterQDataSubmit(){
+		//$(".errorChk").text("submit Data...");
 		$("#btn_wq_submit").hide();
 		latitudewq=$("#wq_lat").val();
 		longitudewq=$("#wq_long").val();
@@ -2679,7 +2680,7 @@ if (wq_photo=="" || wq_photo==undefined){
 				
 				if (imagePathW!=""){
 					$(".errorChk").text("Syncing photo..")
-					var imageName = localStorage.mobile_no+'_'+get_time+".jpg";					
+					imageName = localStorage.mobile_no+'_'+get_time+".jpg";					
 					uploadPhotoWQ(imagePathW, imageName);
 				}
 								
@@ -2804,11 +2805,6 @@ function onFailW(message) {
     alert('Failed because: ' + message);
 }
 
-//
-
-
-
-
 
 //------------------------------------------------------------------------------
 //File upload 
@@ -2829,8 +2825,7 @@ function uploadPhotoAch(imageURI, imageName) {
 
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),winAch,fail,options);
-	//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),winAch,fail,options);	
-	
+	//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),winAch,fail,options);
 	
 }
 
@@ -2846,7 +2841,8 @@ function winAch(r) {
 
 
 //File upload 
-function uploadPhotoWQ(imageURI, imageName) {	
+function uploadPhotoWQ(imageURI, imageName) {
+	//$(".errorChk").text('Inside Upload Photo...');
 	
     var options = new FileUploadOptions();
     options.fileKey="upload";
