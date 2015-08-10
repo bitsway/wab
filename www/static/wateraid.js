@@ -1014,6 +1014,8 @@ function syncDataAch(){
 							achPlanId="";
 							achCBOid="";
 							$(".errorChk").text('Successfully Submitted');
+							$("#ach_lat").val("");
+							$("#ach_long").val("");
 							$("#btn_ach_save").hide();
 							$("#btn_take_pic").hide();
 							$("#btn_ach_lat_long").hide();
@@ -2735,7 +2737,8 @@ wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_
 						
 						$( "input:radio[name='plan_select_wq'][value='"+wq_plan_id+"']" ).attr('checked','');
 						$("#wq_cbo_combo").val("");
-						
+						$("#ach_lat").val("");
+						$("#ach_long").val("");
 						wq_plan_id="";
 						wq_CBO_id="";
 						
