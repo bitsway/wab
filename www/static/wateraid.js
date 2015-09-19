@@ -6,8 +6,8 @@ var latitudewq="";
 var longitudewq="";
 
 function getLocationInfoAch() {	
-
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);		
+	var options = { enableHighAccuracy: false};	
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);		
 	$(".errorChk").html("Confirming location. Please wait.");
 }
 // onSuccess Geolocation
@@ -103,7 +103,7 @@ $(function(){
 					localStorage.sync_code=0
 				}
 			
-		 	//alert(url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code);
+		 	//alert(apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code);
 			$.ajax({				   
 //			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
 				url:apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
@@ -354,7 +354,10 @@ function achivementclick(){
 		$("#ethMale").val("");
 		$("#ethFemale").val("");	
 		$("#serRecpent").val("");	
-		$("#achPhoto").val("");				
+		$("#achPhoto").val("");	
+		
+		$("#ach_lat").val("");
+		$("#ach_long").val("");			
 		
 		reviewAchDisplayFlag==false;
 		arrayId='';
@@ -959,7 +962,7 @@ function achiveDataSubmit(){
 					$(".errorChk").text("New records not available");
 					$("#btn_ach_submit").show();
 				}else{
-					
+					//imagePathA="test"
 					if (imagePathA!=""){
 						$(".errorChk").text("Syncing photo..")
 						imageName = localStorage.mobile_no+"_"+get_time+".jpg";						
@@ -1007,6 +1010,8 @@ function syncDataAch(){
 									
 							}
 							//----------------
+							$("#ach_lat").val("");
+							$("#ach_long").val("");
 							
 							$( "input:radio[name='plan_select'][value='"+achPlanId+"']" ).attr('checked','');
 							$("#cbo_combo").val("");
@@ -1014,8 +1019,6 @@ function syncDataAch(){
 							achPlanId="";
 							achCBOid="";
 							$(".errorChk").text('Successfully Submitted');
-							$("#ach_lat").val("");
-							$("#ach_long").val("");
 							$("#btn_ach_save").hide();
 							$("#btn_take_pic").hide();
 							$("#btn_ach_lat_long").hide();
@@ -1153,7 +1156,8 @@ function waterQtyClick(){
 	}else{
 		
 		//----------------
-		
+		$("#ach_lat").val("");
+		$("#ach_long").val("");
 		
 		
 		//------------------
@@ -2679,7 +2683,7 @@ if (wq_photo=="" || wq_photo==undefined){
 				$(".errorChk").text("New records not available");
 				$("#btn_wq_submit").show();
 			}else{
-				
+				//imagePathW="test1";
 				if (imagePathW!=""){
 					$(".errorChk").text("Syncing photo..")
 					imageName = localStorage.mobile_no+'_'+get_time+".jpg";					
@@ -2734,11 +2738,12 @@ wq_select_tech+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_
 								
 						}
 						//----------------
+						$("#ach_lat").val("");
+						$("#ach_long").val("");
 						
 						$( "input:radio[name='plan_select_wq'][value='"+wq_plan_id+"']" ).attr('checked','');
 						$("#wq_cbo_combo").val("");
-						$("#ach_lat").val("");
-						$("#ach_long").val("");
+						
 						wq_plan_id="";
 						wq_CBO_id="";
 						
@@ -2812,7 +2817,7 @@ function onFailW(message) {
 //------------------------------------------------------------------------------
 //File upload 
 function uploadPhotoAch(imageURI, imageName) {	
-		
+	//winAch();
     var options = new FileUploadOptions();
     options.fileKey="upload";
 //    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -2846,7 +2851,7 @@ function winAch(r) {
 //File upload 
 function uploadPhotoWQ(imageURI, imageName) {
 	//$(".errorChk").text('Inside Upload Photo...');
-	
+	//winWQ();
     var options = new FileUploadOptions();
     options.fileKey="upload";
 //    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
