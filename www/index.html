@@ -64,11 +64,10 @@
                 
             </ul>
 			<ul data-role="listview" data-inset="true">
-                <li ><a href="#" onClick="field_force_detail();" data-transition="slide">Report</a></li>            
-                
+                <li ><a href="#" onClick="field_force_detail();" data-transition="slide">Report</a></li> 
             </ul>
     </div>
-    <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting 20160116</div><!------/footer-->
+    <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting 20160407</div><!------/footer-->
     
     <div data-role="panel" id="leftpanel" data-position="left" data-display="overlay" data-theme="d">
         <div align="center"><img src="wab.jpg"></div>
@@ -561,7 +560,7 @@
             <li class="ui-field-contain">
                 <label for="type_of_wq_facility">Type of water facility<sup class="reqField">*</sup></label>
                 <select name="type_of_wq_facility" id="type_of_wq_facility" data-native-menu="false" >
-                    <option value="Ring well/dug well  installation">Ring well/dug well  installation</option>
+                    <option value="Ring well/ dug well  installation">Ring well/dug well  installation</option>
                     <option value="Tube Well">Tube Well</option>
                     <option value="Pond sand filter installation">Pond sand filter installation</option>
                     <option value="IFG">IFG</option>
@@ -1343,7 +1342,7 @@
 					<option value="TW renovation" >TW renovation</option>
 					<option value="TW upgradation">TW upgradation</option>
 					<option value="Borehole">Borehole</option>
-					<option value="Dugwell/Ringwell">Dugwell/ Ringwell</option>
+					<option value="Dugwell/ Ringwell">Dugwell/ Ringwell</option>
 					<option value="PSF">PSF</option>
 					<option value="RWH">RWH</option>
 					<option value="GFS">GFS</option>
@@ -1372,12 +1371,12 @@
                         <label for="mn_test_kit">Mn test kit</label>
                         <input name="test_kit_lab_test" id="test_kit_lab_test" value="Lab test" type="checkbox">
                         <label for="test_kit_lab_test">Lab test</label>
-                        <input name="micro_kit" id="micro_kit" value="Micro kit" type="checkbox">
+                       <!-- <input name="micro_kit" id="micro_kit" value="Micro kit" type="checkbox">
                         <label for="micro_kit">Micro kit</label>
-						<!--<input name="tst_kit_cloride" id="tst_kit_cloride" value="Cloride" type="checkbox">
-                        <label for="tst_kit_cloride">Cloride</label>
-                        <input name="tst_kit_oth" id="tst_kit_oth" value="Others" type="checkbox">
-                        <label for="tst_kit_oth">Others</label>-->
+						<input name="tst_kit_cloride" id="tst_kit_cloride" value="Cloride" type="checkbox">
+                        <label for="tst_kit_cloride">Cloride</label>-->
+                        <input name="tst_kit_oth" id="tst_kit_oth" value="Micro kit" type="checkbox">
+                        <label for="tst_kit_oth">Micro kit</label>
                     </fieldset>
                 </li>
             </ul>
@@ -1440,8 +1439,8 @@
                         <td width="30%">
                         	<select name="odor" id="odor" data-native-menu="false" >
 								<option value="YES">YES</option>
-                                <option value="NO" selected="selected">NO</option>
-                                <option value="" >N/A</option>
+                                <option value="NO" >NO</option>
+                                <option value="" selected="selected" >N/A</option>
                              </select>
                        </td>
                     </tr>
@@ -1467,8 +1466,8 @@
                         <td width="30%">
                         	<select name="select_fc" id="select_fc" data-native-menu="false" >
 								<option value="YES">YES</option>
-                                <option value="NO" selected="selected">NO</option>
-                                <option value="" >N/A</option>
+                                <option value="NO" >NO</option>
+                                <option value="" selected="selected" >N/A</option>
                              </select>
                         </td>
                     </tr>
@@ -1579,7 +1578,7 @@
                 </li>
             </ul>
             <ul data-role="listview" data-inset="true" id="safW_altOption">
-                <li style="background-color:#F2F2F2;">Alternative option</li>
+                <li style="background-color:#F2F2F2;">If yes, what type of option</li>
                 <li class="ui-field-contain">
                 	              
                     <fieldset data-role="controlgroup">                        
@@ -1628,7 +1627,7 @@
                         <label for="awarness_rm">Marked the water source with red color</label>
                         <input type="radio" name="ac_taken" id="Info_alt_water" value="Raised awareness among the users">
                         <label for="Info_alt_water">Raised awareness among the users</label>
-                        <!--<input type="radio" name="ac_taken" id="pvt_arc_r_opt" value="Provide Arsenic Removal Options">
+                       <!-- <input type="radio" name="ac_taken" id="pvt_arc_r_opt" value="Provide Arsenic Removal Options">
                         <label for="pvt_arc_r_opt">Provide arsenic removal options</label>                        
                         <input type="radio" name="ac_taken" id="ac_others" value="others">
                         <label for="ac_others">Others</label>-->
@@ -1691,7 +1690,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="vertical-align:middle; width:auto;"> Inspection date
+                        <td colspan="3" style="vertical-align:middle; width:auto;"> Inspection date<sup class="reqField">*</sup>
 						     <div class="ui-grid-b">
 								<div class="ui-block-a">
 										<select name="insp_d" id="insp_d" data-native-menu="false">
