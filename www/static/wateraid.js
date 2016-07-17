@@ -894,7 +894,7 @@ function reviewAchiveData(){
 	
 function reviewDataNext(){
 	$('#btn_take_pic').hide();
-	$('#btn_ach_lat_long').hide();
+	$('#btn_ach_lat_long').show();
 	
 	reviewAchDisplayFlag=true;
 	arrayId=eval($("input[name='achReviewRad']:checked").val());
@@ -942,7 +942,7 @@ function reviewDataNext(){
 	
 	startDt=achRevDetailsArray[22]
 	
-	if (achlat==0 && achlong==0){
+	if (achRevDetailsArray[23]==0 && achRevDetailsArray[24]==0){
 		$('#btn_ach_lat_long').show();
 	}
 	
@@ -2319,7 +2319,7 @@ function reviewWaterQData(){
 	
 function reviewWqDataNext(){
 	$('#btn_wq_lat_long').hide();
-	$('#btn_take_wq_pic').hide();
+	$('#btn_take_wq_pic').show();
 	
 	
 	if($("#reviewWqList").find("input[name=wqReviewRad]:checked").length==0){
