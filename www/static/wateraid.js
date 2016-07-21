@@ -2005,11 +2005,11 @@ function WaterQDataSave(){
 			
 				if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" || test_type_val=="Cross Check"){
 					
-					wq_siteSelectDate="";
+					/*wq_siteSelectDate="";
 					wq_ins_date="";
 					wq_san_ins="";
 					wq_inspect_date="";
-					wq_san_risk_sc="";
+					wq_san_risk_sc="";*/
 									
 					wq_plat_condition="";
 					drain_condition="";
@@ -2646,11 +2646,11 @@ function waterQDataSubmit(){
 		
 			if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" || test_type_val=="Cross Check"){
 				
-				wq_siteSelectDate="";
+				/*wq_siteSelectDate="";
 				wq_ins_date="";
 				wq_san_ins="";
 				wq_inspect_date="";
-				wq_san_risk_sc="";
+				wq_san_risk_sc="";*/
 					
 				wq_plat_condition="";
 				drain_condition="";
