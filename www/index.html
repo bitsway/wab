@@ -539,7 +539,8 @@
                 <input name="wq_vill" id="wq_vill" placeholder="" value="" type="text">
             </li>
         </ul>
-        
+        <div id="providedByDiv"></div>
+       <!-- <div id="providedByDiv1"></div>-->
         <ul data-role="listview" data-inset="true">
             <li class="ui-field-contain">
                 <label for="test_type">Test Type <sup class="reqField">*</sup></label>
@@ -573,8 +574,7 @@
                 
             </li>
         </ul>				
-        <div id="providedByDiv"></div>
-        <div id="providedByDiv1"></div>
+        
         <ul data-role="listview" data-inset="true">
             <li style="background-color:#F2F2F2;"></li>
             <li class="ui-field-contain">
@@ -936,7 +936,80 @@
 							
 						</td>                       
                     </tr>
-					
+					<tr>
+                        <td colspan="3" style="vertical-align:middle; width:auto;">Sample collection date<sup class="reqField">*</sup>
+							
+							<div class="ui-grid-b">
+								<div class="ui-block-a">
+										<select name="sample_c_d" id="sample_c_d" >
+											 <option value="">D</option>						
+											 <option value="01">01</option>
+											 <option value="02">02</option>
+											 <option value="03">03</option>
+											 <option value="04">04</option>
+											 <option value="05">05</option>
+											 <option value="06">06</option>
+											 <option value="07">07</option>
+											 <option value="08">08</option>
+											 <option value="09">09</option>
+											 <option value="10">10</option>
+											 <option value="11">11</option>
+											 <option value="12">12</option>	
+											 <option value="13">13</option>
+											 <option value="14">14</option>
+											 <option value="15">15</option>
+											 <option value="16">16</option>
+											 <option value="17">17</option>
+											 <option value="18">18</option>
+											 <option value="19">19</option>
+											 <option value="20">20</option>
+											 <option value="21">21</option>
+											 <option value="22">22</option>
+											 <option value="23">23</option>
+											 <option value="24">24</option>
+											 <option value="25">25</option>
+											 <option value="26">26</option>
+											 <option value="27">27</option>
+											 <option value="28">28</option>
+											 <option value="29">29</option>
+											 <option value="30">30</option>
+											 <option value="31">31</option>											 												
+										  </select>	
+								
+								</div>
+								<div class="ui-block-b">
+								  		<select name="sample_c_m" id="sample_c_m" >
+												<option value="">M</option>
+												<option value="01">01</option>
+												 <option value="02">02</option>
+												 <option value="03">03</option>
+												 <option value="04">04</option>
+												 <option value="05">05</option>
+												 <option value="06">06</option>
+												 <option value="07">07</option>
+												 <option value="08">08</option>
+												 <option value="09">09</option>
+												 <option value="10">10</option>
+												 <option value="11">11</option>
+												 <option value="12">12</option>												
+										  </select>	
+								
+								</div>
+								<div class="ui-block-c">
+										<select name="sample_c_y" id="sample_c_y" >
+											 <option value="">Y</option>										 
+											 <option value="2014">14</option>
+											 <option value="2015">15</option>
+											 <option value="2016">16</option>
+											 <option value="2017">17</option>
+											 <option value="2018">18</option>											 	
+										  </select>				
+								</div>	
+									
+							</div>
+							
+						  </td>                        
+                    </tr>
                     <tr>
                         <td colspan="3" style="vertical-align:middle; width:auto;">  Sample analysis date<sup class="reqField">*</sup>
 							
@@ -1011,80 +1084,7 @@
 						</td>
                        
                     </tr>
-                    <tr>
-                        <td colspan="3" style="vertical-align:middle; width:auto;">Sample collection date<sup class="reqField">*</sup>
-							
-							<div class="ui-grid-b">
-								<div class="ui-block-a">
-										<select name="sample_c_d" id="sample_c_d" >
-											 <option value="">D</option>						
-											 <option value="01">01</option>
-											 <option value="02">02</option>
-											 <option value="03">03</option>
-											 <option value="04">04</option>
-											 <option value="05">05</option>
-											 <option value="06">06</option>
-											 <option value="07">07</option>
-											 <option value="08">08</option>
-											 <option value="09">09</option>
-											 <option value="10">10</option>
-											 <option value="11">11</option>
-											 <option value="12">12</option>	
-											 <option value="13">13</option>
-											 <option value="14">14</option>
-											 <option value="15">15</option>
-											 <option value="16">16</option>
-											 <option value="17">17</option>
-											 <option value="18">18</option>
-											 <option value="19">19</option>
-											 <option value="20">20</option>
-											 <option value="21">21</option>
-											 <option value="22">22</option>
-											 <option value="23">23</option>
-											 <option value="24">24</option>
-											 <option value="25">25</option>
-											 <option value="26">26</option>
-											 <option value="27">27</option>
-											 <option value="28">28</option>
-											 <option value="29">29</option>
-											 <option value="30">30</option>
-											 <option value="31">31</option>											 												
-										  </select>	
-								
-								</div>
-								<div class="ui-block-b">
-								  		<select name="sample_c_m" id="sample_c_m" >
-												<option value="">M</option>
-												<option value="01">01</option>
-												 <option value="02">02</option>
-												 <option value="03">03</option>
-												 <option value="04">04</option>
-												 <option value="05">05</option>
-												 <option value="06">06</option>
-												 <option value="07">07</option>
-												 <option value="08">08</option>
-												 <option value="09">09</option>
-												 <option value="10">10</option>
-												 <option value="11">11</option>
-												 <option value="12">12</option>												
-										  </select>	
-								
-								</div>
-								<div class="ui-block-c">
-										<select name="sample_c_y" id="sample_c_y" >
-											 <option value="">Y</option>										 
-											 <option value="2014">14</option>
-											 <option value="2015">15</option>
-											 <option value="2016">16</option>
-											 <option value="2017">17</option>
-											 <option value="2018">18</option>											 	
-										  </select>				
-								</div>	
-									
-							</div>
-							
-						  </td>                        
-                    </tr>
+                    
                 </table>
                 
                 <a data-role="button" href="#" onClick="waterData3Next();"   data-transition="slide" >Next</a>
@@ -1433,7 +1433,7 @@
 		
         <div id="typeOfTestKit">
             <ul data-role="listview" data-inset="true">
-                <li style="background-color:#F2F2F2;">Name of the Test Kit Used at Field<sup class="reqField">*</sup></li>
+                <li style="background-color:#F2F2F2;">name of the test kit used at field<sup class="reqField">*</sup></li>
                 <li class="ui-field-contain">
                     <fieldset data-role="controlgroup">
                         <input name="pota" id="pota" value="Pota" type="checkbox">
@@ -1488,7 +1488,7 @@
                         <td width="30%"><input name="mn_ppb" id="mn_ppb" placeholder="" value="" type="number">	</td>
                     </tr>
                     <tr id="tech_chl">
-                        <td width="70%" style="vertical-align:middle;" id="chloride_ppt)">Chloride(ppt) </td>
+                        <td width="70%" style="vertical-align:middle;" id="chloride_ppt">Chloride(ppt) </td>
                         <td width="70%" style="vertical-align:middle;" id="chloride_mgl">Chloride(mg/l)) </td>
                         <td width="30%"><input name="chl_ppt" id="chl_ppt" placeholder="" value="" type="number"></td>
                     </tr>
@@ -2115,6 +2115,12 @@
                         </fieldset>
                     </li>
                 </ul>
+                 <ul data-role="listview" data-inset="true" id="all_test_n_res">
+                    <li class="ui-field-contain">
+                        <label for="res_n_test">If test is not done why</label>
+                        <textarea cols="20" rows="3" name="res_n_test" id="res_n_test"></textarea>
+                    </li>
+                </ul>
                 <ul data-role="listview" data-inset="true" id="newField">
                     <li class="ui-field-contain">
                         <fieldset data-role="controlgroup">
@@ -2130,12 +2136,7 @@
                         </fieldset>
                     </li>
                 </ul>
-                <ul data-role="listview" data-inset="true" id="all_test_n_res">
-                    <li class="ui-field-contain">
-                        <label for="res_n_test">If test is not done why</label>
-                        <textarea cols="20" rows="3" name="res_n_test" id="res_n_test"></textarea>
-                    </li>
-                </ul>
+               
                 <a data-role="button" href="#" onClick="waterData13Next();"  data-transition="slide" >Next</a>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>

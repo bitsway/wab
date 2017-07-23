@@ -116,7 +116,7 @@ $(function(){
 						localStorage.ser_res_list=syncResultArray[5];
 						localStorage.plan_wq=syncResultArray[6];
 						localStorage.cbo_id_wq=syncResultArray[7];
-						localStorage.provided_by1=syncResultArray[8];
+						//localStorage.provided_by1=syncResultArray[8];
 						
 						localStorage.mobile_no=mobile;
 						
@@ -161,7 +161,7 @@ $(function(){
 						$("#wQCboIdDiv").html(localStorage.cbo_id_wq);
 						$("#providedByDiv").html(localStorage.provided_by);
 						$("#TestTypeDiv").html(localStorage.test_type_wq);
-						$("#providedByDiv1").html(localStorage.provided_by1);					
+						//$("#providedByDiv1").html(localStorage.provided_by1);					
 						/*$('.planlistDiv').empty();
 						$('.planlistDiv').append(localStorage.plan_list).trigger('create');*/
 						
@@ -211,8 +211,8 @@ $(document).ready(function(){
 	$("#planWqlistDiv").html(localStorage.plan_wq);
 	$("#wQCboIdDiv").html(localStorage.cbo_id_wq);
 	//$("#reviewList").html(localStorage.reviewDataDiv);
-	//$("#providedByDiv").html(localStorage.provided_by);
-	$("#providedByDiv1").html(localStorage.provided_by1);
+	$("#providedByDiv").html(localStorage.provided_by);
+	//$("#providedByDiv1").html(localStorage.provided_by1);
 	$(".errorChk").text("");
 	
 //-------------------------------date format
@@ -1246,10 +1246,10 @@ function waterDataNext(){
 			
 			if(test_type_val=="Pre Instalation" ){
 					
-					$("#ironTest").hide();
-					$("#isManagement").hide();
-					$("#caretakerTrained").hide();
-					var url="#waterData3";		
+				$("#ironTest").hide();
+				$("#isManagement").hide();
+				$("#caretakerTrained").hide();
+				var url="#waterData3";		
 			}else if(test_type_val=="Monitoring"){
 				var url="#waterData2";		
 			}else{
@@ -1506,12 +1506,10 @@ function waterData4Next(){
 //---------------------------Water quality data5 page 
 function waterData5Next(){
 		wq_owner_name=$("#ownerName").val();
-		wq_owner_phone=$("#ownerPhone").val();
-		
+		wq_owner_phone=$("#ownerPhone").val();		
 		
 		wq_caretaker=$("#caretaker").val();
-		caretakerPhone=$("#caretakerPhoneNo").val();
-		
+		caretakerPhone=$("#caretakerPhoneNo").val();		
 		
 		$(".errorChk").text("");
 		var url="#waterData7";				
@@ -1548,7 +1546,12 @@ function testType(){
 		$("#tech_condvity").hide();
 		$("#tech_odor").hide();
 		$("#tech_zinc").hide();
-		//$("#renovationDate").hide();		
+		$("#tech_boron").hide();	
+		$("#tech_c_bac").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_fluoride").hide();	
+		$("#tech_turb").hide();
+		$("#tech_ph").hide();	
 		//level
 		$("#Manganese_mgl").hide();
 		$("#chloride_ppt").hide();
@@ -1564,17 +1567,13 @@ function testType(){
 		$("#dont_pree_install_val").hide();
 		$("#manu_dril_bore").hide();
 		$("#mech_dril_bore").hide();
+		
 		//==========show
 		$("#tech_ttc").show();
 		$("#tech_as").show();
-		$("#tech_turb").show();
-		$("#tech_ph").show();
-		$("#tech_boron").show();
-		$("#tech_c_bac").show();		
-		$("#tech_nitrate").show();	
+			
 		$("#tube_Well").show();	
 		$("#fc").show();
-		$("#tech_fluoride").show();
 		//level
 		$("#Manganese_ppb").show();
 		$("#chloride_ppt").show();		
@@ -1584,10 +1583,13 @@ function testType(){
 	}else if(type_val=="During Instalation"){
 		//hide
 		$("#tech_sl").hide();
-		$("#tech_fe").hide();
-		$("#tech_ph").hide();
-		$("#tech_chl").hide();			
+		$("#tech_fe").hide();						
 		$("#tube_Well").hide();	
+		$("#tech_fluoride").hide();
+		$("#installDate").hide();
+		$("#depth").hide();
+		$("#water_level").hide();		
+		$("#water_quantity").hide();
 		//level
 		$("#Manganese_ppb").hide();	
 		$("#chloride_ppt").hide();
@@ -1609,23 +1611,19 @@ function testType(){
 		$("#tech_odor").show();
 		$("#tech_nitrate").show();
 		$("#tech_zinc").show();
-		$("#tech_condvity").show();
-		$("#tech_fluoride").show();
+		$("#tech_condvity").show();		
 		$("#tech_colour").show();
 		$("#iron_Fe").show();
 		$("#installation_date").show();
 		$("#fc").show();
 		$("#bore_hole").show()
 		$("#manu_dril_bore").show();
-		$("#mech_dril_bore").show();			
+		$("#mech_dril_bore").show();	
+		$("#tech_ph").show();			
 		//level
 		$("#ttcRenovation").show();
 		$("#Manganese_mgl").show();
-		$("#chloride_mgl").show();	
-		$("#installDate").show();
-		$("#depth").show();
-		$("#water_level").show();
-		$("#water_quantity").show();
+		$("#chloride_mgl").show();			
 		$("#dont_pree_install").show()
 		$("#dont_pree_install_val").show()
 	}else if(type_val=="Renovation Instalation"){
@@ -1643,7 +1641,8 @@ function testType(){
 		$("#Manganese_ppb").hide();	
 		$("#chloride_ppt").hide();
 		$("#pree_install").hide();
-		$("#pree_install_val").hide();		
+		$("#pree_install_val").hide();	
+		$("#tech_fluoride").hide();	
 		//show
 		$("#tech_ttc").show();
 		$("#tech_as").show();
@@ -1655,8 +1654,7 @@ function testType(){
 		$("#tech_c_bac").show();
 		$("#tech_odor").show();
 		$("#tech_nitrate").show();
-		$("#tech_zinc").show();
-		$("#tech_fluoride").show();
+		$("#tech_zinc").show();		
 		$("#tech_colour").show();
 		$("#iron_Fe").show();
 		$("#manu_dril_bore").show();
@@ -1679,25 +1677,32 @@ function testType(){
 		$("#providedByDiv").hide();
 		$("#tech_sl").hide();
 		$("#tech_fe").hide();
-		$("#tech_residual").hide();
-		$("#tech_chl").hide();
+		$("#tech_residual").hide();		
 		$("#tech_colour").hide();		
-		$("#tech_mn").hide();		
+		
 		$("#iron_Fe").hide();				
-		$("#ttcOthers").hide();
+		$("#ttcRenovation").hide();
 		$("#otherPartBoreDate").hide();
 		$("#renovationDate").hide();
 		$("#tube_Well").hide();	
 		$("#pree_install").hide();
-		$("#pree_install_val").hide();		
+		$("#pree_install_val").hide();
+		$("#Manganese_mgl").hide();	
+		$("#tech_clorine").hide();
+		$("#chloride_mgl").hide();
+		$("#installDate").hide();
+		$("#depth").hide();
+		$("#water_level").hide();		
+		$("#water_quantity").hide();	
 		//show
-		$("#facility_Id").show();
-		
+		$("#facility_Id").show();		
 		$("#tech_ttc").show();
 		$("#tech_as").show();
 		$("#tech_mn").show();	
 		$("#tech_turb").show();
 		$("#tech_residual").show();
+		$("#tech_chl").show();
+		$("#chloride_ppt").show();
 		
 		$("#tech_boron").show();
 		$("#tech_c_bac").show();
@@ -1707,11 +1712,11 @@ function testType(){
 		$("#tech_condvity").show();
 		$("#tech_fluoride").show();
 		$("#tech_colour").show();
-		$("#iron_Fe").show();
-		$("#ttcRenovation").show();
+		$("#ttcOthers").show();
 		$("#providedByDiv1").show();
 		$("#otherPart").show();
-		$("#installDate").show();
+		$("#Manganese_ppb").show();
+		//$("#installDate").show();
 		$("#bore_hole").show()
 		$("#dont_pree_install").show()	
 		$("#dont_pree_install_val").show()
@@ -1935,7 +1940,7 @@ function waterData7Next(){
 
 	
 	$("#waterData9").hide();
-function waterData8Next(){
+function waterData8Next(){	
 		wq_tested_at=$("input[name='tested_at']:checked").val();
 		wq_iron_test=$("input[name='iron_test']:checked").val();		
 		wq_tw_color=$("input[name='tw_painter']:checked").val();
@@ -1957,132 +1962,126 @@ function waterData8Next(){
 			}*/
 			
 			//if (iron_test_flag==true){
-							
-				if(test_type_val=="Pre Instalation" && wq_tw_color=="Red" ){
-					$("#newField").hide();
-					var url="#waterData9_1";
-				/*}else{
-					$("#useOfChk").hide();
-					$("#smpleAnaly").hide();
-					$("#typeOfRenovation").hide();
-					$("#installationDone").hide();					
-					var url="#waterData14";
-				}*/
-			}else if(test_type_val=="Pre Instalation" && wq_tw_color=="Green"){				
+		
+			if(test_type_val=="Pre Instalation" && wq_tw_color=="Red" ){
+				$("#newField").hide();
 				$("#useOfChk").hide();
+									
+				$("#smpleAnaly").show();
+				$("#typeOfRenovation").show();
+				$("#installationDone").show();		
+				var url="#waterData9_1";					
+			}else if(test_type_val=="Pre Instalation" && wq_tw_color=="Green"){								
+				//$("#useOfChk").hide();
 				$("#smpleAnaly").hide();
 				$("#typeOfRenovation").hide();
 				$("#installationDone").hide();					
-				var url="#waterData14";
+				var url="#waterData14";				
+			}else if(test_type_val=="Pre Instalation" && wq_tw_color=="NA"){
+				$("#smpleAnaly").hide();
+				$("#typeOfRenovation").hide();
+				$("#installationDone").hide();					
+				var url="#waterData14";					
+			}else if(test_type_val=="During Instalation" && wq_tw_color=="Red"){					
+				$("#operationAndMainWaterOPtion").hide();
+				$("#pipWaterConnLegal").hide();
+				$("#allTestCom").hide();
+				$("#managementCommittee").hide();
+				$("#typeOfRenovation").hide();
+				$("#useOfChk").hide();
+				$("#PreeInstallUseOfChk").show();
+				$("#fiftyMeter").hide();
+				var url="#waterData9";
+			}else if(test_type_val=="During Instalation" && wq_tw_color=="Green"){
+				$("#StatuswaterOptionNA").hide();
+				$("#operationAndMainWaterOPtion").hide();
+				$("#pipWaterConnLegal").hide();
+				$("#allTestCom").hide();
+				$("#managementCommittee").hide();
+				$("#careTrained").hide();
+				$("#typeOfRenovation").hide();
+				$("#useOfChk").show();
+				$("#PreeInstallUseOfChk").hide();
+				var url="#waterData10";
+			}else if(test_type_val=="During Instalation" && wq_tw_color=="NA"){		
+					
+				var url="#waterData14";			
+			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Green"){
+				//hide
+				$("#StatuswaterOptionNA").hide();
+				$("#operationAndMainWaterOPtion").hide();					
+				$("#PreeInstallUseOfChk").hide();
+				$("#pipWaterConnLegal").hide();
+				$("#allTestCom").hide();
+				$("#managementCommittee").hide();
+				$("#careTrained").hide();
+				$("#newField").hide();
+				$("#PreeInstallUseOfChk").hide();
+				//show
+				$("#useOfChk").show();
+				$("#smpleAnaly").show();
+				$("#typeOfRenovation").show();
+				$("#installationDone").show();	
+				var url="#waterData10";
+			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Red"){
+				//hide
+				$("#useOfChk").hide();
+				$("#newField").hide();
+				$("#safe_water_na").hide();
+				$("#howFarOption").hide();
+				//show
+				$("#fiftyMeter").show();
+				$("#StatuswaterOptionNA").show();
+				$("#PreeInstallUseOfChk").show();
+				var url="#waterData9";
+			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="NA"){		
+					
+				var url="#waterData14";			
+			}else if(test_type_val=="Monitoring" && wq_tw_color=="Green"){
+				//hide
+				$("#StatuswaterOptionNA").hide()
+				$("#PreeInstallUseOfChk").hide()
+				$("#operationAndMainWaterOPtion").hide();
+				$("#pipWaterConnLegal").hide();
+				$("#allTestCom").hide();	
+				$("#managementCommittee").hide();
+				$("#careTrained").hide();	
+				$("#typeOfRenovation").hide();
+				//show
+				$("#useOfChk").show()
+				var url="#waterData10";
+			}else if(test_type_val=="Monitoring" && wq_tw_color=="Red"){
+			//}else{
+				//hide
+				$("#operationAndMainWaterOPtion").hide();
+				$("#pipWaterConnLegal").hide();
+				$("#allTestCom").hide();	
+				$("#fiftyMeter").hide();
+				$("#useOfChk").hide()
+				$("#managementCommittee").hide();
+				$("#careTrained").hide();	
+				//show
+				$("#StatuswaterOptionNA").show()
+				$("#PreeInstallUseOfChk").show()
+				$("#typeOfRenovation").show();
+				$("#howFarOption").show();
+				var url="#waterData9";
+			}else{
+				//hide
+				/*$("#useOfChk").hide();
+				$("#StatuswaterOptionNA").show();
+				$("#operationAndMainWaterOPtion").show();					
+				$("#PreeInstallUseOfChk").show();
+				$("#pipWaterConnLegal").show();
+				$("#allTestCom").show();
+				$("#managementCommittee").show();
+				$("#careTrained").show();*/
 				
-			}else if(test_type_val=="During Instalation" && wq_tw_color=="Red"){
-					
-					$("#operationAndMainWaterOPtion").hide();
-					$("#pipWaterConnLegal").hide();
-					$("#allTestCom").hide();
-					$("#managementCommittee").hide();
-					$("#typeOfRenovation").hide();
-					$("#useOfChk").hide();
-					$("#PreeInstallUseOfChk").show();
-					$("#fiftyMeter").hide();
-					var url="#waterData9";
-				}else if(test_type_val=="During Instalation" && wq_tw_color=="Green"){
-					$("#StatuswaterOptionNA").hide();
-					$("#operationAndMainWaterOPtion").hide();
-					$("#pipWaterConnLegal").hide();
-					$("#allTestCom").hide();
-					$("#managementCommittee").hide();
-					$("#careTrained").hide();
-					$("#typeOfRenovation").hide();
-					$("#useOfChk").show();
-					$("#PreeInstallUseOfChk").hide();
-					
-					var url="#waterData10";
-				/*}else{
-					$("#StatuswaterOptionNA").hide();
-					$("#operationAndMainWaterOPtion").show();
-					$("#pipWaterConnLegal").show();
-					$("#pipe_w_sup").hide();
-					$("#allTestCom").show();
-					$("#managementCommittee").show();
-					$("#typeOfRenovation").hide();
-					
-					var url="#waterData10";
-				}*/
-				
-		}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Green"){
-					//hide
-					$("#StatuswaterOptionNA").hide();
-					$("#operationAndMainWaterOPtion").hide();					
-					$("#PreeInstallUseOfChk").hide();
-					$("#pipWaterConnLegal").hide();
-					$("#allTestCom").hide();
-					$("#managementCommittee").hide();
-					$("#careTrained").hide();
-					$("#newField").hide();
-					$("#PreeInstallUseOfChk").hide();
-					//show
-					$("#useOfChk").show();
-					$("#smpleAnaly").show();
-					$("#typeOfRenovation").show();
-					$("#installationDone").show();	
-					var url="#waterData10";
-				}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Red"){
-					//hide
-					$("#useOfChk").hide();
-					$("#newField").hide();
-					$("#safe_water_na").hide();
-					$("#howFarOption").hide();
-					//show
-					$("#fiftyMeter").show();
-					$("#StatuswaterOptionNA").show();
-					$("#PreeInstallUseOfChk").show();
-					var url="#waterData9";
-				}else if(test_type_val=="Monitoring" && wq_tw_color=="Green"){
-					//hide
-					$("#StatuswaterOptionNA").hide()
-					$("#PreeInstallUseOfChk").hide()
-					$("#operationAndMainWaterOPtion").hide();
-					$("#pipWaterConnLegal").hide();
-					$("#allTestCom").hide();	
-					$("#managementCommittee").hide();
-					$("#careTrained").hide();	
-					$("#typeOfRenovation").hide();
-					//show
-					$("#useOfChk").show()
-					var url="#waterData10";
-				//}else if(test_type_val=="Monitoring" && wq_tw_color=="Red"){
-				}else{
-					//hide
-					
-					$("#operationAndMainWaterOPtion").hide();
-					$("#pipWaterConnLegal").hide();
-					$("#allTestCom").hide();	
-					$("#fiftyMeter").hide();
-					$("#useOfChk").hide()
-					$("#managementCommittee").hide();
-					$("#careTrained").hide();	
-					//show
-					$("#StatuswaterOptionNA").show()
-					$("#PreeInstallUseOfChk").show()
-					$("#typeOfRenovation").show();
-					var url="#waterData9";
-				/*}else{
-					//hide
-					$("#useOfChk").hide();
-					//show
-					$("#StatuswaterOptionNA").show();
-					$("#operationAndMainWaterOPtion").show();					
-					$("#PreeInstallUseOfChk").show();
-					$("#pipWaterConnLegal").show();
-					$("#allTestCom").show();
-					$("#managementCommittee").show();
-					$("#careTrained").show();
-					var url="#waterData10";*/
-				}
-				
-				$.mobile.navigate(url);
-				//$(location).attr('href',url);
+				var url="#waterData14";	
+			}
+	
+			$.mobile.navigate(url);
+			//$(location).attr('href',url);
 				
 			}
 			
@@ -2180,15 +2179,16 @@ function waterData10Next(){
 	
 	if(wq_functional==undefined){
 			$(".errorChk").text("Required functionality");
-	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length==0 && test_type_val=='Pre Instalation') {
-		$(".errorChk").text("Select One use of");
-	}else if($("#useOfChk").find("input[type=checkbox]:checked").length==0 && test_type_val=='During Instalation'){
-		$(".errorChk").text("Select One use of");
+	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length==0 && test_type_val=='Pre Instalation' ) {
+		$(".errorChk").text("Select One use of");	
 	}else{
+		if($("#useOfChk").find("input[type=checkbox]:checked").length==0 && test_type_val=='During Instalation'){
+			$(".errorChk").text("Select One use of 2");
+		}else{
 		$(".errorChk").text("");
 		var url="#waterData11";
 		}
-	
+	}
 	$.mobile.navigate(url);
 	//$(location).attr('href',url);
 	}
@@ -2290,7 +2290,20 @@ function waterData13Next(){
 			$(".errorChk").text("Required all test complete");
 		}else{
 			$(".errorChk").text("");
-			var url="#waterData14";
+			if (provided_by=='WAB'){
+				var url="#waterData14";
+			}else{
+				$("#isManagement").hide();
+				$("#m_comm_ori").hide();
+				$("#m_comm_ori_no").hide();
+				$("#caretakerTrained").hide();
+				$("#caretakerTrainedNo").hide();
+				$("#smpleAnaly").hide();
+				$("#typeOfRenovation").hide();
+				$("#other_alt").hide();
+				$("#installationDone").hide();	
+				var url="#waterData14";	
+			}
 			$.mobile.navigate(url);
 			//$(location).attr('href',url);
 		}
@@ -2309,7 +2322,9 @@ function ChkArsenicPatient(){
 	
 	}
 //----------------------------water quality data 14 
+//test_type_val=="Pre Instalation" && wq_tw_color=="Red"
 function renovationDone(){
+	if(test_type_val=="Pre Instalation" && wq_tw_color=="Red"){}else {
 		var renova_done=$("input[name='renovation_done']:checked").val();
 		//alert(renova_done);
 		if(renova_done=='Others'){
@@ -2318,7 +2333,7 @@ function renovationDone(){
 			$("#other_alt").hide();
 		}
 }
-
+}
 function WaterQDataSave(){
 		
 		$(".errorChk").text("");
