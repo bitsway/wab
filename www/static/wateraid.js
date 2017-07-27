@@ -2039,8 +2039,8 @@ function waterData8Next(){
 				var url="#waterData14";			
 			}else if(test_type_val=="Monitoring" && wq_tw_color=="Green"){
 				//hide
-				$("#StatuswaterOptionNA").hide()
-				$("#PreeInstallUseOfChk").hide()
+				$("#StatuswaterOptionNA").hide();
+				$("#PreeInstallUseOfChk").hide();
 				$("#operationAndMainWaterOPtion").hide();
 				$("#pipWaterConnLegal").hide();
 				$("#allTestCom").hide();	
@@ -2048,7 +2048,7 @@ function waterData8Next(){
 				$("#careTrained").hide();	
 				$("#typeOfRenovation").hide();
 				//show
-				$("#useOfChk").show()
+				$("#useOfChk").show();
 				var url="#waterData10";
 			}else if(test_type_val=="Monitoring" && wq_tw_color=="Red"){
 			//}else{
@@ -2057,12 +2057,12 @@ function waterData8Next(){
 				$("#pipWaterConnLegal").hide();
 				$("#allTestCom").hide();	
 				$("#fiftyMeter").hide();
-				$("#useOfChk").hide()
+				$("#useOfChk").hide();
 				$("#managementCommittee").hide();
 				$("#careTrained").hide();	
 				//show
-				$("#StatuswaterOptionNA").show()
-				$("#PreeInstallUseOfChk").show()
+				$("#StatuswaterOptionNA").show();
+				$("#PreeInstallUseOfChk").show();
 				$("#typeOfRenovation").show();
 				$("#howFarOption").show();
 				var url="#waterData9";
@@ -2164,7 +2164,7 @@ function waterData9_1Next(){
 
 
 function waterData10Next(){
-	//alert(test_type_val);
+	
 	wq_functional=$("input[name='functionality']:checked").val();	
 	
 	wq_drinking=$("input[name='drinking']:checked").val();
@@ -2178,16 +2178,30 @@ function waterData10Next(){
 	others_option=$("input[name='others_option']:checked").val();
 	
 	if(wq_functional==undefined){
-			$(".errorChk").text("Required functionality");
-	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length==0 && test_type_val=='Pre Instalation' ) {
+		$(".errorChk").text("Required functionality");
+	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="Pre Instalation" && wq_tw_color=="Red") {
 		$(".errorChk").text("Select One use of");	
+	}else if($("#useOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="During Instalation" && wq_tw_color=="Green") {
+		$(".errorChk").text("Select One use of");		
+	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="During Instalation" && wq_tw_color=="Red") {
+		$(".errorChk").text("Select One use of");		
+	}else if($("#useOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="Renovation Instalation" && wq_tw_color=="Green") {
+		$(".errorChk").text("Select One use of");	
+	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="Renovation Instalation" && wq_tw_color=="Red") {
+		$(".errorChk").text("Select One use of");		
+	}else if($("#useOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="Monitoring" && wq_tw_color=="Green") {
+		$(".errorChk").text("Select One use of");	
+	}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length == 0 && test_type_val=="Monitoring" && wq_tw_color=="Red") {
+		$(".errorChk").text("Select One use of");			
+		
+	/*}else if($("#PreeInstallUseOfChk").find("input[type=checkbox]:checked").length==0 ) {
+		$(".errorChk").text("Select One use of");	
+	}else if($("#useOfChk").find("input[type=checkbox]:checked").length==0 ){
+			$(".errorChk").text("Select One use of 2");	*/
 	}else{
-		if($("#useOfChk").find("input[type=checkbox]:checked").length==0 && test_type_val=='During Instalation'){
-			$(".errorChk").text("Select One use of 2");
-		}else{
 		$(".errorChk").text("");
 		var url="#waterData11";
-		}
+		//}
 	}
 	$.mobile.navigate(url);
 	//$(location).attr('href',url);
