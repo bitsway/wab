@@ -43,10 +43,10 @@ function onErrorWq(error) {
    $(".errorChk").html("Failed to Confirmed Location.");
 }
 
-//var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_170719/";
+var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_170719/";
 
 //--- local
-var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_170719/";
+//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_170719/";
 
 
 var planFlag=0;
@@ -100,7 +100,7 @@ $(function(){
 					localStorage.sync_code=0
 				}
 			
-		 	//alert(apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code);
+		 	//alert(apipath+'passwordCheck?cid=WAB&mobile=8801755520153&password=4328&sync_code='+localStorage.sync_code)
 			$.ajax({				   
 //			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
 				url:apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
