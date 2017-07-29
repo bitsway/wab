@@ -43,10 +43,10 @@ function onErrorWq(error) {
    $(".errorChk").html("Failed to Confirmed Location.");
 }
 
-var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_170719/";
+//var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_170719/";
 
 //--- local
-//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_170719/";
+var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_170719/";
 
 
 var planFlag=0;
@@ -214,6 +214,9 @@ $(document).ready(function(){
 	$("#providedByDiv").html(localStorage.provided_by);
 	//$("#providedByDiv1").html(localStorage.provided_by1);
 	$(".errorChk").text("");
+	
+	/*$('#providedByDiv').empty();
+	$('#providedByDiv').append(localStorage.provided_by).trigger('create');*/
 	
 //-------------------------------date format
 
@@ -1532,8 +1535,7 @@ function testType(){
 	type_val=$("#test_type").val();
 	if(type_val=="Pre Instalation"){
 		$("#facility_Id").hide();
-		$("#providedByDiv1").show();
-		$("#providedByDiv").hide();
+		
 		//=========hide
 		$("#tech_sl").hide();
 		$("#tech_fe").hide();
@@ -1671,10 +1673,10 @@ function testType(){
 		$("#dont_pree_install").show()	
 		$("#dont_pree_install_val").show()
 	}else{
-		//$('#providedByDiv').empty();
-		//$('#providedByDiv').append(localStorage.provided_by).trigger('create');
+		/*$('#providedByDiv').empty();
+		$('#providedByDiv').append(localStorage.provided_by).trigger('create');*/
 		//hide
-		$("#providedByDiv").hide();
+		
 		$("#tech_sl").hide();
 		$("#tech_fe").hide();
 		$("#tech_residual").hide();		
@@ -1713,7 +1715,7 @@ function testType(){
 		$("#tech_fluoride").show();
 		$("#tech_colour").show();
 		$("#ttcOthers").show();
-		$("#providedByDiv1").show();
+		
 		$("#otherPart").show();
 		$("#Manganese_ppb").show();
 		//$("#installDate").show();
