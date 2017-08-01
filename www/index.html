@@ -653,12 +653,10 @@
                 <fieldset data-role="controlgroup">
                     <input type="radio" name="maintain_by" id="maintain_1" value="user">
                     <label for="maintain_1">Users</label>
-                    <!--<input type="radio" name="maintain_by" id="maintain_2" value="community">
-                    <label for="maintain_2">Community</label>-->
-                    <input type="radio" name="maintain_by" id="maintain_3" value="caretaker only">
-                    <label for="maintain_3">Caretaker Only</label>
-                    <input type="radio" name="maintain_by" id="maintain_4" value="CBO">
-                    <label for="maintain_4">CBO</label>
+                    <input type="radio" name="maintain_by" id="maintain_2" value="caretaker only">
+                    <label for="maintain_2">Caretaker Only</label>
+                    <input type="radio" name="maintain_by" id="maintain_3" value="CBO">
+                    <label for="maintain_3">CBO</label>
                     <input type="radio" name="maintain_by" id="maintain_4" value="Govt.">
                     <label for="maintain_4">Govt.</label>
                     <input type="radio" name="maintain_by" id="maintain_5" value="Others">
@@ -670,16 +668,13 @@
             <li style="background-color:#F2F2F2;">User water payment</li>
             <li class="ui-field-contain">
                 <fieldset data-role="controlgroup">
-                    <input type="radio" name="user_w_payment" id="full_cost" value="Full cost paid ">
-                    <label for="full_cost">Full cost paid</label>
-                    <input type="radio" name="user_w_payment" id="some_cost" value="Some cost">
-                    <label for="some_cost">Some cost</label>
-                    <input type="radio" name="user_w_payment" id="nothing" value="Nothing paid">
-                    <label for="nothing">Nothing paid</label>
+                    <input type="radio" name="user_w_payment" id="full_cost" value="YES">
+                    <label for="full_cost">YES</label>
+                    <input type="radio" name="user_w_payment" id="some_cost" value="NO">
+                    <label for="some_cost">NO</label>
                 </fieldset>
             </li>
-        </ul>
-        
+        </ul>        
         
         <a data-role="button" href="#" onClick="waterData2Next();" data-transition="slide" >Next</a>
         <div class="errorChk"></div>
@@ -1433,7 +1428,7 @@
 		
         <div id="typeOfTestKit">
             <ul data-role="listview" data-inset="true">
-                <li style="background-color:#F2F2F2;">name of the test kit used at field<sup class="reqField">*</sup></li>
+                <li style="background-color:#F2F2F2;">Name of the test kit used at field<sup class="reqField">*</sup></li>
                 <li class="ui-field-contain">
                     <fieldset data-role="controlgroup">
                         <input name="pota" id="pota" value="Pota" type="checkbox">
@@ -1539,7 +1534,7 @@
                         <td width="30%"><input name="nitrate" id="nitrate" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_zinc">
-                        <td width="70%" style="vertical-align:middle;">Zinc(mg/l)</td>
+                        <td width="70%" style="vertical-align:middle;">Zinc</td>
                         <td width="30%"><input name="zinc" id="zinc" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_condvity">
@@ -1654,7 +1649,7 @@
     
     <div data-role="content">
             
-            <ul data-role="listview" data-inset="true">
+            <ul data-role="listview" data-inset="true" id="safeWaterOPtion">
                 <li style="background-color:#F2F2F2;">Safe water option</li>
                 <li class="ui-field-contain">                	
                     <fieldset data-role="controlgroup" data-type="horizontal">
@@ -1662,8 +1657,8 @@
                         <label for="sw_green">Yes</label>
                         <input type="radio" name="sw_option" id="sw_no" value="NO">
                         <label for="sw_no">NO</label>
-                        <input type="radio" name="sw_option" id="sw_na" value="NA">
-                        <label for="sw_na">N/A</label>
+                        <!--<input type="radio" name="sw_option" id="sw_na" value="NA">
+                        <label for="sw_na">N/A</label>-->
                     </fieldset>
                 </li>
             </ul>
@@ -1683,13 +1678,15 @@
                         <input type="radio" name="alt_option" id="alt_opt_rwhs" value="RWHS">
                         <label for="alt_opt_rwhs">RWHS</label>
                         <input type="radio" name="alt_option" id="alt_opt_airp" value="AIRP">
-                        <label for="alt_opt_airp">AIRP</label>                        
+                        <label for="alt_opt_airp">AIRP</label>  
+                        <input type="radio" name="alt_option" id="alt_opt_wpsp" value="Water point stand post">
+                        <label for="alt_opt_wpsp">Water point stand post</label>                        
                         <input type="radio" name="alt_option" id="alt_opt_others" value="Others">
                         <label for="alt_opt_others">Others</label>
-                        <div id="safe_water_na">
+                        <!--<div id="safe_water_na">
                         <input type="radio" name="alt_option" id="sw_na" value="NA">
                         <label for="sw_na">N/A</label>
-                        </div>
+                        </div>-->
                     </fieldset>
                 </li>
             </ul>
@@ -1703,14 +1700,14 @@
                         <label for="dist_2">10-30 meter</label>
                         <input type="radio" name="sw_distance" id="dist_3" value="31 to 50 meter">
                         <label for="dist_3">31-50 meter</label>
-                        <div id="fiftyMeter">
+                       <!-- <div id="fiftyMeter">-->
                         <input type="radio" name="sw_distance" id="dist_4" value="grater 50 meter">
                         <label for="dist_4">&gt;50 meter</label>
-                        </div>
+                        <!--</div>
                         <div id="howFarOption">
                         <input type="radio" name="sw_distance" id="sw_dist_na" value="NA">
                         <label for="sw_dist_na">N/A</label>
-                        </div>
+                        </div>-->
                     </fieldset>
                 </li>
             </ul>
@@ -1896,48 +1893,40 @@
                         <label for="partial">Partially Functional</label>
                         <input name="functionality" id="non_functional" value="Non Functional" type="radio" >
                         <label for="non_functional">Non Functional</label>
-                        <div id="StatuswaterOptionNA">
+                        <!--<div id="StatuswaterOptionNA">
                         <input name="functionality" id="fn_na" value="NA" type="radio" >
                         <label for="fn_na">N/A</label>
-                        </div>
+                        </div>-->
                     </fieldset>
                 </li>
             </ul>
             
-                <ul data-role="listview" data-inset="true" id="PreeInstallUseOfChk">
-                    <li style="background-color:#F2F2F2;">Use of <sup class="reqField">*</sup></li>
+                <ul data-role="listview" data-inset="true" id="useOfChk">
+                    <li style="background-color:#F2F2F2;">Use of water </li>
                     <li class="ui-field-contain">
                         <fieldset data-role="controlgroup">
                             <input name="drinking" id="drinking" value="Drinking" type="checkbox" >
                             <label for="drinking">Drinking</label>
-                            <input name="cooking" id="cooking" value="Cooking" type="checkbox" >
-                            <label for="cooking">Cooking</label>
-                            <input name="washing" id="washing" value="Washing" type="checkbox" > 
-                            <label for="washing">Washing</label>
-                            <input name="others" id="others" value="Others" type="checkbox" >
-                            <label for="others">Others</label>
-                            <input name="all_purpose" id="all_purpose" value="All purpose" type="checkbox" >
-                            <label for="all_purpose">All Purpose</label>
-                        </fieldset>
-                    </li>
-                    
-                </ul>
-                
-                <ul data-role="listview" data-inset="true" id="useOfChk">
-                    <li style="background-color:#F2F2F2;">Use of <sup class="reqField">*</sup></li>
-                    <li class="ui-field-contain">
-                        <fieldset data-role="controlgroup">
+                            
                             <input name="drinking_cooking" id="drinking_cooking" value="Drinking and Cooking" type="checkbox" >
                             <label for="drinking_cooking">Drinking and Cooking</label>
+                            
+                            <input name="cooking" id="cooking" value="Cooking" type="checkbox" >
+                            <label for="cooking">Cooking</label>
+                            
+                            <input name="washing" id="washing" value="Washing" type="checkbox" >                              
+                            <label for="washing">Washing</label>
+                            
                             <input name="drinking_cooking_washing" id="drinking_cooking_washing" value="Drinking Cooking and Washing" type="checkbox" >
-                            <label for="drinking_cooking_washing">Drinking Cooking and Washing</label>                            
+                            <label for="drinking_cooking_washing">Drinking Cooking and Washing</label> 
+                             
                             <input name="others_option" id="others_option" value="Others Purpose" type="checkbox" >
                             <label for="others_option">Others Purpose</label>
                         </fieldset>
                     </li>
                     
                 </ul>
-            
+                                            
             
             <a data-role="button" href="#" onClick="waterData10Next();"  data-transition="slide" >Next</a>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -1970,9 +1959,9 @@
                     <fieldset data-role="controlgroup">
                         <legend>Potable Status <sup class="reqField">*</sup></legend>
                         <input type="radio" name="potable_st" id="st_potable" value="Potable">
-                        <label for="st_potable">Potable</label>
+                        <label for="st_potable">Yes</label>
                         <input type="radio" name="potable_st" id="st_non_potable" value="Non Potable">
-                        <label for="st_non_potable">Non Potable</label>
+                        <label for="st_non_potable">No</label>
                     </fieldset>
                 </li>
             </ul>
@@ -2027,15 +2016,15 @@
                     <li style="background-color:#F2F2F2;">Other Particulars<sup class="reqField">*</sup></li>
                     <li class="ui-field-contain">
                         <label for="wab_con"> WaterAid contribution  </label>
-                        <input name="wab_con" id="wab_con" placeholder="" value="" type="number" onblur="waterAid_Community()">
+                        <input name="wab_con" id="wab_con" placeholder="" value="" type="number" >
                     </li>
                     <li class="ui-field-contain">
                         <label for="comm_con"> Community contribution- WASH fund </label>
-                        <input name="comm_con" id="comm_con" placeholder="" value="" type="number" onblur="waterAid_Community()">
+                        <input name="comm_con" id="comm_con" placeholder="" value="" type="number" >
                     </li>
                     <li class="ui-field-contain">
                         <label for="total_cost"> Total cost </label>
-                        <input name="total_cost" id="total_cost" placeholder="" value="" type="number" readonly="readonly" style="background-color:#F1F1F1;">
+                        <input name="total_cost" id="total_cost" placeholder="" value="" type="number" >
                     </li>
                 </ul>
                 <ul data-role="listview" data-inset="true" id="pipe_conc">
@@ -2046,10 +2035,10 @@
                             <label for="do_user_pay_y">YES</label>
                             <input type="radio" name="do_user_pay" id="do_user_pay_n" value="NO">
                             <label for="do_user_pay_n">NO</label>
-                            <div id="operationAndMainWaterOPtion">
+                            <!--<div id="operationAndMainWaterOPtion">
                             <input type="radio" name="do_user_pay" id="do_user_pay_na" value="NA">
                             <label for="do_user_pay_na" >N/A</label>
-                            </div>
+                            </div>-->
                         </fieldset>
                     </li>
                 </ul>
@@ -2062,10 +2051,10 @@
                             <label for="piped_w_conn_y">YES</label>
                             <input type="radio" name="piped_w_conn" id="piped_w_conn_n" value="NO" onchange="pipWaterConnLeg()">
                             <label for="piped_w_conn_n">NO</label>
-                            <div id="pipWaterConnLegal">
+                           <!-- <div id="pipWaterConnLegal">
                             <input type="radio" name="piped_w_conn" id="piped_w_conn_na" value="NA">
                             <label for="piped_w_conn_na">N/A</label>
-                            </div>
+                            </div>-->
                         </fieldset>
                     </li>
                 </ul>
@@ -2108,19 +2097,19 @@
                             <label for="all_test_y">YES</label>
                             <input type="radio" name="all_test_complt" id="all_test_n" value="NO">                            
                             <label for="all_test_n">NO</label>
-                            <div id="allTestCom">
+                           <!-- <div id="allTestCom">
                             <input type="radio" name="all_test_complt" id="all_test_na" value="NA">
                             <label for="all_test_na">N/A</label>
-                            </div>
+                            </div>-->
                         </fieldset>
                     </li>
                 </ul>
-                 <ul data-role="listview" data-inset="true" id="all_test_n_res">
+                 <!--<ul data-role="listview" data-inset="true" id="all_test_n_res">
                     <li class="ui-field-contain">
                         <label for="res_n_test">If test is not done why</label>
                         <textarea cols="20" rows="3" name="res_n_test" id="res_n_test"></textarea>
                     </li>
-                </ul>
+                </ul>-->
                 <ul data-role="listview" data-inset="true" id="newField">
                     <li class="ui-field-contain">
                         <fieldset data-role="controlgroup">
@@ -2167,10 +2156,10 @@
                             <label for="m_comm_ext_y">YES</label>
                             <input type="radio" name="m_comm_ext" id="m_comm_ext_n" value="NO">
                             <label for="m_comm_ext_n">NO</label>
-                            <div id="managementCommittee">
+                            <!--<div id="managementCommittee">
                             <input type="radio" name="m_comm_ext" id="m_comm_ext_na" value="NA">
                             <label for="m_comm_ext_na">N/A</label>
-                            </div>
+                            </div>-->
                         </fieldset>
                     </li>               
                     <!--<li class="ui-field-contain" id="isNotManagement">
@@ -2191,8 +2180,8 @@
                             <label for="m_comm_ori_y">YES</label>
                             <input type="radio" name="m_comm_ori_complt" id="m_comm_ori_n" value="NO">
                             <label for="m_comm_ori_n">NO</label>
-                            <input type="radio" name="m_comm_ori_complt" id="m_comm_ori_na" value="NA">
-                            <label for="m_comm_ori_na">N/A</label>
+                            <!--<input type="radio" name="m_comm_ori_complt" id="m_comm_ori_na" value="NA">
+                            <label for="m_comm_ori_na">N/A</label>-->
                         </fieldset>
                     </li>               
                     <li class="ui-field-contain" id="m_comm_ori_no">
@@ -2218,10 +2207,10 @@
                             <label for="caretaker_train_y">YES</label>
                             <input type="radio" name="caretaker_train" id="caretaker_train_n" value="NO">
                             <label for="caretaker_train_n">NO</label>
-                            <div id="careTrained">
+                           <!-- <div id="careTrained">
                             <input type="radio" name="caretaker_train" id="caretaker_train_na" value="NA">
                             <label for="caretaker_train_na">N/A</label>
-                            </div>
+                            </div>-->
                         </fieldset>
                     </li>                
                     <li class="ui-field-contain" id="caretakerTrainedNo">
@@ -2240,13 +2229,16 @@
                 </ul>
                 
                 <ul data-role="listview" data-inset="true" id="smpleAnaly">
-                    <li class="ui-field-contain">
-                        <select name="smpl_analy" id="smpl_analy" data-native-menu="false" >
-                            <option value="">Who analysed the sample</option>
-                            <option value="Frontline staff">Frontline staff</option>
-                            <option value="Engineer">Engineer</option>
-                            <option value="Test done in lab">Test done in lab</option>
-                        </select>
+                    <li class="ui-field-contain">                        
+                        <fieldset data-role="controlgroup">
+                            <legend>Who analysed the sample</legend>
+                            <input type="radio" name="smpl_analy" id="smpl_analy_1" value="Frontline staff">
+                            <label for="smpl_analy_1">Frontline staff</label>
+                            <input type="radio" name="smpl_analy" id="smpl_analy_2" value="Engineer">
+                            <label for="smpl_analy_2">Engineer</label>
+                            <input type="radio" name="smpl_analy" id="smpl_analy_3" value="Test done in lab">
+                            <label for="smpl_analy_3">Test done in lab</label>
+                        </fieldset>
                         
                     </li>
                 </ul>
@@ -2278,8 +2270,8 @@
                             <label for="install_done_y">YES</label>
                             <input type="radio" name="install_done" id="install_done_n" value="NO">
                             <label for="install_done_n">NO</label>
-                            <input type="radio" name="install_done" id="install_done_na" value="NA">
-                            <label for="install_done_na">N/A</label>
+                            <!--<input type="radio" name="install_done" id="install_done_na" value="NA">
+                            <label for="install_done_na">N/A</label>-->
                         </fieldset>
                     </li>
                 </ul>
