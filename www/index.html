@@ -633,7 +633,6 @@
                     <option value="">WP Repair</option>
                     <option value="YES">YES</option>
                     <option value="NO">NO</option>
-                    <option value="NA">N/A</option>
                 </select>
             </li>
 			<li class="ui-field-contain">
@@ -1461,8 +1460,7 @@
                         <td colspan="2" style="background-color:#F2F2F2;"><strong>Test score/exists</strong></td>
                     </tr>
                     <tr id="tech_ttc">
-                        <td width="70%" style="vertical-align:middle;" id="ttcOthers"> TTC(cfu/100ml)</td>
-                        <td width="70%" style="vertical-align:middle;" id="ttcRenovation"> TTC(cfu)</td>
+                        <td width="70%" style="vertical-align:middle;" > TTC(cfu)</td>
                         <td width="30%"><input name="ttc_cfu" id="ttc_cfu" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_sl">
@@ -1478,17 +1476,17 @@
                         <td width="30%"><input name="fe_ng" id="fe_ng" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_mn">
-                        <td width="70%" style="vertical-align:middle;" id="Manganese_ppb">Magnanese(ppb) </td>
-                        <td width="70%" style="vertical-align:middle;" id="Manganese_mgl">Manganese (mg/l)</td>
+                        <!--<td width="70%" style="vertical-align:middle;" id="Manganese_ppb">Magnanese(ppb) </td>-->
+                        <td width="70%" style="vertical-align:middle;" id="">Manganese (mg/l)</td>
                         <td width="30%"><input name="mn_ppb" id="mn_ppb" placeholder="" value="" type="number">	</td>
                     </tr>
                     <tr id="tech_chl">
-                        <td width="70%" style="vertical-align:middle;" id="chloride_ppt">Chloride(ppt) </td>
-                        <td width="70%" style="vertical-align:middle;" id="chloride_mgl">Chloride(mg/l)) </td>
+                        <!--<td width="70%" style="vertical-align:middle;" id="chloride_ppt">Chloride(ppt) </td>-->
+                        <td width="70%" style="vertical-align:middle;" id="">Chloride(mg/l)) </td>
                         <td width="30%"><input name="chl_ppt" id="chl_ppt" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_clorine">
-                        <td width="70%" style="vertical-align:middle;" id="chloride_mgl">Clorine</td>
+                        <td width="70%" style="vertical-align:middle;" id="">Clorine</td>
                         <td width="30%"><input name="clorine" id="clorine" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_turb">
@@ -1496,7 +1494,7 @@
                         <td width="30%"><input name="turb_ntu" id="turb_ntu" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="tech_residual">
-                        <td width="70%" style="vertical-align:middle;">Residual(mg/l) </td><!--Chlorine-->
+                        <td width="70%" style="vertical-align:middle;">Residual </td><!--Chlorine-->
                         <td width="30%"><input name="residual" id="residual" placeholder="" value="" type="number">	</td>
                     </tr>
                     <tr id="tech_ph">
@@ -1523,9 +1521,8 @@
                         <td width="70%" style="vertical-align:middle;">Odour</td>
                         <td width="30%">
                         	<select name="odor" id="odor" data-native-menu="false" >
-								<option value="YES">YES</option>
+								<option value="YES" selected="selected">YES</option>
                                 <option value="NO" >NO</option>
-                                <option value="" selected="selected" >N/A</option>
                              </select>
                        </td>
                     </tr>
@@ -1552,7 +1549,6 @@
                         	<select name="select_fc" id="select_fc" data-native-menu="false" >
 								<option value="YES" selected="selected">YES</option>
                                 <option value="NO" >NO</option>
-                              <!--  <option value="" selected="selected" >N/A</option>-->
                              </select>
                         </td>
                     </tr>
@@ -1888,7 +1884,7 @@
                 <li class="ui-field-contain">
                     <fieldset data-role="controlgroup">
                         <input name="functionality" id="functional" value="Functional" type="radio">
-                        <label for="functional">Functionnal</label>
+                        <label for="functional">Functional</label>
                         <input name="functionality" id="partial" value="Partially Functional" type="radio">
                         <label for="partial">Partially Functional</label>
                         <input name="functionality" id="non_functional" value="Non Functional" type="radio" >
@@ -1958,9 +1954,9 @@
                 <li class="ui-field-contain">
                     <fieldset data-role="controlgroup">
                         <legend>Potable Status <sup class="reqField">*</sup></legend>
-                        <input type="radio" name="potable_st" id="st_potable" value="Potable">
+                        <input type="radio" name="potable_st" id="st_potable" value="Yes">
                         <label for="st_potable">Yes</label>
-                        <input type="radio" name="potable_st" id="st_non_potable" value="Non Potable">
+                        <input type="radio" name="potable_st" id="st_non_potable" value="No">
                         <label for="st_non_potable">No</label>
                     </fieldset>
                 </li>
@@ -2027,7 +2023,7 @@
                         <input name="total_cost" id="total_cost" placeholder="" value="" type="number" >
                     </li>
                 </ul>
-                <ul data-role="listview" data-inset="true" id="pipe_conc">
+                <ul data-role="listview" data-inset="true" >
                     <li class="ui-field-contain">
                         <fieldset data-role="controlgroup">
                             <legend>Do users pay for operation and <br/>maintenance of the water options</legend>
@@ -2058,12 +2054,12 @@
                         </fieldset>
                     </li>
                 </ul>
-                <ul data-role="listview" data-inset="true" id="pipe_w_sup">
+                <!--<ul data-role="listview" data-inset="true" id="pipe_w_sup">
                     <li class="ui-field-contain">
                         <label for="piped_w_sup">Piped water supply</label>
                         <input name="piped_w_sup" id="piped_w_sup" placeholder="" value="" type="number">
                     </li>
-                </ul>
+                </ul>-->
                 
                 <a data-role="button" href="#" onClick="waterData12Next();" data-transition="slide" >Next</a>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -2114,13 +2110,13 @@
                     <li class="ui-field-contain">
                         <fieldset data-role="controlgroup">
                             <legend></legend>
-                            <input type="radio" name="abc" id="due_lack_test_kit" value="Due to lack of test kit">
+                            <input type="radio" name="res_n_test" id="due_lack_test_kit" value="Due to lack of test kit">
                             <label for="due_lack_test_kit">Due to lack of test kit</label>
-                            <input type="radio" name="abc" id="problem_test_kit" value="Problem in test kit">
+                            <input type="radio" name="res_n_test" id="problem_test_kit" value="Problem in test kit">
                             <label for="problem_test_kit">Problem in test kit</label>
-                            <input type="radio" name="abc" id="due_natu_calam" value="Due to natural calamity">
+                            <input type="radio" name="res_n_test" id="due_natu_calam" value="Due to natural calamity">
                             <label for="due_natu_calam">Due to natural calamity</label>
-                            <input type="radio" name="abc" id="others" value="Others">
+                            <input type="radio" name="res_n_test" id="others" value="Others">
                             <label for="others">Others</label>                            
                         </fieldset>
                     </li>
@@ -2195,6 +2191,17 @@
                             <label for="m_comm_ori_no_3">Unwillingness of the members</label>
                             <input type="radio" name="m_comm_ori_no" id="m_comm_ori_no_4" value="Others">
                             <label for="m_comm_ori_no_4">Others</label>
+                        </fieldset>
+                    </li>
+                    <li class="ui-field-contain" id="monitoring_new_option">
+                        <fieldset data-role="controlgroup">
+                            <legend>If not why</legend>
+                            <input type="radio" name="new_option" id="internal_1" value="Internal/overseas migration of committee members">
+                            <label for="internal_1">Internal/overseas migration of committee members</label>
+                            <input type="radio" name="new_option" id="misunderstanding_2" value="Misunderstanding among the members">
+                            <label for="misunderstanding_2">Misunderstanding among the members</label>
+                            <input type="radio" name="new_option" id="others_3" value="Others">
+                            <label for="others_3">Others</label>
                         </fieldset>
                     </li>
                 </ul>
@@ -2288,7 +2295,7 @@
 				<div class="errorChk"></div>
                 <!--<div id="checkLocationWq" style="color:#FF0000;"></div>-->
         		<br/><br/>
-                <a data-role="button" id="btn_wq_save" href="#" onClick="WaterQDataSave();"  >Save</a>
+                <!--<a data-role="button" id="btn_wq_save" href="#" onClick="WaterQDataSave();"  >Save</a>-->
                 <a data-role="button" id="btn_wq_submit" href="#" onClick="waterQDataSubmit();" >Submit</a>
                 
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
