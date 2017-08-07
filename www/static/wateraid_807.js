@@ -3077,7 +3077,6 @@ function uploadPhotoAch(imageURI, imageName) {
     params.value2 = "param";
 
     options.params = params;
-	options.chunkedMode = false;
 
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),winAch,fail,options);
@@ -3112,7 +3111,6 @@ function uploadPhotoWQ(imageURI, imageName) {
     params.value2 = "param";
 
     options.params = params;
-	options.chunkedMode = false;
 
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),winWQ,fail,options);
