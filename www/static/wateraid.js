@@ -43,10 +43,13 @@ function onErrorWq(error) {
    $(".errorChk").html("Failed to Confirmed Location.");
 }
 
-var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_170719/";
+var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_160109/";
+
+//---- online x
+//var apipath="http://m.businesssolutionapps.com/welcome/wab_sync_new_140918/";
 
 //--- local
-//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_170719/";
+//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_160109/";
 
 
 var planFlag=0;
@@ -100,7 +103,7 @@ $(function(){
 					localStorage.sync_code=0
 				}
 			
-		 	//alert(apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code)
+		 	//alert(apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code);
 			$.ajax({				   
 //			  url:apipath+'dataSyncCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
 				url:apipath+'passwordCheck?cid=WAB&mobile='+mobile+'&password='+encodeURI(password)+'&sync_code='+localStorage.sync_code,
@@ -116,7 +119,6 @@ $(function(){
 						localStorage.ser_res_list=syncResultArray[5];
 						localStorage.plan_wq=syncResultArray[6];
 						localStorage.cbo_id_wq=syncResultArray[7];
-						//localStorage.provided_by1=syncResultArray[8];
 						
 						localStorage.mobile_no=mobile;
 						
@@ -161,7 +163,7 @@ $(function(){
 						$("#wQCboIdDiv").html(localStorage.cbo_id_wq);
 						$("#providedByDiv").html(localStorage.provided_by);
 						$("#TestTypeDiv").html(localStorage.test_type_wq);
-						//$("#providedByDiv1").html(localStorage.provided_by1);					
+											
 						/*$('.planlistDiv').empty();
 						$('.planlistDiv').append(localStorage.plan_list).trigger('create');*/
 						
@@ -212,11 +214,8 @@ $(document).ready(function(){
 	$("#wQCboIdDiv").html(localStorage.cbo_id_wq);
 	//$("#reviewList").html(localStorage.reviewDataDiv);
 	$("#providedByDiv").html(localStorage.provided_by);
-	//$("#providedByDiv1").html(localStorage.provided_by1);
-	$(".errorChk").text("");
 	
-	/*$('#providedByDiv').empty();
-	$('#providedByDiv').append(localStorage.provided_by).trigger('create');*/
+	$(".errorChk").text("");
 	
 //-------------------------------date format
 
@@ -237,37 +236,23 @@ $(document).ready(function(){
 	});
 	
 	//-------------------------------------/all test complete
-		$("#newField").hide();		
+		$("#all_test_n_res").hide();		
 	
-	$("#all_test_y").click(function(){					
-		$("#newField").hide();
+		$("#all_test_y").click(function(){					
+		$("#all_test_n_res").hide();
 		
 	});
 	
 	$("#all_test_n").click(function(){					
-		$("#newField").show();
+		$("#all_test_n_res").show();
 		
 	});
 	
-	//--------------------------------------/Safe water option
-	$("#safW_altOption").hide();
-	$("#sw_no").click(function(){					
-		$("#safW_altOption").hide();
-		$("#safW_dist").hide();		
-		$("#saf_acT").hide();		
-	});	
-	$("#sw_green").click(function(){					
-		$("#safW_altOption").show();
-		$("#safW_dist").show();		
-		$("#saf_acT").show();		
-	});
-	
-		
 	//-------------------------------------/manage comm trainee
 	$("#m_comm_ori").hide();
 	$("#isNotManagement").hide();
 	$("#m_comm_ori_no").hide();	
-	$("#monitoring_new_option").hide();	
+		
 	
 	$("#m_comm_ext_y").click(function(){
 		$("#m_comm_ori").show();
@@ -279,25 +264,12 @@ $(document).ready(function(){
 		$("#m_comm_ori_no").hide();	
 		$("#isNotManagement").show();
 	});
-	//test_type_val=="Pre Instalation"  
-	$("#m_comm_ori_y").click(function(){
-		if(test_type_val=="Monitoring" && wq_tw_color=="Green"){
-			$("#m_comm_ori_no").hide();
-			$("#monitoring_new_option").hide();
-		}else{
-			$("#m_comm_ori_no").hide();
-			$("#monitoring_new_option").hide();
-		}				
-		
+	
+	$("#m_comm_ori_y").click(function(){				
+		$("#m_comm_ori_no").hide();
 	});
-	$("#m_comm_ori_n").click(function(){
-		if(test_type_val=="Monitoring" && wq_tw_color=="Green"){
-			$("#m_comm_ori_no").hide();
-			$("#monitoring_new_option").show();
-		}else{
-			$("#m_comm_ori_no").show();
-			$("#monitoring_new_option").hide();
-		}
+	$("#m_comm_ori_n").click(function(){				
+		$("#m_comm_ori_no").show();
 	});
 	
 	$("#caretaker_train_y").click(function(){
@@ -311,17 +283,17 @@ $(document).ready(function(){
 	//--------------------------check urban acSectorNext
 	$("#pipe_w_sup").hide();		
 	
-	/*$("#piped_w_conn_y").click(function(){					
+	$("#piped_w_conn_y").click(function(){					
 		$("#pipe_w_sup").show();		
 	});
 	
 	$("#piped_w_conn_n").click(function(){					
 		$("#pipe_w_sup").hide();
-	});*/
+	});
 	/*$("#pipe_conc").hide();
 	$("#pipe_w_sup").hide();*/
 	
-	/*$("#tech_ttc").hide();
+	$("#tech_ttc").hide();
 	$("#tech_sl").hide();
 	$("#tech_as").hide();
 	$("#tech_fe").hide();
@@ -336,11 +308,11 @@ $(document).ready(function(){
 	$("#tech_nitrate").hide();
 	$("#tech_zinc").hide();
 	$("#tech_condvity").hide();
-	$("#tech_fluoride").hide();*/
+	$("#tech_fluoride").hide();
 	
 	$("#tr_assenic_patient").hide();
 
-	$("#other_alt").hide();
+	
 });
 
 
@@ -1149,7 +1121,6 @@ var wq_residual="";
 var wq_chlorine="";
 var wq_ph="";
 var wq_boron="";
-var wq_ironFe="";
 var wq_c_bac="";
 var wq_colour="";
 var wq_odor="";
@@ -1175,9 +1146,8 @@ var wq_functional="";
 var wq_drinking="";
 var wq_cooking="";
 var wq_washing="";
-var wq_drinking_cooking="";
-var wq_drinking_cooking_washing="";
-var wq_others_option="";
+var wq_Others="";
+var wq_all_purpose="";
 
 var wq_potable_status="";
 var wq_res_non_potable="";
@@ -1188,7 +1158,7 @@ var wq_comm_con="";
 var wq_total_cost="";
 
 var wq_is_piped_W_connection="";
-//var wq_piped_w_sup="";
+var wq_piped_w_sup="";
 
 var wq_all_test_complete="";
 var wq_res_n_test="";
@@ -1275,26 +1245,24 @@ function waterDataNext(){
 			$(".errorChk").text("Required Supported By ");
 		}else{
 			
-			if(test_type_val=="Pre Instalation" ){
+			if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" || test_type_val=="Cross Check" ){
 					
-				$("#ironTest").hide();
-				$("#isManagement").hide();
-				$("#caretakerTrained").hide();
-				var url="#waterData3";		
-			}else if(test_type_val=="Monitoring"){
-				var url="#waterData2";		
-			}else{
-				$("#ironTest").show();
-				$("#isManagement").show();
-				$("#caretakerTrained").show();					
-				var url="#waterData2";
+					$("#ironTest").hide();
+					$("#isManagement").hide();
+					$("#caretakerTrained").hide();
+					var url="#waterData7";
+				}else{
+					$("#ironTest").show();
+					$("#isManagement").show();
+					$("#caretakerTrained").show();					
+					var url="#waterData2";
+				}
+								
+				$(".errorChk").text("");
+				$.mobile.navigate(url);
+				//$(location).attr('href',url);
+				
 			}
-							
-			$(".errorChk").text("");
-			$.mobile.navigate(url);
-			//$(location).attr('href',url);
-			
-		}
 	
 	};	
 
@@ -1352,11 +1320,11 @@ function waterData3Next(){
 		/*if(ins_d=="" || ins_m=="" || ins_y==""){
 			$(".errorChk").text("Required Installation Date ");
 		}else*/ 
-		/*if (wq_depth=="" ){
+		if (wq_depth=="" ){
 			$(".errorChk").text("Required Depth ");
 		}else if (first_d=="" || first_m=="" || first_y=="" ){
 			$(".errorChk").text("Required Valid First Date ");
-		}else*/ if (last_d=="" || last_m=="" || last_y=="" ){
+		}else if (last_d=="" || last_m=="" || last_y=="" ){
 			$(".errorChk").text("Required Valid Last Date ");
 		/*}else if (sample_c_d=="" || sample_c_m=="" || sample_c_y=="" ){
 			$(".errorChk").text("Required Valid Sample Collection Date ");*/
@@ -1391,13 +1359,13 @@ function waterData3Next(){
 			var date_flag=true;
 			var dateError="";
 			
-			/*if (wq_ins=='Invalid Date'){
+			if (wq_ins=='Invalid Date'){
 				date_flag=false;
 				dateError="Invalid installation Date "+wq_ins_date;
 			}else if (wq_first=='Invalid Date'){
 				date_flag=false;
 				dateError="Invalid First Date "+wq_first_date;				
-			}else */if(wq_last=='Invalid Date'){
+			}else if(wq_last=='Invalid Date'){
 				date_flag=false;
 				dateError="Invalid Last Date "+wq_last_date;	
 			}else if(wq_analysis=='Invalid Date'){
@@ -1409,31 +1377,25 @@ function waterData3Next(){
 			if (date_flag==false){				
 				$(".errorChk").text(dateError);
 			}else{			
-					/*if (wq_first>currentDay){
+					if (wq_first>currentDay){
 						$(".errorChk").text("Required First Date Less Than Today");				
-					}else*/ if(wq_last>currentDay){
+					}else if(wq_last>currentDay){
 						$(".errorChk").text("Required Last Date Less Than Today");
 					}else if(wq_analysis>currentDay){
 						$(".errorChk").text("Required Sample collection Date Less Than Today");
 					}else{
-						/*if(wq_first>wq_last){
+						if(wq_first>wq_last){
 							$(".errorChk").text("Required Last Date Greater Than First Date");				
-						}else{*/
+						}else{
 							/*if(wq_last<wq_analysis){
 								$(".errorChk").text("Required sample collection Date Less then Last Date");
 							}else{*/
 								$(".errorChk").text("");
-								if (test_type_val=="Pre Instalation"){
-									var url="#waterData7";				
-									$.mobile.navigate(url);								
-								}else{
-									var url="#waterData4";				
-									$.mobile.navigate(url);
-								}
-								
+								var url="#waterData4";				
+								$.mobile.navigate(url);
 								//$(location).attr('href',url);
 								/*}*/
-							  //} 
+							  } 
 							}
 					}//
 			}
@@ -1537,10 +1499,12 @@ function waterData4Next(){
 //---------------------------Water quality data5 page 
 function waterData5Next(){
 		wq_owner_name=$("#ownerName").val();
-		wq_owner_phone=$("#ownerPhone").val();		
+		wq_owner_phone=$("#ownerPhone").val();
+		
 		
 		wq_caretaker=$("#caretaker").val();
-		caretakerPhone=$("#caretakerPhoneNo").val();		
+		caretakerPhone=$("#caretakerPhoneNo").val();
+		
 		
 		$(".errorChk").text("");
 		var url="#waterData7";				
@@ -1559,174 +1523,153 @@ function waterData6Next(){
 		//$(location).attr('href',url);
 	}
 
-function testType(){
-	provided_by=$("#providedBy").val();
+
+//----------------------technology
+function technology(){
+	var tech_combo=$("#select_tech").val();
 	
-	type_val=$("#test_type").val();
-	if(type_val=="Pre Instalation"){
-		$("#facility_Id").hide();
-		
-		//=========hide
-		$("#tech_sl").hide();
+	if (tech_combo=="TW renovation" || tech_combo=="TW upgradation"){
+		$("#tech_ttc").hide();
+		$("#tech_sl").show();
+		$("#tech_as").show();
 		$("#tech_fe").hide();
-		$("#tech_residual").hide();
+		$("#tech_mn").hide();
 		$("#tech_chl").hide();
-		$("#tech_colour").hide();		
-		$("#tech_mn").hide();		
-		$("#iron_Fe").hide();
-		$("#tech_clorine").hide();
-		$("#tech_condvity").hide();
-		$("#tech_odor").hide();
-		$("#tech_zinc").hide();
-		$("#tech_boron").hide();	
-		$("#tech_c_bac").hide();
-		$("#tech_nitrate").hide();
-		$("#tech_fluoride").hide();	
 		$("#tech_turb").hide();
-		$("#tech_ph").hide();	
-		//level
-		$("#otherPartBoreDate").hide();
-		//waterData3 
-		$("#installation_date").hide();
-		$("#depth").hide();
-		$("#water_level").hide();
-		$("#water_quantity").hide();
-		$("#bore_hole").hide();
-		$("#dont_pree_install").hide();
-		$("#dont_pree_install_val").hide();
-		$("#manu_dril_bore").hide();
-		$("#mech_dril_bore").hide();
-		
-		//==========show
-		$("#tech_ttc").show();
-		$("#tech_as").show();
-			
-		$("#tube_Well").show();	
-		$("#fc").show();
-		//level	
-		$("#pree_install").show();	
-		$("#pree_install_val").show();	
-	}else if(type_val=="During Instalation" ){		
-		//hide
-		$("#tech_sl").hide();
-		$("#tech_fe").hide();						
-		$("#tube_Well").hide();	
-		$("#tech_fluoride").hide();
-		$("#installDate").hide();
-		$("#water_level").hide();		
-		$("#water_quantity").hide();
-		//level	
-		$("#otherPartBoreDate").hide();
-		$("#renovationDate").hide();
-		$("#pree_install").hide();	
-		$("#pree_install_val").hide();		
-		//==========show
-		$("#facility_Id").show();	
-		$("#depth").show();	
-		$("#tech_ttc").show();
-		$("#tech_as").show();
-		$("#tech_mn").show();	
-		$("#tech_turb").show();
-		$("#tech_residual").show();
-		$("#tech_clorine").show();
-		$("#tech_boron").show();
-		$("#tech_c_bac").show();
-		$("#tech_odor").show();
-		$("#tech_nitrate").show();
-		$("#tech_zinc").show();
-		$("#tech_condvity").show();		
-		$("#tech_colour").show();
-		$("#iron_Fe").show();
-		$("#installation_date").show();
-		$("#fc").show();
-		$("#bore_hole").show()
-		$("#manu_dril_bore").show();
-		$("#mech_dril_bore").show();	
-		$("#tech_ph").show();			
-		//level		
-		$("#dont_pree_install").show()
-		$("#dont_pree_install_val").show()
-	}else if(type_val=="Renovation Instalation"){
-		//hide
-		$("#depth").hide();
-		$("#water_level").hide();
-			
-		$("#tech_sl").hide();
-		$("#tech_fe").hide();			
-		$("#tech_condvity").hide();
-		$("#otherPart").hide();		
-		$("#installDate").hide();		
-		$("#water_quantity").hide();
-		$("#tube_Well").hide();		
-		$("#pree_install").hide();
-		$("#pree_install_val").hide();	
-		$("#tech_fluoride").hide();	
-		$("#tech_residual").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
 		$("#tech_nitrate").hide();
-		//show
-		$("#tech_ttc").show();
-		$("#tech_as").show();
-		$("#tech_mn").show();	
-		$("#tech_turb").show();
-		$("#tech_ph").show();			
-		$("#tech_clorine").show();
-		$("#tech_boron").show();
-		$("#tech_c_bac").show();
-		$("#tech_odor").show();		
-		$("#tech_zinc").show();		
-		$("#tech_colour").show();
-		$("#iron_Fe").show();
-		$("#manu_dril_bore").show();
-		$("#mech_dril_bore").show();
-		$("#facility_Id").show();	
-		$("#tech_chl").show();
-		$("#otherPartBoreDate").show();
-		$("#renovationDate").show();
-		$("#bore_hole").show()
-		$("#dont_pree_install").show()	
-		$("#dont_pree_install_val").show()
-	}else{
-		//hide		
-		$("#tech_sl").hide();
-		$("#tech_fe").hide();
-		$("#tech_residual").hide();		
-		$("#tech_colour").hide();	
-		
-		$("#otherPartBoreDate").hide();
-		$("#renovationDate").hide();
-		$("#tube_Well").hide();	
-		$("#pree_install").hide();
-		$("#pree_install_val").hide();		
-		$("#installDate").hide();
-		$("#water_level").hide();		
-		$("#water_quantity").hide();	
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
 		$("#tech_fluoride").hide();
-		//show
-		$("#facility_Id").show();		
+	}else if(tech_combo=="Borehole"){
 		$("#tech_ttc").show();
+		$("#tech_sl").show();
 		$("#tech_as").show();
-		$("#tech_mn").show();	
-		$("#tech_clorine").show();
-		$("#tech_turb").show();
-		$("#tech_residual").show();
+		$("#tech_fe").show();
+		$("#tech_mn").show();
 		$("#tech_chl").show();
-		$("#iron_Fe").show();		
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
 		$("#tech_boron").show();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="Dugwell/ Ringwell"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").show();
+		$("#tech_mn").show();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="PSF"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").hide();
+		$("#tech_mn").show();
+		$("#tech_chl").hide();
+		$("#tech_turb").show();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
 		$("#tech_c_bac").show();
-		$("#tech_odor").show();
+		$("#tech_odor").hide();
 		$("#tech_nitrate").show();
-		$("#tech_zinc").show();
-		$("#tech_condvity").show();		
-		$("#tech_colour").show();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="RWH"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").hide();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").show();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="GFS"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").hide();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").show();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").show();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").show();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
+	}else if(tech_combo=="IFG"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").hide();
+		$("#tech_fe").show();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").show();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();	
+	}else if(tech_combo=="UWP"){
+		$("#tech_ttc").show();
+		$("#tech_sl").show();
+		$("#tech_as").show();
+		$("#tech_fe").hide();
+		$("#tech_mn").hide();
+		$("#tech_chl").hide();
+		$("#tech_turb").hide();
+		$("#tech_chlorine").hide();
+		$("#tech_ph").hide();
+		$("#tech_boron").hide();
+		$("#tech_c_bac").hide();
+		$("#tech_odor").hide();
+		$("#tech_nitrate").hide();
+		$("#tech_zinc").hide();
+		$("#tech_condvity").hide();
+		$("#tech_fluoride").hide();
 		
-		$("#otherPart").show();
-		$("#bore_hole").show()
-		$("#dont_pree_install").show()	
-		$("#dont_pree_install_val").show()
-		$("#manu_dril_bore").show();
-		$("#mech_dril_bore").show();
-	}			
-}
+		}
+	
+	
+	}
+
 
 //---------------------------Water quality data7 page 
 
@@ -1749,17 +1692,16 @@ function waterData7Next(){
 			
 			
 			wq_ttc_cfu=$("#ttc_cfu").val();
-			//wq_sl=$("#sl").val();
+			wq_sl=$("#sl").val();
 			wq_as_ppb=$("#as_ppb").val();
 			wq_fe_ng=$("#fe_ng").val();
 			wq_mn_ppb=$("#mn_ppb").val();
 			wq_chl_ppt=$("#chl_ppt").val();
 			wq_turb_ntu=$("#turb_ntu").val();
 			wq_residual=$("#residual").val();
-			wq_chlorine=$("#clorine").val();
+			wq_chlorine=$("#chlorine").val();
 			wq_ph=$("#ph").val();
 			wq_boron=$("#boron").val();
-			wq_ironFe=$("#ironFe").val();
 			wq_c_bac=$("#c_bac").val();
 			wq_colour=$("#colour").val();
 			wq_odor=$("#odor").val();
@@ -1771,19 +1713,7 @@ function waterData7Next(){
 			
 						
 			$(".errorChk").text("");
-			if(test_type_val=="Pre Instalation"){				
-				$("#isManagement").hide();
-				$("#m_comm_ori").hide();
-				$("#m_comm_ori_no").hide();
-				$("#caretakerTrained").hide();
-				$("#caretakerTrainedNo").hide();
-				$("#typeOfRenovation").hide();
-				$("#other_alt").hide();
-				$("#installationDone").hide();	
-				var url = "#waterData14";
-			}else{
-				var url = "#waterData8";
-			}
+			var url = "#waterData8";
 			$.mobile.navigate(url);
 			//$(location).attr('href',url);
 		}
@@ -1795,8 +1725,8 @@ function waterData7Next(){
 //---------------------- waterData8 Next
 
 	
-	//$("#waterData9").hide();
-function waterData8Next(){	
+	$("#waterData9").hide();
+function waterData8Next(){
 		wq_tested_at=$("input[name='tested_at']:checked").val();
 		wq_iron_test=$("input[name='iron_test']:checked").val();		
 		wq_tw_color=$("input[name='tw_painter']:checked").val();
@@ -1808,107 +1738,27 @@ function waterData8Next(){
 			$(".errorChk").text("Required TW painter");
 		}
 		else{
-			//var iron_test_flag=true;
+			var iron_test_flag=true;
 			
-			/*if(test_type_val=="New Instalation" || test_type_val=="Renovation Instalation"){
+			if(test_type_val=="New Instalation" || test_type_val=="Renovation Instalation"){
 				if(wq_iron_test==undefined){
 					$(".errorChk").text("Required iron test");
-					//iron_test_flag=false;
+					iron_test_flag=false;
 				}
-			}*/
+			}
 			
-			//if (iron_test_flag==true){
-		
-			if(test_type_val=="During Instalation" && wq_tw_color=="Red" ){			
-				$("#managementCommittee").hide();
-				$("#typeOfRenovation").hide();
-				//show
-				$("#safeWaterOPtion").show();	
-				$("#safW_altOption").show();
-				$("#safW_dist").show();
-				$("#saf_acT").show();
-				var url="#waterData9";
-			}else if(test_type_val=="During Instalation" && wq_tw_color=="Green" ){				
-				$("#managementCommittee").hide();
-				$("#typeOfRenovation").hide();
-				if(provided_by=="Other stakeholder"){
+			if (iron_test_flag==true){
+				if(wq_tw_color=="Red" ){
 					var url="#waterData9";
 				}else{
 					var url="#waterData10";
 				}
-				
-			}else if(test_type_val=="During Instalation" && wq_tw_color=="NA" ){		
-				$("#safeWaterOPtion").hide();	
-				$("#safW_altOption").hide();
-				$("#safW_dist").hide();
-				$("#saf_acT").hide();
-				var url="#waterData9";		
-			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Green"){
-				//hide		
-				$("#pipe_conc").hide();	
-				$("#installationDone").hide();		
-				$("#PreeInstallUseOfChk").hide();
-				$("#managementCommittee").hide();
-				//show
-				$("#smpleAnaly").show();
-				$("#typeOfRenovation").show();
-				var url="#waterData9";
-			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Red"){
-				//hide
-				$("#pipe_conc").hide();	
-				$("#installationDone").hide();		
-				//show
-				$("#safeWaterOPtion").show();	
-				$("#safW_altOption").show();
-				$("#safW_dist").show();
-				$("#saf_acT").show();
-				var url="#waterData9";
-			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="NA"){	
-				$("#pipe_conc").hide();	
-				$("#installationDone").hide();						
-				$("#safeWaterOPtion").hide();	
-				$("#safW_altOption").hide();
-				$("#safW_dist").hide();
-				$("#saf_acT").hide();
-				var url="#waterData9";		
-			}else if(test_type_val=="Monitoring" && wq_tw_color=="Green"){
-				//hide
-				$("#pipe_conc").hide();	
-				$("#PreeInstallUseOfChk").hide();
-				$("#managementCommittee").hide();				
-				$("#installationDone").hide();					
-				//show
-				$("#typeOfRenovation").show();
-				var url="#waterData9";
-			}else if(test_type_val=="Monitoring" && wq_tw_color=="Red"){
-			//}else{
-				//hide
-				$("#managementCommittee").hide();
-				$("#typeOfRenovation").hide();
-				$("#installationDone").hide();
-				//show
-				$("#safeWaterOPtion").show();	
-				$("#safW_altOption").show();
-				$("#safW_dist").show();
-				$("#saf_acT").show();
-				var url="#waterData9";
-			}else{
-				//hide
-				$("#typeOfRenovation").hide();
-				$("#installationDone").hide();
-				$("#safeWaterOPtion").hide();	
-				$("#safW_altOption").hide();
-				$("#safW_dist").hide();
-				$("#saf_acT").hide();				
-				var url="#waterData9";	
-			}
-	
-			$.mobile.navigate(url);
-			//$(location).attr('href',url);
+				$.mobile.navigate(url);
+				//$(location).attr('href',url);
 				
 			}
 			
-		//}
+		}
 		
 	}
 	
@@ -1926,52 +1776,25 @@ function waterData9Next(){
 	arc_patient_yn=$("#arc_patient_yn").val();
 	arc_patient=$("#arc_patient").val();
 	
-	if(test_type_val=="During Instalation" && wq_tw_color=="Red" && sw_option=="Yes"){
-			
-		if(sw_option==undefined ){
-				$(".errorChk").text("Required Safe water option");
-		}else if(alt_option==undefined){
-			$(".errorChk").text("Required alt option");
-		}else if(sw_distance==undefined){
-			$(".errorChk").text("Required TW safe water distance");
-		}else if(ac_taken==undefined){
-			$(".errorChk").text("Required action taken");
-		}else if (arc_patient_yn=="YES" && arc_patient==""){
-				$(".errorChk").text("Required How many patient");
-		}else{
-			if(arc_patient==""){
-				arc_patient=0;
-				}
-			$(".errorChk").text("");
-			var url="#waterData9_1";
-			$.mobile.navigate(url);
-			//$(location).attr('href',url);
-		}
-	}else if(test_type_val=="During Instalation" && wq_tw_color=="NA" && sw_option=="NO"){
-			
-		if (arc_patient_yn=="YES" && arc_patient==""){
-				$(".errorChk").text("Required How many patient");
-		}else{
-			if(arc_patient==""){
-				arc_patient=0;
-				}
-			$(".errorChk").text("");
-			var url="#waterData9_1";
-			$.mobile.navigate(url);
-			//$(location).attr('href',url);
-		}
-	}else{
-		if (arc_patient_yn=="YES" && arc_patient==""){
+	if(sw_option==undefined){
+			$(".errorChk").text("Required Safe water option");
+	}else if(alt_option==undefined){
+		$(".errorChk").text("Required alt option");
+	}else if(sw_distance==undefined){
+		$(".errorChk").text("Required TW safe water distance");
+	}else if(ac_taken==undefined){
+		$(".errorChk").text("Required action taken");
+	}else if (arc_patient_yn=="YES" && arc_patient==""){
 			$(".errorChk").text("Required How many patient");
-		}else{
-			if(arc_patient==""){
-				arc_patient=0;
-				}
-			$(".errorChk").text("");
-			var url="#waterData9_1";
-			$.mobile.navigate(url);		
-		}		
-	}		
+	}else{
+		if(arc_patient==""){
+			arc_patient=0;
+			}
+		$(".errorChk").text("");
+		var url="#waterData9_1";
+		$.mobile.navigate(url);
+		//$(location).attr('href',url);
+	}
 }
 
 var wq_san_ins="";
@@ -2014,26 +1837,25 @@ function waterData9_1Next(){
 
 
 function waterData10Next(){
+	//alert("ok");
+	wq_functional=$("input[name='functionality']:checked").val();
 	
-	wq_functional=$("input[name='functionality']:checked").val();	
 	
 	wq_drinking=$("input[name='drinking']:checked").val();
 	wq_cooking=$("input[name='cooking']:checked").val();
 	wq_washing=$("input[name='washing']:checked").val();
-	wq_drinking_cooking=$("input[name='drinking_cooking']:checked").val();
-	wq_drinking_cooking_washing=$("input[name='drinking_cooking_washing']:checked").val();
-	wq_others_option=$("input[name='others_option']:checked").val();
-	//alert(wq_drinking+"-"+wq_cooking+"-"+wq_washing+"-"+wq_drinking_cooking+"-"+wq_drinking_cooking_washing+"-"+wq_others_option);
+	wq_Others=$("input[name='others']:checked").val();
+	wq_all_purpose=$("input[name='all_purpose']:checked").val();
+	
 	if(wq_functional==undefined){
-		$(".errorChk").text("Required functionality");
-			
-	/*}else if($("#useOfChk").find("input[type=checkbox]:checked").length==0 ){
-			$(".errorChk").text("Select One use of ");	*/
+			$(".errorChk").text("Required functionality");
+	}else if($("#useOfChk").find("input[type=checkbox]:checked").length==0){
+		$(".errorChk").text("Select One use of");
 	}else{
 		$(".errorChk").text("");
 		var url="#waterData11";
-		//}
-	}
+		}
+	
 	$.mobile.navigate(url);
 	//$(location).attr('href',url);
 	}
@@ -2048,8 +1870,8 @@ function waterData11Next(){
 		wq_potable_status=$("input[name='potable_st']:checked").val();
 		wq_res_non_potable=$("#reason_non_potable").val();
 		wq_no_potable_initiative_taken=$("#non_potable_ini").val();
-		//|| test_type_val=="Monitoring" || test_type_val=="Cross Check" 
-		if(test_type_val=="Pre Instalation" ){
+		
+		if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" || test_type_val=="Cross Check" ){
 			var url="#waterData13";
 		}else{
 			var url="#waterData12";
@@ -2065,38 +1887,6 @@ function waterData11Next(){
 
 var wq_do_user_pay="";
 //----------------------------water quality data 12
-/*function waterAid_Community(){
-	wab_con=$("#wab_con").val();
-	comm_con=$("#comm_con").val();
-	
-	if(wab_con==''){
-		wab_con=0;
-	}
-	if(comm_con==''){
-		comm_con=0;
-	}	
-		
-	var total=eval(wab_con)+eval(comm_con);
-	
-	$("#total_cost").val(total);
-	  
-}*/
-
-
-function pipWaterConnLeg(){
-	test_type_val=$("#test_type").val();
-	wq_tw_color=$("input[name='tw_painter']:checked").val();
-	var piped_W_connection=$("input[name='piped_w_conn']:checked").val();
-	if(test_type_val=="During Instalation" && wq_tw_color=="Green" || test_type_val=="During Instalation" && wq_tw_color=="Red" || test_type_val=="Renovation Instalation" && wq_tw_color=="Green" || test_type_val=="Renovation Instalation" && wq_tw_color=="Red" || test_type_val=="Monitoring" && wq_tw_color=="Green" || test_type_val=="Monitoring" && wq_tw_color=="Red"){
-		$("#pipe_w_sup").hide();
-	}else{	
-		if(piped_W_connection=="YES"){
-			$("#pipe_w_sup").show();
-		}else{
-			$("#pipe_w_sup").hide();
-		}
-}
-}
 function waterData12Next(){
 		wq_wab_con=$("#wab_con").val();
 		wq_comm_con=$("#comm_con").val();
@@ -2104,63 +1894,38 @@ function waterData12Next(){
 		
 		wq_do_user_pay=$("input[name='do_user_pay']:checked").val();		
 		wq_is_piped_W_connection=$("input[name='piped_w_conn']:checked").val();
-		//wq_piped_w_sup=$("#piped_w_sup").val();
+		wq_piped_w_sup=$("#piped_w_sup").val();
 		
-		if(test_type_val=="Renovation Instalation" || test_type_val=="Monitoring"){
-			if(wq_wab_con==""){
-				$(".errorChk").text("Required WAB Contribution");
-			}else if(wq_comm_con==""){
-				$(".errorChk").text("Required Community Contribution");
-			}else if(wq_total_cost==""){
-				$(".errorChk").text("Required Total Cost");
-			
-			}else{						
-				$(".errorChk").text("");
-				var url="#waterData13";
-				$.mobile.navigate(url);
-				//$(location).attr('href',url);
-			}
+		if(wq_wab_con==""){
+			$(".errorChk").text("Required WAB Contribution");
+		}else if(wq_comm_con==""){
+			$(".errorChk").text("Required Community Contribution");
+		}else if(wq_total_cost==""){
+			$(".errorChk").text("Required Total Cost");
+		}else if(wq_is_piped_W_connection==undefined){
+			$(".errorChk").text("Required is piped water connection");
 		}else{
-			if(wq_wab_con==""){
-				$(".errorChk").text("Required WAB Contribution");
-			}else if(wq_comm_con==""){
-				$(".errorChk").text("Required Community Contribution");
-			}else if(wq_total_cost==""){
-				$(".errorChk").text("Required Total Cost");
-			}else if(wq_is_piped_W_connection==undefined){
-				$(".errorChk").text("Required is piped water connection");
-			}else{						
-				$(".errorChk").text("");
-				var url="#waterData13";
-				$.mobile.navigate(url);
+						
+			$(".errorChk").text("");
+			var url="#waterData13";
+			$.mobile.navigate(url);
+			//$(location).attr('href',url);
 			}
-		}
+		
 }
+
 
 //----------------------------water quality data 13 
 
 function waterData13Next(){
 		wq_all_test_complete=$("input[name='all_test_complt']:checked").val();
-		//wq_res_n_test=$("#res_n_test").val();
-		wq_res_n_test=$("input[name='res_n_test']:checked").val();
+		wq_res_n_test=$("#res_n_test").val();
 		
 		if(wq_all_test_complete==undefined){
 			$(".errorChk").text("Required all test complete");
 		}else{
 			$(".errorChk").text("");
-			if (provided_by=='WAB'){
-				var url="#waterData14";
-			}else{
-				$("#isManagement").hide();
-				$("#m_comm_ori").hide();
-				$("#m_comm_ori_no").hide();
-				$("#caretakerTrained").hide();
-				$("#caretakerTrainedNo").hide();
-				$("#typeOfRenovation").hide();
-				$("#other_alt").hide();
-				$("#installationDone").hide();	
-				var url="#waterData14";	
-			}
+			var url="#waterData14";
 			$.mobile.navigate(url);
 			//$(location).attr('href',url);
 		}
@@ -2179,18 +1944,8 @@ function ChkArsenicPatient(){
 	
 	}
 //----------------------------water quality data 14 
-//test_type_val=="Pre Instalation" && wq_tw_color=="Red"
-function renovationDone(){
-	if(test_type_val=="Pre Instalation" && wq_tw_color=="Red"){}else {
-		var renova_done=$("input[name='renovation_done']:checked").val();
-		//alert(renova_done);
-		if(renova_done=='Others'){
-			$("#other_alt").show();
-		}else{
-			$("#other_alt").hide();
-		}
-}
-}
+
+
 function WaterQDataSave(){
 		
 		$(".errorChk").text("");
@@ -2198,15 +1953,13 @@ function WaterQDataSave(){
 		
 		
 		wq_management_committee_exist=$("input[name='m_comm_ext']:checked").val();
-		//wq_management_committee_not_exist=$("input[name='isNotManagement']:checked").val();
+		wq_management_committee_not_exist=$("input[name='isNotManagement']:checked").val();
 		wq_management_committee_ori=$("input[name='m_comm_ori_complt']:checked").val();
 		wq_management_committee_not_ori=$("input[name='m_comm_ori_no']:checked").val();
-		wq_management_committee_not_new_option=$("input[name='new_option']:checked").val();
 		wq_caretaker_trained=$("input[name='caretaker_train']:checked").val();
 		wq_caretaker_trained_not=$("input[name='caretaker_train_no']:checked").val();
 		
-		//wq_sample_analysis=$("#smpl_analy").val();
-		wq_sample_analysis=$("input[name='smpl_analy']:checked").val();
+		wq_sample_analysis=$("#smpl_analy").val();
 		wq_renovation_type=$("input[name='renovation_done']:checked").val();
 		wq_installation_done=$("input[name='install_done']:checked").val();
 		
@@ -2236,7 +1989,7 @@ function WaterQDataSave(){
 			
 			if (management_caretaker_flag==true){
 		
-				if(wq_potable_status=="Yes"){
+				if(wq_potable_status=="Potable"){
 					$("#reason_non_potable").val("");
 					$("#non_potable_ini").val("");
 					
@@ -2250,7 +2003,7 @@ function WaterQDataSave(){
 					}
 							
 			
-				if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" ){
+				if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" || test_type_val=="Cross Check"){
 					
 					/*wq_siteSelectDate="";
 					wq_ins_date="";
@@ -2281,12 +2034,12 @@ function WaterQDataSave(){
 					
 					wq_do_user_pay="";
 					wq_is_piped_W_connection="";
-					//wq_piped_w_sup="";
+					wq_piped_w_sup="";
 					
-					/*if(wq_is_piped_W_connection=="NO"){
+					if(wq_is_piped_W_connection=="NO"){
 						$("#piped_w_sup").val("");
 						wq_piped_w_sup="";
-					}*/
+					}
 					
 					
 					if (wq_iron_test==undefined){
@@ -2325,10 +2078,6 @@ function WaterQDataSave(){
 					if(wq_management_committee_ori=="YES"){
 						wq_management_committee_not_ori="";
 						$( "input:radio[name='m_comm_ori_no'][value='"+wq_management_committee_ori+"']" ).attr('checked','');
-					}
-					
-					if(wq_renovation_type==undefined){
-						wq_renovation_type="";
 					}
 					
 					if(wq_caretaker_trained_not==undefined){
@@ -2405,7 +2154,7 @@ function WaterQDataSave(){
 					}else{*/
 			
 						waterQualitySave=wq_plan_id+'fdfd'+wq_CBO_id+'fdfd'+test_type_val+'fdfd'+provided_by+'fdfd'+wq_ref+'fdfd'+wq_id+'fdfd'+wq_plat_condition+'fdfd'+drain_condition+'fdfd'+wp_repair+'fdfd'+chamber_condition+'fdfd'+wq_maintain_by+'fdfd'+user_w_payment+'fdfd'+wq_depth+'fdfd'+wq_static_w_l+'fdfd'+wq_first_date+'fdfd'+wq_last_date+'fdfd'+wq_analysis_date+'fdfd'+wq_appDate+'fdfd'+wq_handOvrDate+'fdfd'+wq_owner_name+'fdfd'+wq_owner_phone+'fdfd'+wq_caretaker+'fdfd'+caretakerPhone+'fdfd'+
-				wq_select_tech+'fdfd'+wq_pota+'fdfd'+wq_delAgua+'fdfd'+wq_hach_ez_as+'fdfd'+wq_solinity_meter+'fdfd'+wq_mn_test_kit+'fdfd'+wq_test_kit_lab_test+'fdfd'+wq_tst_kit_cloride+'fdfd'+wq_tst_kit_oth+'fdfd'+wq_ttc_cfu+'fdfd'+wq_sl+'fdfd'+wq_as_ppb+'fdfd'+wq_fe_ng+'fdfd'+wq_mn_ppb+'fdfd'+wq_chl_ppt+'fdfd'+wq_turb_ntu+'fdfd'+wq_chlorine+'fdfd'+wq_ph+'fdfd'+wq_boron+'fdfd'+wq_c_bac+'fdfd'+wq_odor+'fdfd'+wq_nitrate+'fdfd'+wq_zinc+'fdfd'+wq_condvity+'fdfd'+wq_fluoride+'fdfd'+wq_tested_at+'fdfd'+wq_iron_test+'fdfd'+wq_tw_color+'fdfd'+sw_option+'fdfd'+alt_option+'fdfd'+sw_distance+'fdfd'+ac_taken+'fdfd'+arc_patient+'fdfd'+wq_functional+'fdfd'+wq_drinking+'fdfd'+wq_cooking+'fdfd'+wq_washing+'fdfd'+wq_Others+'fdfd'+wq_all_purpose+'fdfd'+wq_potable_status+'fdfd'+wq_res_non_potable+'fdfd'+wq_no_potable_initiative_taken+'fdfd'+wq_wab_con+'fdfd'+wq_comm_con+'fdfd'+wq_total_cost+'fdfd'+wq_is_piped_W_connection+'fdfd'+wq_all_test_complete+'fdfd'+wq_res_n_test+'fdfd'+wq_management_committee_exist+'fdfd'+wq_management_committee_ori+'fdfd'+wq_caretaker_trained+'fdfd'+wq_sample_analysis+'fdfd'+wq_installation_done+'fdfd'+wq_photo+'fdfd'+wq_activities+'fdfd'+startDtWq+'fdfd'+latitudewq+'fdfd'+longitudewq+'fdfd'+wq_vill+'fdfd'+type_of_wq_facility+'fdfd'+arc_patient_yn+'fdfd'+wq_san_ins+'fdfd'+wq_inspect_date+'fdfd'+wq_san_risk_sc+'fdfd'+wq_ins_date+'fdfd'+wq_siteSelectDate+'fdfd'+wq_residual+'fdfd'+wq_colour+'fdfd'+wq_fc+'fdfd'+wq_management_committee_not_exist+'fdfd'+wq_management_committee_not_ori+'fdfd'+wq_caretaker_trained_not+'fdfd'+wq_renovation_type
+				wq_select_tech+'fdfd'+wq_pota+'fdfd'+wq_delAgua+'fdfd'+wq_hach_ez_as+'fdfd'+wq_solinity_meter+'fdfd'+wq_mn_test_kit+'fdfd'+wq_test_kit_lab_test+'fdfd'+wq_tst_kit_cloride+'fdfd'+wq_tst_kit_oth+'fdfd'+wq_ttc_cfu+'fdfd'+wq_sl+'fdfd'+wq_as_ppb+'fdfd'+wq_fe_ng+'fdfd'+wq_mn_ppb+'fdfd'+wq_chl_ppt+'fdfd'+wq_turb_ntu+'fdfd'+wq_chlorine+'fdfd'+wq_ph+'fdfd'+wq_boron+'fdfd'+wq_c_bac+'fdfd'+wq_odor+'fdfd'+wq_nitrate+'fdfd'+wq_zinc+'fdfd'+wq_condvity+'fdfd'+wq_fluoride+'fdfd'+wq_tested_at+'fdfd'+wq_iron_test+'fdfd'+wq_tw_color+'fdfd'+sw_option+'fdfd'+alt_option+'fdfd'+sw_distance+'fdfd'+ac_taken+'fdfd'+arc_patient+'fdfd'+wq_functional+'fdfd'+wq_drinking+'fdfd'+wq_cooking+'fdfd'+wq_washing+'fdfd'+wq_Others+'fdfd'+wq_all_purpose+'fdfd'+wq_potable_status+'fdfd'+wq_res_non_potable+'fdfd'+wq_no_potable_initiative_taken+'fdfd'+wq_wab_con+'fdfd'+wq_comm_con+'fdfd'+wq_total_cost+'fdfd'+wq_is_piped_W_connection+'fdfd'+wq_piped_w_sup+'fdfd'+wq_all_test_complete+'fdfd'+wq_res_n_test+'fdfd'+wq_management_committee_exist+'fdfd'+wq_management_committee_ori+'fdfd'+wq_caretaker_trained+'fdfd'+wq_sample_analysis+'fdfd'+wq_installation_done+'fdfd'+wq_photo+'fdfd'+wq_activities+'fdfd'+startDtWq+'fdfd'+latitudewq+'fdfd'+longitudewq+'fdfd'+wq_vill+'fdfd'+type_of_wq_facility+'fdfd'+arc_patient_yn+'fdfd'+wq_san_ins+'fdfd'+wq_inspect_date+'fdfd'+wq_san_risk_sc+'fdfd'+wq_ins_date+'fdfd'+wq_siteSelectDate+'fdfd'+wq_residual+'fdfd'+wq_colour+'fdfd'+wq_fc+'fdfd'+wq_management_committee_not_exist+'fdfd'+wq_management_committee_not_ori+'fdfd'+wq_caretaker_trained_not+'fdfd'+wq_renovation_type
 				
 						//alert(waterQualitySave);
 						
@@ -2796,8 +2545,6 @@ function reviewWqDataNext(){
 			$("#all_test_n_res").hide();
 			}
 		
-		
-		
 		var chk_wq_management_committee_exist=$("input[name='m_comm_ext']:checked").val();
 		
 		if(chk_wq_management_committee_exist=="YES"){
@@ -2829,12 +2576,11 @@ var testKitChk="";
 var useOfChk="";
 var wq_management_committee_not_exist="";
 var wq_management_committee_not_ori="";
-var wq_management_committee_not_new_option="";
 var wq_caretaker_trained_not="";
 var wq_renovation_type="";
-var alt_others="";
+
 function waterQDataSubmit(){
-		//$(".errorChk").text("submit Data...");		
+		//$(".errorChk").text("submit Data...");
 		$("#btn_wq_submit").hide();
 		latitudewq=$("#wq_lat").val();
 		longitudewq=$("#wq_long").val();
@@ -2850,875 +2596,324 @@ function waterQDataSubmit(){
 			}
 		
 		wq_management_committee_exist=$("input[name='m_comm_ext']:checked").val();
-		//wq_management_committee_not_exist=$("input[name='isNotManagement']:checked").val();
+		wq_management_committee_not_exist=$("input[name='isNotManagement']:checked").val();
 		wq_management_committee_ori=$("input[name='m_comm_ori_complt']:checked").val();
 		wq_management_committee_not_ori=$("input[name='m_comm_ori_no']:checked").val();
 		wq_caretaker_trained=$("input[name='caretaker_train']:checked").val();
 		wq_caretaker_trained_not=$("input[name='caretaker_train_no']:checked").val();
-		alt_others=$("#alt").val();
 		
-		wq_sample_analysis=$("input[name='smpl_analy']:checked").val();		
+		wq_sample_analysis=$("#smpl_analy").val();
 		wq_renovation_type=$("input[name='renovation_done']:checked").val();
 		wq_installation_done=$("input[name='install_done']:checked").val();
 		
-		/*if(wq_management_committee_exist==undefined){
-			$(".errorChk").text("Required management committee exist");
-			$("#btn_wq_submit").show();
-		}else if(wq_caretaker_trained==undefined){
-			$(".errorChk").text("Required caretaker trained");
-			$("#btn_wq_submit").show();		
-		}else if(wq_sample_analysis==undefined){
+		
+		 if(wq_sample_analysis==""){
 			$(".errorChk").text("Required Sample Analysis");
 			$("#btn_wq_submit").show();
 		}else if(wq_installation_done==undefined){
 			$(".errorChk").text("Required installation Done");
-			$("#btn_wq_submit").show();*/
-		//provided_by=='WAB' && 
-		if(test_type_val=="Pre Instalation"){
+			$("#btn_wq_submit").show();
+		}else{
+			 var management_caretaker_flag=true;
 			
-			wq_id="";
-				
-			wq_plat_condition="";
-			drain_condition="";
-			wp_repair="";
-			chamber_condition="";
-			wq_maintain_by="";
-			user_w_payment="";
-			
-			wq_ins_date="";				
-			wq_depth="";
-			wq_static_w_l="";				
-			wq_first_date="";
-			//wq_last_date="";
-			//wq_analysis_date="";
-			
-			wq_appDate="";
-			wq_siteSelectDate="";
-			wq_handOvrDate="";	
-			
-			wq_owner_name="";
-			wq_owner_phone="";
-			wq_caretaker="";
-			caretakerPhone="";
-			
-			//----------- Test Kit chkbox
-			
-			if (wq_pota!="" && wq_pota!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_pota
-					}else{
-						testKitChk+=","+wq_pota
-						}
-			}
-			if (wq_delAgua!="" && wq_delAgua!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_delAgua
-					}else{
-						testKitChk+=","+wq_delAgua
-						}
-			}
-			if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_hach_ez_as
-					}else{
-						testKitChk+=","+wq_hach_ez_as
-						}
-			}
-			if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_solinity_meter
-					}else{
-						testKitChk+=","+wq_solinity_meter
-						}
-			}
-			if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_mn_test_kit
-					}else{
-						testKitChk+=","+wq_mn_test_kit
-						}
-			}
-			if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_test_kit_lab_test
-					}else{
-						testKitChk+=","+wq_test_kit_lab_test
-						}
-			}
-			if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_cloride
-					}else{
-						testKitChk+=","+wq_tst_kit_cloride
-						}
-			}
-			if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_oth
-					}else{
-						testKitChk+=","+wq_tst_kit_oth
-						}
-			}
-			wq_odor="";
-									
-			wq_tested_at="";
-			wq_iron_test="";		
-			wq_tw_color="";
-			
-			//waterData9
-			sw_option="";
-			alt_option="";
-			sw_distance="";
-			ac_taken="";
-			arc_patient_yn="";
-			arc_patient="";		
-			//waterData9_1
-			wq_san_ins="";
-			wq_inspect_date="";
-			wq_san_risk_sc="";
-			
-			wq_functional="";
-			wq_drinking="";
-			wq_cooking="";
-			wq_washing="";
-			wq_drinking_cooking="";
-			wq_drinking_cooking_washing="";
-			wq_others_option="";
-			
-			wq_potable_status="";
-			wq_res_non_potable="";
-			wq_no_potable_initiative_taken="";			
-			
-			wq_wab_con="";
-			wq_comm_con="";
-			wq_total_cost="";
-			
-			wq_do_user_pay="";
-			wq_is_piped_W_connection="";				
-			//waterData13
-			wq_all_test_complete="";
-			wq_res_n_test="";
-			//waterData14
-			wq_management_committee_exist="";
-			wq_management_committee_ori="";
-			wq_management_committee_not_ori="";
-			wq_management_committee_not_new_option="";
-			wq_caretaker_trained="";
-			wq_caretaker_trained_not="";				
-			//wq_sample_analysis="";
-			wq_renovation_type="";	
-			alt_others="";			
-			wq_installation_done="";
-			
-		}else if(provided_by=='WAB' && test_type_val=="During Instalation" && wq_tw_color=="Green"){
-			
-			//----------- Test Kit chkbox			
-			if (wq_pota!="" && wq_pota!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_pota
-					}else{
-						testKitChk+=","+wq_pota
-						}
-			}
-			if (wq_delAgua!="" && wq_delAgua!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_delAgua
-					}else{
-						testKitChk+=","+wq_delAgua
-						}
-			}
-			if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_hach_ez_as
-					}else{
-						testKitChk+=","+wq_hach_ez_as
-						}
-			}
-			if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_solinity_meter
-					}else{
-						testKitChk+=","+wq_solinity_meter
-						}
-			}
-			if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_mn_test_kit
-					}else{
-						testKitChk+=","+wq_mn_test_kit
-						}
-			}
-			if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_test_kit_lab_test
-					}else{
-						testKitChk+=","+wq_test_kit_lab_test
-						}
-			}
-			if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_cloride
-					}else{
-						testKitChk+=","+wq_tst_kit_cloride
-						}
-			}
-			if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_oth
-					}else{
-						testKitChk+=","+wq_tst_kit_oth
-						}
+			if(test_type_val=="New Instalation" || test_type_val=="Renovation Instalation"){
+				if(wq_management_committee_exist==undefined){
+					$(".errorChk").text("Required management committee exist");
+					$("#btn_wq_submit").show();
+				}else if(wq_caretaker_trained==undefined){
+					$(".errorChk").text("Required caretaker trained");
+					$("#btn_wq_submit").show();
+					management_caretaker_flag=false;
+				}
 			}
 			
-			if (wq_iron_test==undefined){
-				wq_iron_test="";
-			}
-			if (wq_drinking!="" && wq_drinking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking
-						}
-			}
-			if (wq_drinking_cooking!="" && wq_drinking_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking
-						}
-			}
-			if (wq_cooking!="" && wq_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_cooking
-						}
-			}
-			if (wq_washing!="" && wq_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_washing
-					}else{
-						useOfChk=useOfChk+","+wq_washing
-						}
-			}
-			if (wq_drinking_cooking_washing!="" && wq_drinking_cooking_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking_washing
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking_washing
-						}
-			}
-			if (wq_others_option!="" && wq_others_option!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_others_option
-					}else{
-						useOfChk=useOfChk+","+wq_others_option
-						}
-			}
-					
-			sw_option="";
-			alt_option="";
-			sw_distance="";
-			ac_taken="";
-			arc_patient_yn=""
-			arc_patient="";				
-			wq_san_ins="";
-			wq_inspect_date="";
-			wq_san_risk_sc="";
 			
-			if(wq_potable_status=="Yes"){					
-				wq_res_non_potable="";
-				wq_no_potable_initiative_taken="";
-			}				
-			if(wq_all_test_complete=="YES"){
-				wq_res_n_test="";
-			}
-			if(wq_management_committee_exist=="NO"){
-				wq_management_committee_ori="";
-			}
-			if(wq_management_committee_ori=="YES"){
-				wq_management_committee_not_ori="";				
-			}
-			if(wq_management_committee_not_ori==undefined || wq_management_committee_not_ori==""){
-				wq_management_committee_not_ori=""	
-			}
-			if(wq_caretaker_trained=="YES"){
-				wq_caretaker_trained_not="";
-			}
-			if(wq_renovation_type==undefined || wq_renovation_type==""){
-				wq_renovation_type="";
-			}
-		}else if(provided_by=='WAB' && test_type_val=="During Instalation" && wq_tw_color=="Red"){
-			
-			if (wq_iron_test==undefined){
-				wq_iron_test="";
-			}							
-			if(sw_option=="NO"){
-				alt_option="";
-				sw_distance="";
-				ac_taken="";
-			}		
-			if(arc_patient_yn=="NO"){
-				arc_patient="";
-			}			
-			//----------- Test Kit chkbox			
-			if (wq_pota!="" && wq_pota!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_pota
-					}else{
-						testKitChk+=","+wq_pota
-						}
-			}
-			if (wq_delAgua!="" && wq_delAgua!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_delAgua
-					}else{
-						testKitChk+=","+wq_delAgua
-						}
-			}
-			if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_hach_ez_as
-					}else{
-						testKitChk+=","+wq_hach_ez_as
-						}
-			}
-			if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_solinity_meter
-					}else{
-						testKitChk+=","+wq_solinity_meter
-						}
-			}
-			if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_mn_test_kit
-					}else{
-						testKitChk+=","+wq_mn_test_kit
-						}
-			}
-			if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_test_kit_lab_test
-					}else{
-						testKitChk+=","+wq_test_kit_lab_test
-						}
-			}
-			if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_cloride
-					}else{
-						testKitChk+=","+wq_tst_kit_cloride
-						}
-			}
-			if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_oth
-					}else{
-						testKitChk+=","+wq_tst_kit_oth
-						}
-			}
-			
-			if (wq_iron_test==undefined){
-				wq_iron_test="";
-			}
-			if (wq_drinking!="" && wq_drinking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking
-						}
-			}
-			if (wq_drinking_cooking!="" && wq_drinking_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking
-						}
-			}
-			if (wq_cooking!="" && wq_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_cooking
-						}
-			}
-			if (wq_washing!="" && wq_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_washing
-					}else{
-						useOfChk=useOfChk+","+wq_washing
-						}
-			}
-			if (wq_drinking_cooking_washing!="" && wq_drinking_cooking_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking_washing
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking_washing
-						}
-			}
-			if (wq_others_option!="" && wq_others_option!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_others_option
-					}else{
-						useOfChk=useOfChk+","+wq_others_option
-						}
-			}				
-			if(wq_potable_status=="Yes"){					
-				wq_res_non_potable="";
-				wq_no_potable_initiative_taken="";
-			}				
-			if(wq_all_test_complete=="YES"){
-				wq_res_n_test="";
-			}
-			if(wq_management_committee_exist=="NO"){
-				wq_management_committee_ori="";
-			}
-			if(wq_management_committee_ori=="YES"){
-				wq_management_committee_not_ori="";				
-			}
-			if(wq_management_committee_not_ori==undefined || wq_management_committee_not_ori==""){
-				wq_management_committee_not_ori=""	
-			}
-			if(wq_caretaker_trained=="YES"){
-				wq_caretaker_trained_not="";
-			}	
-			if(wq_renovation_type==undefined || wq_renovation_type==""){
-				wq_renovation_type="";
-			}		
-		}else if(provided_by=='WAB' && test_type_val=="During Instalation" && wq_tw_color=="NA"){
-			
-			//----------- Test Kit chkbox			
-			if (wq_pota!="" && wq_pota!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_pota
-					}else{
-						testKitChk+=","+wq_pota
-						}
-			}
-			if (wq_delAgua!="" && wq_delAgua!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_delAgua
-					}else{
-						testKitChk+=","+wq_delAgua
-						}
-			}
-			if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_hach_ez_as
-					}else{
-						testKitChk+=","+wq_hach_ez_as
-						}
-			}
-			if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_solinity_meter
-					}else{
-						testKitChk+=","+wq_solinity_meter
-						}
-			}
-			if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_mn_test_kit
-					}else{
-						testKitChk+=","+wq_mn_test_kit
-						}
-			}
-			if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_test_kit_lab_test
-					}else{
-						testKitChk+=","+wq_test_kit_lab_test
-						}
-			}
-			if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_cloride
-					}else{
-						testKitChk+=","+wq_tst_kit_cloride
-						}
-			}
-			if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_oth
-					}else{
-						testKitChk+=","+wq_tst_kit_oth
-						}
-			}
-			
-			if (wq_iron_test==undefined){
-				wq_iron_test="";
-			}
-			if (wq_drinking!="" && wq_drinking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking
-						}
-			}
-			if (wq_drinking_cooking!="" && wq_drinking_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking
-						}
-			}
-			if (wq_cooking!="" && wq_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_cooking
-						}
-			}
-			if (wq_washing!="" && wq_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_washing
-					}else{
-						useOfChk=useOfChk+","+wq_washing
-						}
-			}
-			if (wq_drinking_cooking_washing!="" && wq_drinking_cooking_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking_washing
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking_washing
-						}
-			}
-			if (wq_others_option!="" && wq_others_option!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_others_option
-					}else{
-						useOfChk=useOfChk+","+wq_others_option
-						}
-			}	
-			
-			sw_option="";
-			alt_option="";
-			sw_distance="";
-			ac_taken="";
+		if (management_caretaker_flag==true){
 						
-			if(arc_patient_yn=="NO"){
-				arc_patient="";
-			}							
-			if(wq_potable_status=="Yes"){					
+			if(wq_potable_status=="Potable"){
+				$("#reason_non_potable").val("");
+				$("#non_potable_ini").val("");
+				
 				wq_res_non_potable="";
 				wq_no_potable_initiative_taken="";
-			}				
+			}
+			
 			if(wq_all_test_complete=="YES"){
+				$("#res_n_test").val("");
 				wq_res_n_test="";
-			}
-			if(wq_management_committee_exist=="NO"){
-				wq_management_committee_ori="";
-			}
-			if(wq_management_committee_ori=="YES"){
-				wq_management_committee_not_ori="";				
-			}
-			if(wq_management_committee_not_ori==undefined || wq_management_committee_not_ori==""){
-				wq_management_committee_not_ori="";	
-			}
-			if(wq_caretaker_trained=="YES"){
-				wq_caretaker_trained_not="";
-			}	
-			if(wq_renovation_type==undefined || wq_renovation_type==""){
-				wq_renovation_type="";
-			}				
+				}
 			
-		}else if(provided_by=="Other stakeholder" && test_type_val=="During Instalation" && wq_tw_color=="Green" || wq_tw_color=="Red"){
+		
+			if(test_type_val=="Pre Instalation" || test_type_val=="Monitoring" || test_type_val=="Cross Check"){
+				
+				/*wq_siteSelectDate="";
+				wq_ins_date="";
+				wq_san_ins="";
+				wq_inspect_date="";
+				wq_san_risk_sc="";*/
+					
+				wq_plat_condition="";
+				drain_condition="";
+				wp_repair="";
+				chamber_condition="";
+				wq_maintain_by="";
+				user_w_payment="";
+				
+				wq_depth="";
+				wq_static_w_l="";
+				wq_first_date="";
+				wq_last_date="";
+				wq_analysis_date="";
+				
+				wq_appDate="";
+				wq_handOvrDate="";
+				
+				
+				wq_wab_con="";
+				wq_comm_con="";
+				wq_total_cost="";
+				
+				wq_do_user_pay="";
+				wq_is_piped_W_connection="";
+				wq_piped_w_sup="";
+				
+				if(wq_is_piped_W_connection=="NO"){
+					$("#piped_w_sup").val("");
+					wq_piped_w_sup="";
+				}
+				
+				if (wq_iron_test==undefined){
+					wq_iron_test="";
+					}
+				
+				if(wq_management_committee_exist==undefined){
+					wq_management_committee_exist="";
+					}
+				
+				if(wq_management_committee_not_exist==undefined){
+					wq_management_committee_not_exist="";
+					}
+				
+				if(wq_caretaker_trained==undefined){
+					wq_caretaker_trained="";
+					}
+				
+				if(wq_management_committee_ori==undefined){
+					wq_management_committee_ori="";
+					}
+				
+				if(wq_management_committee_not_ori==undefined){
+					wq_management_committee_not_ori="";
+					}
+				
+				if(wq_management_committee_exist=="NO"){
+					wq_management_committee_ori="";
+					$( "input:radio[name='m_comm_ori_complt'][value='"+wq_management_committee_ori+"']" ).attr('checked','');
+				}else{
+					wq_management_committee_not_exist="";
+					$( "input:radio[name='isNotManagement'][value='"+wq_management_committee_not_exist+"']" ).attr('checked','');
+					
+				}
+				
+				
+				if(wq_management_committee_ori=="YES"){
+					wq_management_committee_not_ori="";
+					$( "input:radio[name='m_comm_ori_no'][value='"+wq_management_committee_ori+"']" ).attr('checked','');
+				}
+				
+				if(wq_caretaker_trained_not==undefined){
+					wq_caretaker_trained_not="";
+					}
+				
+				if(wq_caretaker_trained=="NO"){
+						wq_caretaker_trained_not="";
+						$( "input:radio[name='m_comm_ori_complt'][value='"+wq_caretaker_trained_not+"']" ).attr('checked','');
+					}
+				
+				
+				$("#plat_condition").val("");
+				$("#drain_condition").val("");
+				$("#wp_repair").val("");
+				$("#chamber_condition").val("");
+				
+				$( "input:radio[name='maintain_by'][value='"+wq_maintain_by+"']" ).attr('checked','');
+				$( "input:radio[name='user_w_payment'][value='"+user_w_payment+"']" ).attr('checked','');
+				
+				$("#depth").val("");
+				$("#sWaterL").val("");
+				$("#fstDate").val("");
+				$("#lastDate").val("");
+				$("#aDate").val("");
+				
+				$("#appDate").val("");
+				$("#handOvrDate").val("");
+				
+				$("#wab_con").val("");
+				$("#comm_con").val("");
+				$("#total_cost").val("");
+				$( "input:radio[name='piped_w_conn'][value='"+wq_is_piped_W_connection+"']" ).attr('checked','');
+				$("#piped_w_sup").val("");
+				
+			}
 			
-			//----------- Test Kit chkbox			
-			if (wq_pota!="" && wq_pota!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_pota
-					}else{
-						testKitChk+=","+wq_pota
-						}
-			}
-			if (wq_delAgua!="" && wq_delAgua!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_delAgua
-					}else{
-						testKitChk+=","+wq_delAgua
-						}
-			}
-			if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_hach_ez_as
-					}else{
-						testKitChk+=","+wq_hach_ez_as
-						}
-			}
-			if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_solinity_meter
-					}else{
-						testKitChk+=","+wq_solinity_meter
-						}
-			}
-			if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_mn_test_kit
-					}else{
-						testKitChk+=","+wq_mn_test_kit
-						}
-			}
-			if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_test_kit_lab_test
-					}else{
-						testKitChk+=","+wq_test_kit_lab_test
-						}
-			}
-			if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_cloride
-					}else{
-						testKitChk+=","+wq_tst_kit_cloride
-						}
-			}
-			if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_oth
-					}else{
-						testKitChk+=","+wq_tst_kit_oth
-						}
-			}
+			//--------------------------------------------------------------
+			if(wq_management_committee_exist==undefined){
+					wq_management_committee_exist="";
+					}
+				
+				if(wq_management_committee_not_exist==undefined){
+					wq_management_committee_not_exist="";
+					}
+				
+				if(wq_caretaker_trained==undefined){
+					wq_caretaker_trained="";
+					}
+				
+				if(wq_management_committee_ori==undefined){
+					wq_management_committee_ori="";
+					}
+				
+				if(wq_management_committee_not_ori==undefined){
+					wq_management_committee_not_ori="";
+					}
+				
+				
+				if(wq_management_committee_exist=="NO"){
+					wq_management_committee_ori="";
+					$( "input:radio[name='m_comm_ori_complt'][value='"+wq_management_committee_ori+"']" ).attr('checked','');
+				}else{
+					wq_management_committee_not_exist="";
+					$( "input:radio[name='isNotManagement'][value='"+wq_management_committee_not_exist+"']" ).attr('checked','');
+					
+				}
+				
+				
+				if(wq_management_committee_ori=="YES"){
+					wq_management_committee_not_ori="";
+					$( "input:radio[name='m_comm_ori_no'][value='"+wq_management_committee_ori+"']" ).attr('checked','');
+				}
+				
+			//-----------------------------------------------------------------------
 			
-			if (wq_iron_test==undefined){
-				wq_iron_test="";
-			}
-			if (wq_drinking!="" && wq_drinking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking
-						}
-			}
-			if (wq_drinking_cooking!="" && wq_drinking_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking
-						}
-			}
-			if (wq_cooking!="" && wq_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_cooking
-						}
-			}
-			if (wq_washing!="" && wq_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_washing
-					}else{
-						useOfChk=useOfChk+","+wq_washing
-						}
-			}
-			if (wq_drinking_cooking_washing!="" && wq_drinking_cooking_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking_washing
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking_washing
-						}
-			}
-			if (wq_others_option!="" && wq_others_option!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_others_option
-					}else{
-						useOfChk=useOfChk+","+wq_others_option
-						}
-			}							
-			if(sw_option=="NO"){
+			if(wq_tw_color=="Green" || wq_tw_color=="NA" ){
+				
+				sw_option="";
 				alt_option="";
 				sw_distance="";
 				ac_taken="";
-			}		
-			if(arc_patient_yn=="NO"){
+				
+				arc_patient_yn="";
 				arc_patient="";
+				
+				$( "input:radio[name='sw_option'][value='"+sw_option+"']" ).attr('checked','');
+				$( "input:radio[name='alt_option'][value='"+alt_option+"']" ).attr('checked','');
+				$( "input:radio[name='sw_distance'][value='"+sw_distance+"']" ).attr('checked','');
+				$( "input:radio[name='ac_taken'][value='"+ac_taken+"']" ).attr('checked','');
+				
+				$("#arc_patient_yn").val("");
+				$("#arc_patient").val("");
+				
+				
 			}
-								
-			if(wq_potable_status=="Yes"){					
-				wq_res_non_potable="";
-				wq_no_potable_initiative_taken="";
-			}				
-			if(wq_all_test_complete=="YES"){
-				wq_res_n_test="";
-			}
-			if(wq_management_committee_exist==undefined || wq_management_committee_exist==""){
-				wq_management_committee_exist="";
-			}			
-			if(wq_management_committee_not_exist==undefined || wq_management_committee_not_exist==""){
-				wq_management_committee_not_exist="";
-			}		
-			if(wq_management_committee_ori==undefined || wq_management_committee_ori==""){
-				wq_management_committee_ori="";
-			}			
-			if(wq_management_committee_not_ori==undefined || wq_management_committee_not_ori==""){
-				wq_management_committee_not_ori="";
-			}
-			if(wq_caretaker_trained==undefined || wq_caretaker_trained==""){
-				wq_caretaker_trained="";
-			}
-			if(wq_caretaker_trained_not==undefined || wq_caretaker_trained_not==""){
-				wq_caretaker_trained_not="";
-			}
-			if(wq_renovation_type==undefined || wq_renovation_type==""){
-				wq_renovation_type="";
-			}
-			if(wq_installation_done==undefined || wq_installation_done==""){
-				wq_installation_done="";
-			}
-			
-		}else if(provided_by=="Other stakeholder" && test_type_val=="During Instalation" && wq_tw_color=="NA"){
-			
-			//----------- Test Kit chkbox			
-			if (wq_pota!="" && wq_pota!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_pota
-					}else{
-						testKitChk+=","+wq_pota
-						}
-			}
-			if (wq_delAgua!="" && wq_delAgua!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_delAgua
-					}else{
-						testKitChk+=","+wq_delAgua
-						}
-			}
-			if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_hach_ez_as
-					}else{
-						testKitChk+=","+wq_hach_ez_as
-						}
-			}
-			if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_solinity_meter
-					}else{
-						testKitChk+=","+wq_solinity_meter
-						}
-			}
-			if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_mn_test_kit
-					}else{
-						testKitChk+=","+wq_mn_test_kit
-						}
-			}
-			if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_test_kit_lab_test
-					}else{
-						testKitChk+=","+wq_test_kit_lab_test
-						}
-			}
-			if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_cloride
-					}else{
-						testKitChk+=","+wq_tst_kit_cloride
-						}
-			}
-			if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
-				if(testKitChk==""){
-					testKitChk=wq_tst_kit_oth
-					}else{
-						testKitChk+=","+wq_tst_kit_oth
-						}
-			}
-			
-			if (wq_iron_test==undefined){
-				wq_iron_test="";
-			}
-			if (wq_drinking!="" && wq_drinking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking
-						}
-			}
-			if (wq_drinking_cooking!="" && wq_drinking_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking
-						}
-			}
-			if (wq_cooking!="" && wq_cooking!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_cooking
-					}else{
-						useOfChk=useOfChk+","+wq_cooking
-						}
-			}
-			if (wq_washing!="" && wq_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_washing
-					}else{
-						useOfChk=useOfChk+","+wq_washing
-						}
-			}
-			if (wq_drinking_cooking_washing!="" && wq_drinking_cooking_washing!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_drinking_cooking_washing
-					}else{
-						useOfChk=useOfChk+","+wq_drinking_cooking_washing
-						}
-			}
-			if (wq_others_option!="" && wq_others_option!=undefined ){
-				if(useOfChk==""){
-					useOfChk=wq_others_option
-					}else{
-						useOfChk=useOfChk+","+wq_others_option
-						}
-			}	
-			
-			sw_option=""
-			alt_option="";
-			sw_distance="";
-			ac_taken="";
-			
-			if(arc_patient_yn=="NO"){
-				arc_patient="";
-			}												
-			if(wq_potable_status=="Yes"){					
-				wq_res_non_potable="";
-				wq_no_potable_initiative_taken="";
-			}				
-			if(wq_all_test_complete=="YES"){
-				wq_res_n_test="";
-			}
-			if(wq_management_committee_exist==undefined || wq_management_committee_exist==""){
-				wq_management_committee_exist="";
-			}			
-			if(wq_management_committee_not_exist==undefined || wq_management_committee_not_exist==""){
-				wq_management_committee_not_exist="";
-			}		
-			if(wq_management_committee_ori==undefined || wq_management_committee_ori==""){
-				wq_management_committee_ori="";
-			}			
-			if(wq_management_committee_not_ori==undefined || wq_management_committee_not_ori==""){
-				wq_management_committee_not_ori="";
-			}
-			if(wq_caretaker_trained==undefined || wq_caretaker_trained==""){
-				wq_caretaker_trained="";
-			}
-			if(wq_caretaker_trained_not==undefined || wq_caretaker_trained_not==""){
-				wq_caretaker_trained_not="";
-			}
-			if(wq_renovation_type==undefined || wq_renovation_type==""){
-				wq_renovation_type="";
-			}
-			if(wq_installation_done==undefined || wq_installation_done==""){
-				wq_installation_done="";
-			}
-					
 		}
 		
-//syncDataWQ();		
-wq_photo=$("#wq_photo").val();	
+		//----------- Test Kit chkbox
+		
+		if (wq_pota!="" && wq_pota!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_pota
+				}else{
+					testKitChk+=","+wq_pota
+					}
+		}
+		if (wq_delAgua!="" && wq_delAgua!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_delAgua
+				}else{
+					testKitChk+=","+wq_delAgua
+					}
+		}
+		if (wq_hach_ez_as!="" && wq_hach_ez_as!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_hach_ez_as
+				}else{
+					testKitChk+=","+wq_hach_ez_as
+					}
+		}
+		if (wq_solinity_meter!="" && wq_solinity_meter!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_solinity_meter
+				}else{
+					testKitChk+=","+wq_solinity_meter
+					}
+		}
+		if (wq_mn_test_kit!="" && wq_mn_test_kit!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_mn_test_kit
+				}else{
+					testKitChk+=","+wq_mn_test_kit
+					}
+		}
+		if (wq_test_kit_lab_test!="" && wq_test_kit_lab_test!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_test_kit_lab_test
+				}else{
+					testKitChk+=","+wq_test_kit_lab_test
+					}
+		}
+		if (wq_tst_kit_cloride!="" && wq_tst_kit_cloride!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_tst_kit_cloride
+				}else{
+					testKitChk+=","+wq_tst_kit_cloride
+					}
+		}
+		if (wq_tst_kit_oth!="" && wq_tst_kit_oth!=undefined ){
+			if(testKitChk==""){
+				testKitChk=wq_tst_kit_oth
+				}else{
+					testKitChk+=","+wq_tst_kit_oth
+					}
+		}
+				
+		if (wq_drinking!="" && wq_drinking!=undefined ){
+			if(useOfChk==""){
+				useOfChk=wq_drinking
+				}else{
+					useOfChk=useOfChk+","+wq_drinking
+					}
+		}
+		if (wq_cooking!="" && wq_cooking!=undefined ){
+			if(useOfChk==""){
+				useOfChk=wq_cooking
+				}else{
+					useOfChk=useOfChk+","+wq_cooking
+					}
+		}
+		if (wq_washing!="" && wq_washing!=undefined ){
+			if(useOfChk==""){
+				useOfChk=wq_washing
+				}else{
+					useOfChk=useOfChk+","+wq_washing
+					}
+		}
+		if (wq_Others!="" && wq_Others!=undefined ){
+			if(useOfChk==""){
+				useOfChk=wq_Others
+				}else{
+					useOfChk=useOfChk+","+wq_Others
+					}
+		}
+		if (wq_all_purpose!="" && wq_all_purpose!=undefined ){
+			if(useOfChk==""){
+				useOfChk=wq_all_purpose
+				}else{
+					useOfChk=useOfChk+","+wq_all_purpose
+					}
+		}
+		
+		wq_photo=$("#wq_photo").val();
+
 if (wq_photo=="" || wq_photo==undefined){
 	$(".errorChk").text("Please confirm Photo");
 	$("#btn_wq_submit").show();
@@ -3745,15 +2940,16 @@ if (wq_photo=="" || wq_photo==undefined){
 			}
 		}
 	}
-//}
+}
+
+
 
 function syncDataWQ(){	
 		
-		//alert(apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&wq_vill='+encodeURIComponent(wq_vill)+'&test_type_val='+test_type_val+'&type_of_wq_facility='+encodeURIComponent(type_of_wq_facility)+'&provided_by='+provided_by+'&wq_ref='+encodeURIComponent(wq_ref)+'&wq_id='+encodeURIComponent(wq_id)+'&wq_plat_condition='+encodeURIComponent(wq_plat_condition)+'&drain_condition='+encodeURIComponent(drain_condition)+'&wp_repair='+encodeURIComponent(wp_repair)+'&chamber_condition='+encodeURIComponent(chamber_condition)+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_ins_date='+wq_ins_date+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_siteSelectDate='+wq_siteSelectDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+encodeURIComponent(wq_owner_name)+'&wq_owner_phone='+encodeURIComponent(wq_owner_phone)+'&wq_caretaker='+encodeURIComponent(wq_caretaker)+'&caretakerPhone='+encodeURIComponent(caretakerPhone)+'&wq_select_tech='+encodeURIComponent(wq_select_tech)+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_residual='+wq_residual+'&wq_colour='+wq_colour+'&wq_fc='+wq_fc+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+encodeURIComponent(sw_option)+'&alt_option='+encodeURIComponent(alt_option)+'&sw_distance='+encodeURIComponent(sw_distance)+'&ac_taken='+encodeURIComponent(ac_taken)+'&arc_patient_yn='+arc_patient_yn+'&arc_patient='+arc_patient+'&wq_san_ins='+wq_san_ins+'&wq_inspect_date='+wq_inspect_date+'&wq_san_risk_sc='+wq_san_risk_sc+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+encodeURIComponent(wq_res_non_potable)+'&wq_no_potable_initiative_taken='+encodeURIComponent(wq_no_potable_initiative_taken)+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_do_user_pay='+wq_do_user_pay+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+encodeURIComponent(wq_res_n_test)+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_not_exist='+encodeURIComponent(wq_management_committee_not_exist)+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_management_committee_not_ori='+wq_management_committee_not_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_renovation_type='+encodeURIComponent(wq_renovation_type)+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+imageName+'&wq_startDt='+startDtWq);
 		
 		$.ajax({
 				type: 'POST',
-				url:apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&wq_vill='+encodeURIComponent(wq_vill)+'&test_type_val='+test_type_val+'&type_of_wq_facility='+encodeURIComponent(type_of_wq_facility)+'&provided_by='+provided_by+'&wq_ref='+encodeURIComponent(wq_ref)+'&wq_id='+encodeURIComponent(wq_id)+'&wq_plat_condition='+encodeURIComponent(wq_plat_condition)+'&drain_condition='+encodeURIComponent(drain_condition)+'&wp_repair='+encodeURIComponent(wp_repair)+'&chamber_condition='+encodeURIComponent(chamber_condition)+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_ins_date='+wq_ins_date+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_siteSelectDate='+wq_siteSelectDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+encodeURIComponent(wq_owner_name)+'&wq_owner_phone='+encodeURIComponent(wq_owner_phone)+'&wq_caretaker='+encodeURIComponent(wq_caretaker)+'&caretakerPhone='+encodeURIComponent(caretakerPhone)+'&wq_select_tech='+encodeURIComponent(wq_select_tech)+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_residual='+wq_residual+'&wq_colour='+wq_colour+'&wq_fc='+wq_fc+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+encodeURIComponent(sw_option)+'&alt_option='+encodeURIComponent(alt_option)+'&sw_distance='+encodeURIComponent(sw_distance)+'&ac_taken='+encodeURIComponent(ac_taken)+'&arc_patient_yn='+arc_patient_yn+'&arc_patient='+arc_patient+'&wq_san_ins='+wq_san_ins+'&wq_inspect_date='+wq_inspect_date+'&wq_san_risk_sc='+wq_san_risk_sc+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+encodeURIComponent(wq_res_non_potable)+'&wq_no_potable_initiative_taken='+encodeURIComponent(wq_no_potable_initiative_taken)+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_do_user_pay='+wq_do_user_pay+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+encodeURIComponent(wq_res_n_test)+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_not_exist='+encodeURIComponent(wq_management_committee_not_exist)+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_management_committee_not_ori='+wq_management_committee_not_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_renovation_type='+encodeURIComponent(wq_renovation_type)+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+imageName+'&wq_startDt='+startDtWq,
+				url:apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&wq_vill='+encodeURIComponent(wq_vill)+'&test_type_val='+test_type_val+'&type_of_wq_facility='+encodeURIComponent(type_of_wq_facility)+'&provided_by='+provided_by+'&wq_ref='+encodeURIComponent(wq_ref)+'&wq_id='+encodeURIComponent(wq_id)+'&wq_plat_condition='+encodeURIComponent(wq_plat_condition)+'&drain_condition='+encodeURIComponent(drain_condition)+'&wp_repair='+encodeURIComponent(wp_repair)+'&chamber_condition='+encodeURIComponent(chamber_condition)+'&wq_maintain_by='+wq_maintain_by+'&user_w_payment='+user_w_payment+'&wq_ins_date='+wq_ins_date+'&wq_depth='+wq_depth+'&wq_static_w_l='+wq_static_w_l+'&wq_first_date='+wq_first_date+'&wq_last_date='+wq_last_date+'&wq_analysis_date='+wq_analysis_date+'&wq_appDate='+wq_appDate+'&wq_siteSelectDate='+wq_siteSelectDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+encodeURIComponent(wq_owner_name)+'&wq_owner_phone='+encodeURIComponent(wq_owner_phone)+'&wq_caretaker='+encodeURIComponent(wq_caretaker)+'&caretakerPhone='+encodeURIComponent(caretakerPhone)+'&wq_select_tech='+encodeURIComponent(wq_select_tech)+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_sl='+wq_sl+'&wq_as_ppb='+wq_as_ppb+'&wq_fe_ng='+wq_fe_ng+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_turb_ntu='+wq_turb_ntu+'&wq_chlorine='+wq_chlorine+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_c_bac='+wq_c_bac+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fluoride='+wq_fluoride+'&wq_residual='+wq_residual+'&wq_colour='+wq_colour+'&wq_fc='+wq_fc+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+encodeURIComponent(sw_option)+'&alt_option='+encodeURIComponent(alt_option)+'&sw_distance='+encodeURIComponent(sw_distance)+'&ac_taken='+encodeURIComponent(ac_taken)+'&arc_patient_yn='+arc_patient_yn+'&arc_patient='+arc_patient+'&wq_san_ins='+wq_san_ins+'&wq_inspect_date='+wq_inspect_date+'&wq_san_risk_sc='+wq_san_risk_sc+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+encodeURIComponent(wq_res_non_potable)+'&wq_no_potable_initiative_taken='+encodeURIComponent(wq_no_potable_initiative_taken)+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_do_user_pay='+wq_do_user_pay+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_piped_w_sup='+wq_piped_w_sup+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+encodeURIComponent(wq_res_n_test)+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_not_exist='+encodeURIComponent(wq_management_committee_not_exist)+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_management_committee_not_ori='+wq_management_committee_not_ori+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_sample_analysis='+wq_sample_analysis+'&wq_renovation_type='+encodeURIComponent(wq_renovation_type)+'&wq_installation_done='+wq_installation_done+'&latitude='+latitudewq+'&longitude='+longitudewq+'&wq_photo='+imageName+'&wq_startDt='+startDtWq,
 				   
 				   success: function(result) {
 						//alert(result);
@@ -3881,7 +3077,6 @@ function uploadPhotoAch(imageURI, imageName) {
     params.value2 = "param";
 
     options.params = params;
-	options.chunkedMode = false;
 
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),winAch,fail,options);
@@ -3916,7 +3111,6 @@ function uploadPhotoWQ(imageURI, imageName) {
     params.value2 = "param";
 
     options.params = params;
-	options.chunkedMode = false;
 
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),winWQ,fail,options);
