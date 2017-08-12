@@ -66,12 +66,6 @@
 			<ul data-role="listview" data-inset="true">
                 <li ><a href="#" onClick="field_force_detail();" data-transition="slide">Report</a></li> 
             </ul>
-            <br />
-           <ul data-role="listview" data-inset="true">
-                <input name="area_lat" id="area_lat"  type="hidden">
-                <input name="area_long" id="area_long"  type="hidden">
-        		<a data-role="button" id="btn_area_lat_long" onClick="getLocationInfoAreaWq();" class="ui-btn" >Area location</a>
-           </ul> 
     </div>
 <!--    <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >m-Reporting 20160407</div><!------/footer-->
   
@@ -669,7 +663,7 @@
                 </fieldset>
             </li>
         </ul>
-        <!--<ul data-role="listview" data-inset="true">
+        <ul data-role="listview" data-inset="true">
             <li style="background-color:#F2F2F2;">User water payment</li>
             <li class="ui-field-contain">
                 <fieldset data-role="controlgroup">
@@ -679,7 +673,7 @@
                     <label for="some_cost">NO</label>
                 </fieldset>
             </li>
-        </ul>-->        
+        </ul>        
         
         <a data-role="button" href="#" onClick="waterData2Next();" data-transition="slide" >Next</a>
         <div class="errorChk"></div>
@@ -856,7 +850,7 @@
 						</td>                       
                     </tr>
                     <tr id="depth">
-                        <td width="70%" style="vertical-align:middle;"> Depth(in meter)</td>
+                        <td width="70%" style="vertical-align:middle;"> Depth(in meter)<sup class="reqField">*</sup></td>
                         <td width="30%"><input name="depth" id="depth" placeholder="" value="" type="number"></td>
                     </tr>
                     <tr id="water_level">
@@ -1960,16 +1954,16 @@
                 <li class="ui-field-contain">
                     <fieldset data-role="controlgroup">
                         <legend>Potable Status <sup class="reqField">*</sup></legend>
-                        <input type="radio" name="potable_st" id="st_potable" value="Yes" onchange="potableStatus()">
+                        <input type="radio" name="potable_st" id="st_potable" value="Yes">
                         <label for="st_potable">Yes</label>
-                        <input type="radio" name="potable_st" id="st_non_potable" value="No" onchange="potableStatus()">
+                        <input type="radio" name="potable_st" id="st_non_potable" value="No">
                         <label for="st_non_potable">No</label>
                     </fieldset>
                 </li>
             </ul>
         </div>
-            <ul data-role="listview" data-inset="true" >
-                <li class="ui-field-contain" id="non_potbl_res">
+            <ul data-role="listview" data-inset="true" id="non_potbl_res">
+                <li class="ui-field-contain">
                 	<label for="reason_non_potable"> Reason for non- potable water  </label>
                 	<select name="reason_non_potable" id="reason_non_potable" data-native-menu="false" >
                         <option value="Arsenic level is above permissible limit">Arsenic level is above permissible limit</option>
@@ -1977,7 +1971,7 @@
                         <option value="Others">Others</option>
                      </select>
                 </li>
-                <li class="ui-field-contain" id="non_potbl_res_followup_ac">
+                <li class="ui-field-contain">
                 	<label for=""> Follow-up action  </label>
                 	<select name="non_potable_ini" id="non_potable_ini" data-native-menu="false" >
                         <option value="Reduce contamination through maintenance and continuous monitoring">Reduce contamination through maintenance and continuous monitoring</option>
