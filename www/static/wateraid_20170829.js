@@ -1856,8 +1856,13 @@ function waterData8Next(){
 				var url="#waterData9";
 			}else if(test_type_val=="During Instalation" && wq_tw_color=="Green" ){				
 				$("#managementCommittee").hide();
-				$("#typeOfRenovation").hide();				
-				var url="#waterData9_1";
+				$("#typeOfRenovation").hide();
+				/*if(provided_by=="Other stakeholder"){
+					var url="#waterData9";
+				}else{
+					var url="#waterData10";
+				}*/
+				var url="#waterData10";
 			}else if(test_type_val=="During Instalation" && wq_tw_color=="NA" ){		
 				$("#safeWaterOPtion").hide();	
 				$("#safW_altOption").hide();
@@ -1874,7 +1879,7 @@ function waterData8Next(){
 				$("#smpleAnaly").show();
 				$("#typeOfRenovation").show();
 				//var url="#waterData9";
-				var url="#waterData9_1";
+				var url="#waterData10";
 			}else if(test_type_val=="Renovation Instalation" && wq_tw_color=="Red"){
 				//hide
 				$("#pipe_conc").hide();	
@@ -1902,7 +1907,7 @@ function waterData8Next(){
 				//show
 				$("#typeOfRenovation").show();
 				//var url="#waterData9";
-				var url="#waterData9_1";
+				var url="#waterData10";
 			}else if(test_type_val=="Monitoring" && wq_tw_color=="Red"){			
 				//hide
 				$("#managementCommittee").hide();
@@ -2192,27 +2197,6 @@ function waterData13Next(){
 			if (provided_by=='WAB' && test_type_val=="During Instalation" ){
 				$("#installationDone").hide();
 				var url="#waterData14";
-			}else if(provided_by=='WAB' && test_type_val=="Renovation Instalation"){
-				$("#isManagement").show();
-				$("#m_comm_ori").show();
-				$("#m_comm_ori_no").show();
-				$("#caretakerTrained").show();
-				$("#caretakerTrainedNo").show();
-				$("#monitoring_new_option").hide();				
-				$("#typeOfRenovation").hide();
-				$("#other_alt").hide();
-				$("#installationDone").hide();	
-				var url="#waterData14";	
-			}else if(provided_by=='WAB' && test_type_val=="Monitoring"){
-				$("#isManagement").show();
-				$("#m_comm_ori").show();
-				//$("#m_comm_ori_no").show();
-				$("#caretakerTrained").show();
-				$("#caretakerTrainedNo").show();			
-				$("#typeOfRenovation").hide();
-				$("#other_alt").hide();
-				$("#installationDone").hide();	
-				var url="#waterData14";					
 			}else{
 				$("#isManagement").hide();
 				$("#m_comm_ori").hide();
@@ -3195,11 +3179,9 @@ if (wq_photo=="" || wq_photo==undefined){
 	$(".errorChk").text("Please confirm Photo");
 	$("#btn_wq_submit").show();
 }else{	
-	if(latitudewq==0 || longitudewq==0){
-		if(localStorage.latitudeAreaWq==0 || localStorage.longitudeAreaWq==0){
-			$(".errorChk").text("Please confirm your location");
-			$("#btn_wq_submit").show();
-		}
+	if((latitudewq==0 || longitudewq==0) ||(localStorage.latitudeAreaWq==0 || localStorage.longitudeAreaWq==0)){
+		$(".errorChk").text("Please confirm your location");
+		$("#btn_wq_submit").show();
 	}else{			
 		if (wq_plan_id=='' || wq_CBO_id==''){
 			$(".errorChk").text("New records not available");
