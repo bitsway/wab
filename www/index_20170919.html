@@ -554,8 +554,11 @@
                     <option value="">Test Type</option>
                     <option value="Pre Instalation">Pre Installation</option>
                     <option value="During Instalation">During Installation</option>
+                    <!--<option value="New Instalation">Installation new</option>-->
                     <option value="Renovation Instalation">Renovation</option>
                     <option value="Monitoring">Monitoring</option>
+                    <!--<option value="Cross Check">Cross Check</option>
+					<option value="Arsenic Screening">Arsenic Screening</option>-->
                 </select>
                 
             </li>
@@ -571,6 +574,8 @@
                     <option value="GFS">GFS</option>
                     <option value="Water Point Stand Post">Water Point Stand Post</option>
                     <option value="Rain water harvesting">Rain water harvesting</option>
+                    <!--<option value="Cross Check">Cross Check</option>
+					<option value="Arsenic Screening">Arsenic Screening</option>-->
                 </select>
                 
             </li>
@@ -703,12 +708,10 @@
                 <table data-role="table" data-theme="d" data-mode="display:none" class="ui-body-d ui-shadow table-stripe ui-responsive">
                     <tr>
                         <td colspan="3" id="otherPart"><strong>Other Particulars</strong></td>
-                        <!--<td colspan="3" id="otherPartBoreDate"><strong>Other Particulars Borehole data</strong></td>-->
+                        <td colspan="3" id="otherPartBoreDate"><strong>Other Particulars Borehole data</strong></td>
                     </tr>
                     <tr id="installation_date">
-                        <td colspan="3" style="vertical-align:middle; width:auto;" > 
-                        <label id="installDate">Installation Date<sup class="reqField">*</sup></label>
-                        <!--<label id="renovationDate">Renovation Date<sup class="reqField">*</sup></label>-->
+                        <td colspan="3" style="vertical-align:middle; width:auto;" id="installDate"> Installation Date<sup class="reqField">*</sup> 
                         <!--<td colspan="3" style="vertical-align:middle; width:auto;" id="renovationDate"> Renovation Date<sup class="reqField">*</sup> -->
 						     <div class="ui-grid-b">
 								<div class="ui-block-a">
@@ -780,7 +783,7 @@
 							</div>
 							
 						</td>
-                        <!--<td colspan="3" style="vertical-align:middle; width:auto;" id="renovationDate"> Renovation Date<sup class="reqField">*</sup> 
+                        <td colspan="3" style="vertical-align:middle; width:auto;" id="renovationDate"> Renovation Date<sup class="reqField">*</sup> 
 						     <div class="ui-grid-b">
 								<div class="ui-block-a">
 										<select name="ins_d" id="ins_d" >
@@ -850,17 +853,17 @@
 									
 							</div>
 							
-						</td>-->                       
+						</td>                       
                     </tr>
                     <tr id="depth">
                         <td width="70%" style="vertical-align:middle;"> Depth(in meter)</td>
-                        <td width="30%"><input type="number" name="depthM" id="depthM" /></td>
+                        <td width="30%"><input name="depth" id="depth" placeholder="" value="" type="number"></td>
                     </tr>
-                    <!--<tr id="water_level">
+                    <tr id="water_level">
                         <td width="70%" style="vertical-align:middle;">Static water level(in meter) </td>
                         <td width="30%"><input name="sWaterL" id="sWaterL" placeholder="" value="" type="number"></td>
-                    </tr>-->
-                    <!--<tr id="water_quantity">
+                    </tr>
+                    <tr id="water_quantity">
                         <td colspan="3" style="vertical-align:middle; width:auto;"> First date of water quality test<sup class="reqField">*</sup> 
 						     <div class="ui-grid-b">
 								<div class="ui-block-a">
@@ -932,7 +935,7 @@
 							</div>
 							
 						</td>                       
-                    </tr>-->
+                    </tr>
 					<tr>
                         <td colspan="3" style="vertical-align:middle; width:auto;">Sample collection date<sup class="reqField">*</sup>
 							
@@ -1408,7 +1411,7 @@
         <ul data-role="listview" data-inset="true">
 			<li class="ui-field-contain">
 				<label for="test_type" id="pree_install">Type of water facility</label>
-                <!--<label for="test_type" id="dont_pree_install">Particulars for drilling</label>-->
+                <label for="test_type" id="dont_pree_install">Particulars for drilling</label>
 				<select name="select_tech" id="select_tech" onchange="technology();" >
 					<option id="pree_install_val" value="">Type of water facility</option>
                     <option id="dont_pree_install_val" value="">Particulars for drilling</option>
@@ -1447,8 +1450,12 @@
                         <label for="mn_test_kit">Mn test kit</label>
                         <input name="test_kit_lab_test" id="test_kit_lab_test" value="Lab test" type="checkbox">
                         <label for="test_kit_lab_test">Lab test</label>
-                        <input name="micro_kit" id="micro_kit" value="Micro kit" type="checkbox">
+                       <!-- <input name="micro_kit" id="micro_kit" value="Micro kit" type="checkbox">
                         <label for="micro_kit">Micro kit</label>
+						<input name="tst_kit_cloride" id="tst_kit_cloride" value="Cloride" type="checkbox">
+                        <label for="tst_kit_cloride">Cloride</label>-->
+                        <input name="tst_kit_oth" id="tst_kit_oth" value="Micro kit" type="checkbox">
+                        <label for="tst_kit_oth">Micro kit</label>
                     </fieldset>
                 </li>
             </ul>
@@ -1462,18 +1469,18 @@
                         <td width="70%" style="vertical-align:middle;" > TTC(cfu)</td>
                         <td width="30%"><input name="ttc_cfu" id="ttc_cfu" placeholder="" value="" type="number"></td>
                     </tr>
-                    <!--<tr id="tech_sl">
+                    <tr id="tech_sl">
                         <td width="70%" style="vertical-align:middle;">SI</td>
                         <td width="30%"><input name="sl" id="sl" placeholder="" value="" type="number"></td>
-                    </tr>-->
+                    </tr>
                     <tr id="tech_as">
                         <td width="70%" style="vertical-align:middle;">As(ppb)  </td>
                         <td width="30%"><input name="as_ppb" id="as_ppb" placeholder="" value="" type="number"></td>
                     </tr>
-                   <!-- <tr id="tech_fe">
+                    <tr id="tech_fe">
                         <td width="70%" style="vertical-align:middle;">Fe(ng/l)</td>
                         <td width="30%"><input name="fe_ng" id="fe_ng" placeholder="" value="" type="number"></td>
-                    </tr>-->
+                    </tr>
                     <tr id="tech_mn">
                         <!--<td width="70%" style="vertical-align:middle;" id="Manganese_ppb">Magnanese(ppb) </td>-->
                         <td width="70%" style="vertical-align:middle;" id="">Manganese (mg/l)</td>
@@ -1492,10 +1499,10 @@
                         <td width="70%" style="vertical-align:middle;">Turbidity(NTU) </td>
                         <td width="30%"><input name="turb_ntu" id="turb_ntu" placeholder="" value="" type="number"></td>
                     </tr>
-                    <!--<tr id="tech_residual">
-                        <td width="70%" style="vertical-align:middle;">Residual </td>
+                    <tr id="tech_residual">
+                        <td width="70%" style="vertical-align:middle;">Residual </td><!--Chlorine-->
                         <td width="30%"><input name="residual" id="residual" placeholder="" value="" type="number">	</td>
-                    </tr>-->
+                    </tr>
                     <tr id="tech_ph">
                         <td width="70%" style="vertical-align:middle;">pH </td>
                         <td width="30%"><input name="ph" id="ph" placeholder="" value="" type="number"></td>
@@ -1537,10 +1544,10 @@
                         <td width="70%" style="vertical-align:middle;">Conductivity</td>
                         <td width="30%"><input name="condvity" id="condvity" placeholder="" value="" type="number"></td>
                     </tr>
-                    <!--<tr id="tech_fluoride">
+                    <tr id="tech_fluoride">
                         <td width="70%" style="vertical-align:middle;">Fluoride(mg)</td>
                         <td width="30%"><input name="fluoride" id="fluoride" placeholder="" value="" type="number"></td>
-                    </tr>-->
+                    </tr>
                     
                     <tr  id="fc">
                         <td width="70%" style="vertical-align:middle;">FC</td>
@@ -1902,14 +1909,19 @@
                         <fieldset data-role="controlgroup">
                             <input name="drinking" id="drinking" value="Drinking" type="checkbox" >
                             <label for="drinking">Drinking</label>
-                            <input name="cooking" id="cooking" value="Cooking" type="checkbox" >
-                            <label for="cooking">Cooking</label>
-                            <input name="washing" id="washing" value="Washing" type="checkbox" >                              
-                            <label for="washing">Washing</label>
+                            
                             <input name="drinking_cooking" id="drinking_cooking" value="Drinking and Cooking" type="checkbox" >
                             <label for="drinking_cooking">Drinking and Cooking</label>
+                            
+                            <input name="cooking" id="cooking" value="Cooking" type="checkbox" >
+                            <label for="cooking">Cooking</label>
+                            
+                            <input name="washing" id="washing" value="Washing" type="checkbox" >                              
+                            <label for="washing">Washing</label>
+                            
                             <input name="drinking_cooking_washing" id="drinking_cooking_washing" value="Drinking Cooking and Washing" type="checkbox" >
-                            <label for="drinking_cooking_washing">Drinking Cooking and Washing</label>                              
+                            <label for="drinking_cooking_washing">Drinking Cooking and Washing</label> 
+                             
                             <input name="others_option" id="others_option" value="Others Purpose" type="checkbox" >
                             <label for="others_option">Others Purpose</label>
                         </fieldset>
@@ -2290,7 +2302,7 @@
 				<div class="errorChk"></div>
                 <!--<div id="checkLocationWq" style="color:#FF0000;"></div>-->
         		<br/><br/>
-                <a data-role="button" id="btn_wq_save" href="#" onClick="WaterQDataSave();"  >Save</a>
+                <!--<a data-role="button" id="btn_wq_save" href="#" onClick="WaterQDataSave();"  >Save</a>-->
                 <a data-role="button" id="btn_wq_submit" href="#" onClick="waterQDataSubmit();" >Submit</a>
                 
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
