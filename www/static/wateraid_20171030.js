@@ -26,8 +26,7 @@ function onError(error) {
 
 //==========2
 function getLocationInfoWq() {	
-	var options = { enableHighAccuracy: true, timeout:30000};
-	navigator.geolocation.getCurrentPosition(onSuccessWq, onErrorWq, options);//,{timeout:3000};	
+	navigator.geolocation.getCurrentPosition(onSuccessWq, onErrorWq),{timeout:30000};	
 	$(".errorChk").html("Confirming location. Please wait.");	
 }
 				
@@ -39,7 +38,6 @@ function onSuccessWq(position) {
 }
 // onError Callback receives a PositionError object
 function onErrorWq(error) {
-	//alert(localStorage.latitudeAreaWq+'-'+localStorage.longitudeAreaWq);
    $("#wq_lat").val(localStorage.latitudeAreaWq);
    $("#wq_long").val(localStorage.longitudeAreaWq);
    
@@ -48,40 +46,29 @@ function onErrorWq(error) {
 //==========3
 //=======area
 function getLocationInfoAreaWq() {
-	var options = { enableHighAccuracy: true, timeout:30000};
-	navigator.geolocation.getCurrentPosition(onSuccessAreaWq, onErrorAreaWq, options);		
+	navigator.geolocation.getCurrentPosition(onSuccessAreaWq, onErrorAreaWq);		
 	$(".errorChk").html("Confirming location. Please wait.");
 }
 
 // onSuccess Geolocation
 function onSuccessAreaWq(position) {
 	$("#area_lat").val(position.coords.latitude);
-	$("#area_long").val(position.coords.longitude);	
+	$("#area_long").val(position.coords.longitude);
 	localStorage.latitudeAreaWq=$("#area_lat").val();
 	localStorage.longitudeAreaWq=$("#area_long").val();
-	
 	$(".errorChk").html("Location Confirmed");
-	setTimeout(function(){
-	   $(".errorChk").remove();
-	   },5000);
 }
 // onError Callback receives a PositionError object
 function onErrorAreaWq(error) {
    $("#area_lat").val(0);
    $("#area_long").val(0);
-   /*localStorage.latitudeAreaWq=$("#area_lat").val();
-	localStorage.longitudeAreaWq=$("#area_long").val();
-   alert(localStorage.latitudeAreaWq+'-'+localStorage.longitudeAreaWq);*/
    $(".errorChk").html("Failed to Confirmed Location.");
-   setTimeout(function(){
-	   $(".errorChk").remove();
-	   },5000);
 }
 
-var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_20171030_faisal/";
+var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_new_170719/";
 
 //--- local
-//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_20171030_faisal/";
+//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_new_170719/";
 
 
 var planFlag=0;
@@ -3259,10 +3246,10 @@ if (wq_photo=="" || wq_photo==undefined){
 
 function syncDataWQ(){	
 
-		if(latitudewq==0 || longitudewq==0){
+		/*if(latitudewq==0 || longitudewq==0){
 			latitudewq=localStorage.latitudeAreaWq;
 			longitudewq=localStorage.longitudeAreaWq;
-		}
+		}*/
 		
 		//alert(apipath+'submitWaterQualityData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&wq_plan_id='+wq_plan_id+'&wq_CBO_id='+wq_CBO_id+'&wq_vill='+encodeURIComponent(wq_vill)+'&provided_by='+provided_by+'&test_type_val='+test_type_val+'&type_of_wq_facility='+encodeURIComponent(type_of_wq_facility)+'&wq_ref='+encodeURIComponent(wq_ref)+'&wq_id='+encodeURIComponent(wq_id)+'&wq_plat_condition='+encodeURIComponent(wq_plat_condition)+'&drain_condition='+encodeURIComponent(drain_condition)+'&wp_repair='+encodeURIComponent(wp_repair)+'&chamber_condition='+encodeURIComponent(chamber_condition)+'&wq_maintain_by='+wq_maintain_by+'&wq_ins_date='+wq_ins_date+'&wq_depth='+wq_depth+'&wq_analysis_date='+wq_analysis_date+'&wq_last_date='+wq_last_date+'&wq_appDate='+wq_appDate+'&wq_siteSelectDate='+wq_siteSelectDate+'&wq_handOvrDate='+wq_handOvrDate+'&wq_owner_name='+encodeURIComponent(wq_owner_name)+'&wq_owner_phone='+encodeURIComponent(wq_owner_phone)+'&wq_caretaker='+encodeURIComponent(wq_caretaker)+'&caretakerPhone='+encodeURIComponent(caretakerPhone)+'&wq_select_tech='+encodeURIComponent(wq_select_tech)+'&testKitChk='+testKitChk+'&wq_ttc_cfu='+wq_ttc_cfu+'&wq_as_ppb='+wq_as_ppb+'&wq_mn_ppb='+wq_mn_ppb+'&wq_chl_ppt='+wq_chl_ppt+'&wq_chlorine='+wq_chlorine+'&wq_turb_ntu='+wq_turb_ntu+'&wq_ph='+wq_ph+'&wq_boron='+wq_boron+'&wq_ironFe='+wq_ironFe+'&wq_c_bac='+wq_c_bac+'&wq_colour='+wq_colour+'&wq_odor='+wq_odor+'&wq_nitrate='+wq_nitrate+'&wq_zinc='+wq_zinc+'&wq_condvity='+wq_condvity+'&wq_fc='+wq_fc+'&wq_tested_at='+wq_tested_at+'&wq_iron_test='+wq_iron_test+'&wq_tw_color='+wq_tw_color+'&sw_option='+encodeURIComponent(sw_option)+'&alt_option='+encodeURIComponent(alt_option)+'&sw_distance='+encodeURIComponent(sw_distance)+'&ac_taken='+encodeURIComponent(ac_taken)+'&arc_patient_yn='+arc_patient_yn+'&arc_patient='+arc_patient+'&wq_san_ins='+wq_san_ins+'&wq_inspect_date='+wq_inspect_date+'&wq_san_risk_sc='+wq_san_risk_sc+'&wq_functional='+wq_functional+'&useOfChk='+useOfChk+'&wq_potable_status='+wq_potable_status+'&wq_res_non_potable='+encodeURIComponent(wq_res_non_potable)+'&wq_no_potable_initiative_taken='+encodeURIComponent(wq_no_potable_initiative_taken)+'&wq_wab_con='+wq_wab_con+'&wq_comm_con='+wq_comm_con+'&wq_total_cost='+wq_total_cost+'&wq_do_user_pay='+wq_do_user_pay+'&wq_is_piped_W_connection='+wq_is_piped_W_connection+'&wq_all_test_complete='+wq_all_test_complete+'&wq_res_n_test='+encodeURIComponent(wq_res_n_test)+'&wq_management_committee_exist='+wq_management_committee_exist+'&wq_management_committee_ori='+wq_management_committee_ori+'&wq_management_committee_not_ori='+wq_management_committee_not_ori+'&wq_management_committee_not_new_option='+wq_management_committee_not_new_option+'&wq_caretaker_trained='+wq_caretaker_trained+'&wq_caretaker_trained_not='+wq_caretaker_trained_not+'&alt_others='+alt_others+'&wq_sample_analysis='+wq_sample_analysis+'&wq_renovation_type='+encodeURIComponent(wq_renovation_type)+'&wq_installation_done='+wq_installation_done+'&wq_photo='+imageName+'&wq_startDt='+startDtWq+'&latitude='+latitudewq+'&longitude='+longitudewq);
 		
