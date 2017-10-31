@@ -78,10 +78,10 @@ function onErrorAreaWq(error) {
 	   },5000);
 }
 
-var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_171031/";
+var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_20171030_faisal/";
 
 //--- local
-//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_171031/";
+//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_20171030_faisal/";
 
 
 var planFlag=0;
