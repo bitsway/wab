@@ -61,9 +61,7 @@ function onSuccessAreaWq(position) {
 	localStorage.longitudeAreaWq=$("#area_long").val();
 	
 	$(".errorChk").html("Location Confirmed");
-	setTimeout(function(){
-	   $(".errorChk").remove();
-	   },5000);
+	
 }
 // onError Callback receives a PositionError object
 function onErrorAreaWq(error) {
@@ -73,9 +71,6 @@ function onErrorAreaWq(error) {
 	localStorage.longitudeAreaWq=$("#area_long").val();
    alert(localStorage.latitudeAreaWq+'-'+localStorage.longitudeAreaWq);*/
    $(".errorChk").html("Failed to Confirmed Location.");
-   setTimeout(function(){
-	   $(".errorChk").remove();
-	   },5000);
 }
 
 var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_171031/";
