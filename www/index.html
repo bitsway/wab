@@ -73,7 +73,7 @@
         		<a data-role="button" id="btn_area_lat_long" onClick="getLocationInfoAreaWq();" class="ui-btn" >Area location</a>
            </ul> 
     </div>
-    <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >mReporting 20171101</div>
+    <div data-theme="d" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" >mReporting 20171104</div>
   
     <div data-role="panel" id="leftpanel" data-position="left" data-display="overlay" data-theme="d">
         <div align="center"><img src="wab.jpg"></div>
@@ -234,6 +234,13 @@
         <div class="errorChk"></div>
         <div id="reviewAchList"></div>
         <a data-role="button" onClick="reviewDataNext();"   data-transition="slide" >Next</a>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:20px;">
+          <tr>
+            <td><input type="checkbox" id="delConfirm" name="delConfirm" value="Yes" /></td>
+            <td ><label style="margin:10px 0px 0px 35px; ">Confirm Delete ?</label></td>
+          </tr>
+        </table>
+
         <a data-role="button" onClick="deleteAchReview();"   data-transition="slide" >Delete</a>
     </div><!----/header-->
 </div>
@@ -253,6 +260,12 @@
         <div class="errorChk"></div>
         <div id="reviewWqList"></div>
         <a data-role="button" onClick="reviewWqDataNext();"   data-transition="slide" >Next</a>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:20px;">
+          <tr>
+            <td><input type="checkbox" id="delConfirmWQ" name="delConfirmWQ" value="Yes" /></td>
+            <td ><label style="margin:10px 0px 0px 35px; ">Confirm Delete ?</label></td>
+          </tr>
+        </table>
         <a data-role="button" onClick="deleteWqReview();"   data-transition="slide" >Delete</a>
     </div>
 </div>
@@ -324,7 +337,13 @@
         <h3> Enter Population</h3>
     </div>
     <div data-role="content">
-        <div id="cboIdDiv"></div>
+        
+        <ul data-role="listview" data-inset="true" data-theme="d">
+            <li class="ui-field-contain">
+                <label for="">CBO Code</label>
+                <div id="cboIdDiv"></div>
+            </li>
+        </ul>
         <ul data-role="listview" data-inset="true" data-theme="d">
             <li class="ui-field-contain">
                 <label for="achID"> ID related to output</label>
@@ -458,7 +477,8 @@
 
     <div data-role="content">
         <div class="errorChk"></div>
-        <div id="serResDiv"></div>
+        <div id="serResDiv" style="margin-bottom:20px;"></div>
+        <div id="serTypeDiv"></div><br />
             <a data-role="button" href="#" onClick="serviceRecipentNext();"  data-transition="slide" >Next</a>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>			
     </div>
@@ -537,8 +557,13 @@
         <h3> Water Quality Data</h3>
     </div>
     <div data-role="content">
-        <div class="errorChk"></div>
-        <div id="wQCboIdDiv"></div>
+        <div class="errorChk"></div>        
+        <ul data-role="listview" data-inset="true" data-theme="d">
+            <li class="ui-field-contain">
+                <label for="">CBO Code</label>
+                <div id="wQCboIdDiv"></div>
+            </li>
+        </ul>
         <ul data-role="listview" data-inset="true">
             <li style="background-color:#F2F2F2;">Village/ward/slum name <sup class="reqField">*</sup></li>
             <li class="ui-field-contain">
@@ -708,7 +733,7 @@
                     <tr id="installation_date">
                         <td colspan="3" style="vertical-align:middle; width:auto;" > 
                         <label id="installDate">Installation Date<sup class="reqField">*</sup></label>
-                        <!--<label id="renovationDate">Renovation Date<sup class="reqField">*</sup></label>-->
+                        <label id="renovationDate">Renovation Date<sup class="reqField">*</sup></label>
                         <!--<td colspan="3" style="vertical-align:middle; width:auto;" id="renovationDate"> Renovation Date<sup class="reqField">*</sup> -->
 						     <div class="ui-grid-b">
 								<div class="ui-block-a">

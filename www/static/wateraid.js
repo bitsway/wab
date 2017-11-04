@@ -5,9 +5,9 @@ var longitude="";
 var latitudewq="";
 var longitudewq="";
 
-//==========1
+//==========Achievement
 function getLocationInfoAch() {	
-	var options = { enableHighAccuracy: false};	
+	var options = { enableHighAccuracy: true, timeout:30000};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);		
 	$(".errorChk").html("Confirming location. Please wait.");
 }
@@ -19,12 +19,14 @@ function onSuccess(position) {
 }
 // onError Callback receives a PositionError object
 function onError(error) {
-   $("#ach_lat").val(0);
-   $("#ach_long").val(0);
-   $(".errorChk").html("Failed to Confirmed Location.");
+	//alert(localStorage.latitudeAreaWq+'-'+localStorage.longitudeAreaWq);
+   $("#ach_lat").val(localStorage.latitudeAreaWq);
+   $("#ach_long").val(localStorage.longitudeAreaWq);
+   
+   $(".errorChk").html("Previous Location Confirmed");
 }
 
-//==========2
+//==========water Quality teset
 function getLocationInfoWq() {	
 	var options = { enableHighAccuracy: true, timeout:30000};
 	navigator.geolocation.getCurrentPosition(onSuccessWq, onErrorWq, options);//,{timeout:3000};	
@@ -46,7 +48,7 @@ function onErrorWq(error) {
    $(".errorChk").html("Previous Location Confirmed");
 }
 //==========3
-//=======area
+//=======Area
 function getLocationInfoAreaWq() {
 	var options = { enableHighAccuracy: true, timeout:30000};
 	navigator.geolocation.getCurrentPosition(onSuccessAreaWq, onErrorAreaWq, options);		
@@ -73,15 +75,16 @@ function onErrorAreaWq(error) {
    $(".errorChk").html("Failed to Confirmed Location.");
 }
 
-var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_171031/";
+var apipath="http://e2.businesssolutionapps.com/wateraid/syncmobile_20171104/";
 
 //--- local
-//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_171031/";
+//var apipath="http://127.0.0.1:8000/wateraid/syncmobile_20171104/";
 
 
 var planFlag=0;
 var cboFlag=0;
 var locationFlag=0;
+var serTypeFlag=0;
 
 var startDt='';
 var syncResult='';
@@ -103,6 +106,7 @@ var achPoorEx='';
 var achEthMale='';
 var achEthFemale='';
 var achServiceRecpt='';
+var achSerType='';
 var achPhoto='';
 var wqPhoto='';
 var reviewAchFlag=0; //used for html triger
@@ -146,7 +150,7 @@ $(function(){
 						localStorage.ser_res_list=syncResultArray[5];
 						localStorage.plan_wq=syncResultArray[6];
 						localStorage.cbo_id_wq=syncResultArray[7];
-						//localStorage.provided_by1=syncResultArray[8];
+						localStorage.service_type=syncResultArray[8];
 						
 						localStorage.mobile_no=mobile;
 						
@@ -181,6 +185,14 @@ $(function(){
 						}else{
 							$('#serResDiv').empty();
 							$('#serResDiv').append(localStorage.ser_res_list).trigger('create');
+						}
+						
+						if (serTypeFlag==0){			   
+							$("#serTypeDiv").html(localStorage.service_type);	
+							serTypeFlag=1;
+						}else{
+							$('#serTypeDiv').empty();
+							$('#serTypeDiv').append(localStorage.service_type).trigger('create');
 						}
 												
 						/*$("#planlistDiv").html(localStorage.plan_list);					
@@ -224,6 +236,7 @@ function waterAidClick(){
 	planFlag=0
 	cboFlag=0
 	locationFlag=0
+	serTypeFlag=0
 	
 	//var url = "#reportType";
 	//$(location).attr('href',url);
@@ -237,6 +250,7 @@ $(document).ready(function(){
 	$("#planlistDiv").html(localStorage.plan_list);	
 	$("#cboIdDiv").html(localStorage.cbo_list);					   
 	$("#serResDiv").html(localStorage.ser_res_list);
+	$("#serTypeDiv").html(localStorage.service_type);	
 	
 	$("#planWqlistDiv").html(localStorage.plan_wq);
 	$("#wQCboIdDiv").html(localStorage.cbo_id_wq);
@@ -386,6 +400,15 @@ function achivementclick(){
 			$('#serResDiv').append(localStorage.ser_res_list).trigger('create');
 		}
 		
+		if (serTypeFlag==0){			   
+			$("#serTypeDiv").html(localStorage.service_type);	
+			serTypeFlag=1;
+		}else{
+			$('#serTypeDiv').empty();
+			$('#serTypeDiv').append(localStorage.service_type).trigger('create');
+		}
+		
+		
 		/*$("#planlistDiv").html(localStorage.plan_list);	
 		$("#cboIdDiv").html(localStorage.cbo_list);					   
 		$("#serResDiv").html(localStorage.ser_res_list);*/
@@ -408,7 +431,8 @@ function achivementclick(){
 		$("#poorEx").val("");
 		$("#ethMale").val("");
 		$("#ethFemale").val("");	
-		$("#serRecpent").val("");	
+		$("#serRecpent").val("");
+		$("#serType").val("");	
 		$("#achPhoto").val("");	
 		
 		$("#ach_lat").val("");
@@ -619,14 +643,17 @@ function totalhousehold(){
 //------------------achivement sector next 
 function serviceRecipentNext(){
 	var chk_service_r=$("#serRecpent").val();
-	
+	var chk_serType=$("#serType").val();
 	
 	if(chk_service_r=="" ){
-		$(".errorChk").text("Select One");
+		$(".errorChk").text("Select Location");
+	/*}else if(chk_serType==""){
+		$(".errorChk").text("Select Service Type");*/
 		var url="#achiveDataList2";		
 		//alert("select sector");
 	}else{
 		achServiceRecpt=chk_service_r;
+		achSerType=chk_serType;
 		
 		$(".errorChk").text("");
 		var url="#inPhoto";			
@@ -669,7 +696,7 @@ function achiveDataSave(){
 				$("#btn_ach_submit").show();
 			}else{*/
 												
-				achivementSave=achPlanId+'fdfd'+achCBOid+'fdfd'+achID+'fdfd'+achPopulation+'fdfd'+achHousehold+'fdfd'+achMale+'fdfd'+achFemale+'fdfd'+achGirlsUnder+'fdfd'+achBoysUnder+'fdfd'+achGirls+'fdfd'+achBoys+'fdfd'+achDapMale+'fdfd'+achDapFemale+'fdfd'+achPoorA+'fdfd'+achPoorB+'fdfd'+achPoorC+'fdfd'+achPoorEx+'fdfd'+achEthMale+'fdfd'+achEthFemale+'fdfd'+achServiceRecpt+'fdfd'+achPlanActivities+'fdfd'+achPhoto+'fdfd'+startDt+'fdfd'+latitude+'fdfd'+longitude
+				achivementSave=achPlanId+'fdfd'+achCBOid+'fdfd'+achID+'fdfd'+achPopulation+'fdfd'+achHousehold+'fdfd'+achMale+'fdfd'+achFemale+'fdfd'+achGirlsUnder+'fdfd'+achBoysUnder+'fdfd'+achGirls+'fdfd'+achBoys+'fdfd'+achDapMale+'fdfd'+achDapFemale+'fdfd'+achPoorA+'fdfd'+achPoorB+'fdfd'+achPoorC+'fdfd'+achPoorEx+'fdfd'+achEthMale+'fdfd'+achEthFemale+'fdfd'+achServiceRecpt+'fdfd'+achPlanActivities+'fdfd'+achPhoto+'fdfd'+startDt+'fdfd'+latitude+'fdfd'+longitude+'fdfd'+achSerType
 				
 				if (achPlanId=='' || achCBOid==''){
 					$(".errorChk").text("New records not available");
@@ -747,6 +774,7 @@ function achiveDataSave(){
 						achEthFemale='';
 						
 						achServiceRecpt='';
+						achSerType='';
 						
 						achPhoto='';
 						startDt='';
@@ -796,10 +824,12 @@ function achiveDataSave(){
 
 function deleteAchReview(){	
 		arrayId=eval($("input[name='achReviewRad']:checked").val());
+		confirmDel=$("input[name='delConfirm']:checked").val();
 		
 		if (arrayId ==undefined){							
-				$(".errorChk").text("Select a Record");
-				
+			$(".errorChk").text("Select a Record");
+		}else if(confirmDel==undefined || confirmDel==""){
+			$(".errorChk").text("Please Confirm Delete");
 		}else{
 				var achiveSavArray3=localStorage.ach_save.split('rdrd');
 				
@@ -890,6 +920,14 @@ function reviewAchiveData(){
 				$('#serResDiv').append(localStorage.ser_res_list).trigger('create');
 			}
 			
+			if (serTypeFlag==0){			   
+				$("#serTypeDiv").html(localStorage.service_type);	
+				serTypeFlag=1;
+			}else{
+				$('#serTypeDiv').empty();
+				$('#serTypeDiv').append(localStorage.service_type).trigger('create');
+			}
+			
 			$("#achID").val("");
 	
 			$("#population").val("");
@@ -908,7 +946,8 @@ function reviewAchiveData(){
 			$("#poorEx").val("");
 			$("#ethMale").val("");
 			$("#ethFemale").val("");	
-			$("#serRecpent").val("");	
+			$("#serRecpent").val("");
+			$("#serType").val("");	
 			$("#achPhoto").val("");				
 			
 			$("#ach_lat").val("");
@@ -937,7 +976,7 @@ function reviewDataNext(){
 	var achRevDetails=achivementRevArray2[arrayId];
 	
 	var achRevDetailsArray=achRevDetails.split('fdfd');
-	
+	//alert(achRevDetailsArray[19]+'-'+achRevDetailsArray[25]);
 	//------------------
 	$( "input:radio[name='plan_select'][value='"+achRevDetailsArray[0]+"']" ).attr('checked','checked');
 	//$("#plan_select").val(achRevDetailsArray[0])
@@ -965,10 +1004,12 @@ function reviewDataNext(){
 	
 	$("#serRecpent").val(achRevDetailsArray[19]);
 	
-	$("#achPhoto").val(achRevDetailsArray[21]);
+	$("#achPhoto").val(achRevDetailsArray[21]);	
 	
 	var achlat=$("#ach_lat").val(achRevDetailsArray[23]);
 	var achlong=$("#ach_long").val(achRevDetailsArray[24]);
+	
+	$("#serType").val(achRevDetailsArray[25]);
 				
     var image = document.getElementById('myImageA');
     image.src = achRevDetailsArray[21];
@@ -1013,10 +1054,12 @@ function achiveDataSubmit(){
 		if (achPhoto=='' || achPhoto==undefined){
 			$(".errorChk").text("Please confirm Photo ");
 			$("#btn_ach_submit").show();
-		}else{		
-			if(latitude==0 || longitude==0){
-				$(".errorChk").text("Please confirm your location ");
-				$("#btn_ach_submit").show();
+		}else{
+			if(latitude==0 || longitude==0){		
+				if(localStorage.latitudeAreaWq==0 || localStorage.longitudeAreaWq==0){
+					$(".errorChk").text("Please confirm your location");
+					$("#btn_ach_submit").show();
+				}		
 			}else{				
 				if (achPlanId=='' || achCBOid=='' ){
 					$(".errorChk").text("New records not available");
@@ -1032,13 +1075,19 @@ function achiveDataSubmit(){
 				}
 			}//end check location
 		}//chk photo
+		
+		//syncDataAch()
 	}
 
 function syncDataAch(){
-	
+	if(latitude==0 || longitude==0){
+		latitude=localStorage.latitudeAreaWq;
+		longitude=localStorage.longitudeAreaWq;
+	}
+	//alert(apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&ach_SerType='+achSerType+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+imageName+'&ach_startDt='+startDt)
 			$.ajax({
 					type: 'POST',
-					url:apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+imageName+'&ach_startDt='+startDt,
+					url:apipath+'submitAchiveData?cid=WAB&mobile_no='+localStorage.mobile_no+'&syncCode='+localStorage.sync_code+'&ach_plan_id='+achPlanId+'&ach_cbo_id='+achCBOid+'&ach_id='+achID+'&ach_population='+achPopulation+'&ach_household='+achHousehold+'&ach_male='+achMale+'&ach_female='+achFemale+'&ach_girlsUnder='+achGirlsUnder+'&ach_boysUnder='+achBoysUnder+'&ach_girls='+achGirls+'&ach_boys='+achBoys+'&ach_dapMale='+achDapMale+'&ach_dapFemale='+achDapFemale+'&ach_poorA='+achPoorA+'&ach_poorB='+achPoorB+'&ach_poorC='+achPoorC+'&ach_poorEx='+achPoorEx+'&ach_ethMale='+achEthMale+'&ach_ethFemale='+achEthFemale+'&ach_service_recpient='+achServiceRecpt+'&ach_SerType='+achSerType+'&latitude='+latitude+'&longitude='+longitude+'&ach_photo='+imageName+'&ach_startDt='+startDt,
 					   
 					   success: function(result) {
 							//alert(result);
@@ -1687,6 +1736,7 @@ function testType(){
 		$("#bore_hole").show()
 		$("#dont_pree_install").show()	
 		$("#dont_pree_install_val").show()
+		$("#renovationDate").show()
 	}else{
 		//hide		
 		$("#tech_sl").hide();
@@ -2195,10 +2245,10 @@ function renovationDone(){
 
 //===========
 function WaterQDataSave(){
-		
-		$(".errorChk").text("");
+		$(".errorChk").text("");		
 		$("#btn_wq_save").hide();
-		
+		$("#btn_wq_submit").hide();
+				
 		wq_management_committee_exist=$("input[name='m_comm_ext']:checked").val();
 		wq_management_committee_ori=$("input[name='m_comm_ori_complt']:checked").val();
 		wq_management_committee_not_ori=$("input[name='m_comm_ori_no']:checked").val();
@@ -2493,10 +2543,12 @@ function WaterQDataSave(){
 
 function deleteWqReview(){	
 		arrayIdWq=eval($("input[name='wqReviewRad']:checked").val());
+		confirmDelWQ=$("input[name='delConfirmWQ']:checked").val();
 		
 		if (arrayIdWq ==undefined){							
-				$(".errorChk").text("Select a Record");
-				
+			$(".errorChk").text("Select a Record");
+		}else if(confirmDelWQ==undefined || confirmDelWQ==""){
+			$(".errorChk").text("Please Confirm Delete");
 		}else{
 			var waterqSavArray3=localStorage.water_q_save.split('rdrd');
 			
@@ -2576,9 +2628,9 @@ function reviewWaterQData(){
 
 	
 function reviewWqDataNext(){
-	$('#btn_wq_lat_long').hide();
-	$('#btn_take_wq_pic').show();	
-	
+	$('#btn_wq_lat_long').show();
+	$('#btn_take_wq_pic').hide();
+			
 	if($("#reviewWqList").find("input[name=wqReviewRad]:checked").length==0){
 		$(".errorChk").text("Select a Record");
 	}else{
