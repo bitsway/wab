@@ -534,7 +534,7 @@ function achivementDataPSupport(){
 			}
 	
 	if (cbo_id=="" ){
-		$(".errorChk").text("Required CBO ID ");
+		$(".errorChk").text("Required Ward Code ");
 	}else if (male=="" ){
 		$(".errorChk").text("Required Male ");
 	}else if (female=="" ){
@@ -689,13 +689,17 @@ function achiveDataSave(){
 			$("#btn_ach_save").show();
 			$("#btn_ach_submit").show();
 		}else{
-		
-			/*if(latitude==0 || longitude==0){
-				$(".errorChk").text("Please confirm your location ");
-				$("#btn_ach_save").show();
-				$("#btn_ach_submit").show();
-			}else{*/
-												
+			if(latitude==0 || longitude==0){		
+				if(localStorage.latitudeAreaWq==0 || localStorage.longitudeAreaWq==0){
+					$(".errorChk").text("Please confirm your location");
+					$("#btn_ach_save").show();
+					$("#btn_ach_submit").show();
+				}
+			}else{
+				if(latitude==0 || longitude==0){
+					latitude=localStorage.latitudeAreaWq;
+					longitude=localStorage.longitudeAreaWq;
+				}								
 				achivementSave=achPlanId+'fdfd'+achCBOid+'fdfd'+achID+'fdfd'+achPopulation+'fdfd'+achHousehold+'fdfd'+achMale+'fdfd'+achFemale+'fdfd'+achGirlsUnder+'fdfd'+achBoysUnder+'fdfd'+achGirls+'fdfd'+achBoys+'fdfd'+achDapMale+'fdfd'+achDapFemale+'fdfd'+achPoorA+'fdfd'+achPoorB+'fdfd'+achPoorC+'fdfd'+achPoorEx+'fdfd'+achEthMale+'fdfd'+achEthFemale+'fdfd'+achServiceRecpt+'fdfd'+achPlanActivities+'fdfd'+achPhoto+'fdfd'+startDt+'fdfd'+latitude+'fdfd'+longitude+'fdfd'+achSerType
 				
 				if (achPlanId=='' || achCBOid==''){
@@ -818,7 +822,7 @@ function achiveDataSave(){
 						
 						}
 				}
-			/*}*/
+			}
 		}
 	}
 
@@ -967,7 +971,7 @@ function reviewAchiveData(){
 	
 function reviewDataNext(){
 	$('#btn_take_pic').hide();
-	$('#btn_ach_lat_long').show();
+	$('#btn_ach_lat_long').hide();
 	
 	reviewAchDisplayFlag=true;
 	arrayId=eval($("input[name='achReviewRad']:checked").val());
@@ -1017,9 +1021,9 @@ function reviewDataNext(){
 	
 	startDt=achRevDetailsArray[22]
 	
-	if (achRevDetailsArray[23]==0 && achRevDetailsArray[24]==0){
+	/*if (achRevDetailsArray[23]==0 && achRevDetailsArray[24]==0){
 		$('#btn_ach_lat_long').show();
-	}
+	}*/
 	
 	
 
@@ -1318,7 +1322,7 @@ function waterDataNext(){
 		
 				
 		if (wq_CBO_id=="" ){
-			$(".errorChk").text("Required CBO ID ");
+			$(".errorChk").text("Required Ward Code ");
 		}else if (wq_vill=="" ){
 			$(".errorChk").text("Required Village/ward/slum Name ");
 		}else if (test_type_val=="" ){
@@ -2460,10 +2464,17 @@ function WaterQDataSave(){
 				$(".errorChk").text("Please confirm Photo");
 				$("#btn_wq_submit").show();
 			}else{	
-				/*if(latitudewq==0 || longitudewq==0){
+				if(latitudewq==0 || longitudewq==0){		
+					if(localStorage.latitudeAreaWq==0 || localStorage.longitudeAreaWq==0){
 						$(".errorChk").text("Please confirm your location");
-						$("#btn_wq_submit").show();
-					}else{*/
+						$("#btn_wq_save").show();
+						$("#btn_wq_submit").show();						
+					}
+				}else{
+					if(latitudewq==0 || longitudewq==0){
+						latitudewq=localStorage.latitudeAreaWq;
+						longitudewq=localStorage.longitudeAreaWq;
+					}
 																																																																																																																																																									
 						waterQualitySave=wq_plan_id+'|||'+wq_CBO_id+'|||'+wq_vill+'|||'+provided_by+'|||'+test_type_val+'|||'+type_of_wq_facility+'|||'+wq_ref+'|||'+wq_id+'|||'+wq_plat_condition+'|||'+drain_condition+'|||'+wp_repair+'|||'+chamber_condition+'|||'+wq_maintain_by+'|||'+wq_ins_date+'|||'+wq_depth+'|||'+wq_analysis_date+'|||'+wq_last_date+'|||'+wq_appDate+'|||'+wq_siteSelectDate+'|||'+wq_handOvrDate+'|||'+wq_owner_name+'|||'+wq_owner_phone+'|||'+wq_caretaker+'|||'+caretakerPhone+'|||'+wq_select_tech+'|||'+wq_pota+'|||'+wq_delAgua+'|||'+wq_hach_ez_as+'|||'+wq_hach_fe+'|||'+wq_solinity_meter+'|||'+wq_mn_test_kit+'|||'+wq_test_kit_lab_test+'|||'+wq_micro_kit+'|||'+wq_ttc_cfu+'|||'+wq_as_ppb+'|||'+wq_mn_ppb+'|||'+wq_chl_ppt+'|||'+wq_chlorine+'|||'+wq_turb_ntu+'|||'+wq_ph+'|||'+wq_boron+'|||'+wq_ironFe+'|||'+wq_c_bac+'|||'+wq_colour+'|||'+wq_odor+'|||'+wq_nitrate+'|||'+wq_zinc+'|||'+wq_condvity+'|||'+wq_fc+'|||'+wq_tested_at+'|||'+wq_iron_test+'|||'+wq_tw_color+'|||'+sw_option+'|||'+alt_option+'|||'+sw_distance+'|||'+ac_taken+'|||'+arc_patient_yn+'|||'+arc_patient+'|||'+wq_san_ins+'|||'+wq_inspect_date+'|||'+wq_san_risk_sc+'|||'+wq_functional+'|||'+wq_drinking+'|||'+wq_cooking+'|||'+wq_washing+'|||'+wq_drinking_cooking+'|||'+wq_drinking_cooking_washing+'|||'+wq_others_option+'|||'+wq_potable_status+'|||'+wq_res_non_potable+'|||'+wq_no_potable_initiative_taken+'|||'+wq_wab_con+'|||'+wq_comm_con+'|||'+wq_total_cost+'|||'+wq_do_user_pay+'|||'+wq_is_piped_W_connection+'|||'+wq_all_test_complete+'|||'+wq_res_n_test+'|||'+wq_management_committee_exist+'|||'+wq_management_committee_ori+'|||'+wq_management_committee_not_ori+'|||'+wq_management_committee_not_new_option+'|||'+wq_caretaker_trained+'|||'+wq_caretaker_trained_not+'|||'+alt_others+'|||'+wq_sample_analysis+'|||'+wq_renovation_type+'|||'+wq_installation_done+'|||'+wq_photo+'|||'+wq_activities+'|||'+startDtWq+'|||'+latitudewq+'|||'+longitudewq;
 					
@@ -2536,7 +2547,7 @@ function WaterQDataSave(){
 								//location.reload();
 								}
 						}//lat
-			
+				}
 				
 		}
 }
@@ -2628,7 +2639,7 @@ function reviewWaterQData(){
 
 	
 function reviewWqDataNext(){
-	$('#btn_wq_lat_long').show();
+	$('#btn_wq_lat_long').hide();
 	$('#btn_take_wq_pic').hide();
 			
 	if($("#reviewWqList").find("input[name=wqReviewRad]:checked").length==0){
@@ -2994,9 +3005,9 @@ function reviewWqDataNext(){
 		}else{
 			$('#caretakerTrainedNo').show();
 		}
-		if (waterQRevDetailsArray[91]==0 && waterQRevDetailsArray[92]==0){
+		/*if (waterQRevDetailsArray[91]==0 && waterQRevDetailsArray[92]==0){
 			$('#btn_wq_lat_long').show();
-		}
+		}*/
 		
 		
 		$(".errorChk").text("");
